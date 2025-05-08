@@ -10,6 +10,8 @@ public class GameScene : BaseScene
         base.Init();
         GameObject player = Managers.Resource.Instantiate("Player");
         player.name = "Player";
+
+
     }
 
     public override void Clear()
