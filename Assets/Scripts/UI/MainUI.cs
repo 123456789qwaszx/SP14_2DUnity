@@ -40,6 +40,9 @@ public class MainUI : MonoBehaviour
     private void OnClickExitButton() // 나가기 버튼
     {
         Debug.Log("나가기");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
         Application.Quit();
     }
 }
