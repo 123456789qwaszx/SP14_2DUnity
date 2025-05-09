@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerAnim : MonoBehaviour
 {
     [SerializeField] private float baseSpeed = 5f;
-    [SerializeField] private float baseJump = 30f;
+    [SerializeField] private float baseJump = 5f;
 
     Rigidbody2D rb;
     Animator anim;
@@ -14,30 +14,32 @@ public class PlayerAnim : MonoBehaviour
     int jumpCount = 2;
     int maxJumpCount = 2;
 
-    bool isJump;
-    bool jDown;
-
     float hAxis;
 
-    Vector2 movementVelo;
+    bool isJump;
+    bool jDown;
+    bool sDown;
+ 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
-
-        
     }
     private void FixedUpdate()
     {
-        GetInput();
         Move();
         Jump();
+    }
+    private void Update()
+    {
+        GetInput();
     }
 
     void GetInput()
     {
         hAxis = Input.GetAxisRaw("Horizontal");
         jDown = Input.GetButtonDown("Jump");
+        sDown = Input.GetButton("Fire3");
     }
     private void Move()
     {
@@ -45,6 +47,7 @@ public class PlayerAnim : MonoBehaviour
         rb.velocity = movement * baseSpeed;
 
         anim.SetBool("isRun", rb.velocity != Vector2.zero);
+        anim.SetBool("isSliding", sDown);
     }
     void Jump()
     {
@@ -52,19 +55,19 @@ public class PlayerAnim : MonoBehaviour
         {
             rb.AddForce(Vector2.up * baseJump, ForceMode2D.Impulse);
 
-            if (jumpCount == maxJumpCount) 
+            if (jumpCount == maxJumpCount)
             {
                 jumpCount--;
-                anim.SetTrigger("doJump");
+                anim.SetBool("isJump", true);
                 Debug.Log($"OneJump {jumpCount}");
             }
-            else if(jumpCount != 0)
+            else if (jumpCount == 1)
             {
                 jumpCount--;
-                anim.SetTrigger("doDoubleJump");
+                anim.SetBool("isDoubleJump", true);
                 Debug.Log($"TwoJump {jumpCount}");
             }
-
+            isJump = true;
         }
     }
 
@@ -73,7 +76,13 @@ public class PlayerAnim : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             jumpCount = maxJumpCount;
-
+            isJump = false;
+            anim.SetBool("isJump", false);
+            anim.SetBool("isDoubleJump", false);
+        }
+        if (collision.gameObject.name == "TestTrap")
+        {
+            anim.SetBool("isHit", true);
         }
     }
 }
