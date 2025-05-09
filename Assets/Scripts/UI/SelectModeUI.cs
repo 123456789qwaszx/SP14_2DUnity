@@ -38,6 +38,7 @@ public class SelectModeUI : MonoBehaviour
     private void OnClickStageButton() // 스테이지 선택으로 이동
     {
         Debug.Log("스테이지 선택로 이동");
+        SceneManager.LoadScene("StageSelect");
     }
 
     private void OnClickEndlessButton() // 무한모드로 이동

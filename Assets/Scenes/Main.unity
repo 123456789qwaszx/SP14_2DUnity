@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 712293282}
   - component: {fileID: 712293281}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: StartButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 2087944526}
   - component: {fileID: 2087944525}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
