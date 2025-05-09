@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 927366542647192465}
-  scrollAmount: 39.95
+  scrollAmount: 39.8
   moveSpeed: 2
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &1764455351063592593
@@ -911,7 +911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6703963201873863326}
-  scrollAmount: 39.95
+  scrollAmount: 39.8
   moveSpeed: 2
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &5234884541444058939
@@ -1654,6 +1654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7495724113129696051}
-  scrollAmount: 39.95
+  scrollAmount: 39.8
   moveSpeed: 2
   moveDirection: {x: -1, y: 0, z: 0}
