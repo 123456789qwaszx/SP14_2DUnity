@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class PlayerAnim : MonoBehaviour
 
     Rigidbody2D rb;
     Animator anim;
+
+    int jumpCount = 2;
+    int maxJumpCount = 2;
 
     bool isJump;
     bool jDown;
@@ -37,32 +41,29 @@ public class PlayerAnim : MonoBehaviour
     }
     private void Move()
     {
-        Vector3 movement = new Vector3(hAxis, 0);
+        Vector2 movement = new Vector2(hAxis, 0);
         rb.velocity = movement * baseSpeed;
-        movementVelo = rb.velocity;
 
-        anim.SetBool("isRun", movementVelo != Vector2.zero);
+        anim.SetBool("isRun", rb.velocity != Vector2.zero);
     }
-    //void Run()
-    //{ 
-    //    if(movementVelo != Vector2.zero)
-    //    {
-    //        anim.SetBool("isRun", true);
-    //    }
-    //    else
-    //    {
-    //        anim.SetBool("isRun", false);
-    //    }
-    //} 
     void Jump()
     {
-        if (jDown && !isJump)
+        if (jDown && jumpCount > 0)
         {
-            Debug.Log("Jump");
-            rb.AddForce(Vector3.up * baseJump, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * baseJump, ForceMode2D.Impulse);
 
-            anim.SetBool("isJump", true);
-            isJump = true;
+            if (jumpCount == maxJumpCount) 
+            {
+                jumpCount--;
+                anim.SetTrigger("doJump");
+                Debug.Log($"OneJump {jumpCount}");
+            }
+            else if(jumpCount != 0)
+            {
+                jumpCount--;
+                anim.SetTrigger("doDoubleJump");
+                Debug.Log($"TwoJump {jumpCount}");
+            }
 
         }
     }
@@ -71,8 +72,7 @@ public class PlayerAnim : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            anim.SetBool("isJump", false);
-            isJump = false;
+            jumpCount = maxJumpCount;
 
         }
     }
