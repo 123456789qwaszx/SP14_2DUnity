@@ -10,6 +10,7 @@ public class PlayerAnim : MonoBehaviour
 
     Rigidbody2D rb;
     Animator anim;
+    BoxCollider2D boxCollider;
 
     int jumpCount = 2;
     int maxJumpCount = 2;
@@ -24,11 +25,13 @@ public class PlayerAnim : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        boxCollider = GetComponentInParent<BoxCollider2D>();
     }
     private void FixedUpdate()
     {
         Move();
         Jump();
+        Sliding();
     }
     private void Update()
     {
@@ -47,7 +50,6 @@ public class PlayerAnim : MonoBehaviour
         rb.velocity = movement * baseSpeed;
 
         anim.SetBool("isRun", rb.velocity != Vector2.zero);
-        anim.SetBool("isSliding", sDown);
     }
     void Jump()
     {
@@ -57,13 +59,11 @@ public class PlayerAnim : MonoBehaviour
 
             if (jumpCount == maxJumpCount)
             {
-                Debug.Log($"Jump");
                 jumpCount--;
                 anim.SetBool("isJump", true);
             }
             else if (jumpCount == 1)
             {
-                Debug.Log($"DoubleJump");
                 jumpCount--;
                 anim.SetBool("isJump", false);
                 anim.SetBool("isDoubleJump", true);
@@ -72,6 +72,10 @@ public class PlayerAnim : MonoBehaviour
         }
     }
 
+    void Sliding()
+    {
+        anim.SetBool("isSliding", sDown);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
