@@ -27,7 +27,7 @@ public class GroundController : MonoBehaviour
         gameObject.AddComponent <SpriteRenderer>();
         
         SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
-        _sprite.sprite = Managers.Resource.Load<Sprite>("BG/BG1_Moutain/layer_i");
+        _sprite.sprite = Managers.Resource.Load<Sprite>("BG/BG1_Moutain/layer_1");
     }
 
     void Update()
