@@ -15,6 +15,10 @@ public class GameScene : BaseScene
         GameObject parallax = Managers.Resource.Instantiate("Parallax/Parallax_001");
         parallax.name = "Parallax";
 
+        
+        GameObject ground = Managers.Resource.Instantiate("BG/Ground_001");
+        ground.name = "Ground";
+
 
     }
     
