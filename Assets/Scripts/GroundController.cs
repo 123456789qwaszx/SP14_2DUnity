@@ -20,6 +20,16 @@ public class GroundController : MonoBehaviour
         return moveSpeed ;
     }
 
+
+    void Start()
+    {
+        gameObject.AddComponent <BoxCollider2D>();
+        gameObject.AddComponent <SpriteRenderer>();
+        
+        SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
+        _sprite.sprite = Managers.Resource.Load<Sprite>("BG/BG1_Moutain/layer_i");
+    }
+
     void Update()
     {
         
