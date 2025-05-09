@@ -57,15 +57,16 @@ public class PlayerAnim : MonoBehaviour
 
             if (jumpCount == maxJumpCount)
             {
+                Debug.Log($"Jump");
                 jumpCount--;
                 anim.SetBool("isJump", true);
-                Debug.Log($"OneJump {jumpCount}");
             }
             else if (jumpCount == 1)
             {
+                Debug.Log($"DoubleJump");
                 jumpCount--;
+                anim.SetBool("isJump", false);
                 anim.SetBool("isDoubleJump", true);
-                Debug.Log($"TwoJump {jumpCount}");
             }
             isJump = true;
         }
@@ -83,6 +84,7 @@ public class PlayerAnim : MonoBehaviour
         if (collision.gameObject.name == "TestTrap")
         {
             anim.SetBool("isHit", true);
+            anim.SetBool("isHit", false);
         }
     }
 }
