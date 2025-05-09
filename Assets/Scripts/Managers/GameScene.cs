@@ -14,7 +14,6 @@ public class GameScene : BaseScene
 
         GameObject parallax = Managers.Resource.Instantiate("Parallax/Parallax_001");
         parallax.name = "Parallax";
-        Managers.Object.Add(parallax);
 
 
     }
