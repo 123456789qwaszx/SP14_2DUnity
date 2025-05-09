@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    // 모든 기능을 싹다 끌어오는 GameObject
     protected override void Init()
     {
         base.Init();
+        
         GameObject player = Managers.Resource.Instantiate("Player");
         player.name = "Player";
 
 
+        GameObject parallax = Managers.Resource.Instantiate("Parallax/Parallax_001");
+        parallax.name = "Parallax";
+        Managers.Object.Add(parallax);
+
+
     }
+    
 
     public override void Clear()
     {

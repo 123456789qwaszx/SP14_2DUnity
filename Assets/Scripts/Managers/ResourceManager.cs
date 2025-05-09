@@ -24,5 +24,4 @@ public class ResourceManager
 
         Object.Destroy(go);
     }
-
 }
