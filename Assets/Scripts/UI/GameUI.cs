@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using UnityEngine.Events; // UnityAction을 사용하기 위해 추가
+
 // -인게임-
 
 // 체력바 표시
@@ -17,6 +19,7 @@ public class GameUI : MonoBehaviour
 {
     public GameObject gameUICanvas;
     public GameObject gameoverUICanvas;
+
     TextMeshProUGUI currentScoreTxt; // 현재 점수 
     TextMeshProUGUI bestScoreTxt; // 최고 점수
     Button jumpButton; // 점프 버튼
@@ -32,8 +35,6 @@ public class GameUI : MonoBehaviour
 
     public void Init() // 초기화
     {
-        if (gameUICanvas == null) return;
-
         // 인스펙터에 오브젝트 연결
         Transform gameCanvas = gameUICanvas.transform;
         Transform gameoverCanvas = gameoverUICanvas.transform;
@@ -62,7 +63,7 @@ public class GameUI : MonoBehaviour
 
     private void OnClickJumpButton() // 점프 버튼 클릭
     {
-        Debug.Log("점프");
+            Debug.Log("점프");
     }
 
     private void OnClickSlidingButton() // 슬라이딩 버튼 클릭
@@ -73,13 +74,13 @@ public class GameUI : MonoBehaviour
     private void OnClickRestartButton() // 재시작 버튼 클릭
     {
         SceneManager.LoadScene("Game");
-        Debug.Log("뒤로가기");
+        Debug.Log("재시작");
     }
 
     private void OnClickBackButton() // 뒤로가기 버튼 클릭
     {
         SceneManager.LoadScene("StageSelect");
-        Debug.Log("슬라이딩");
+        Debug.Log("뒤로가기");
     }
 
     private void OnClickHomeButton() // 홈 버튼 클릭
