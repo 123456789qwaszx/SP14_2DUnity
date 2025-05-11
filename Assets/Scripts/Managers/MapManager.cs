@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class MapManager
 {
     private int randomIndex;
-    private float mapWidth = 10.0f;
+    private float mapWidth = 0.0f;
 
     // 이런 배열을 오브젝트 매니저에 넣고 싶긴한데 이거 하나론 의미가 없어. 걍 여기에 씀.
     private List<GameObject> MapInstances = new List<GameObject>();
@@ -34,9 +34,10 @@ public class MapManager
         GameObject randomMap = MapInstances[randomIndex];
 
         randomMap.SetActive(true);
-
-        mapWidth = GetMapWorldWidth(randomMap);
         randomMap.transform.position = new Vector3(mapWidth, 0);
+
+        // 이렇게 아래로 빼둬야 첫 맵은 기본값인 (0, 0) 좌표에서 생성
+        mapWidth = GetMapWorldWidth(randomMap);
 
     }
 

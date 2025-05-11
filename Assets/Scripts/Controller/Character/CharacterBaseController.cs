@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ÇÃ·¹ÀÌ¾îºí Ä³¸¯ÅÍ Ãß°¡¸¦ ´ëºñÇÑ Ä³¸¯ÅÍ ±âº» Å¬·¡½º
+// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½âº» Å¬ï¿½ï¿½ï¿½ï¿½
 public class CharacterBaseController : MonoBehaviour
 {
-    protected Rigidbody2D rb; // Ä³¸¯ÅÍ´Â °íÁ¤µÇ¾î ÀÖ¾îµµ Á¡ÇÁ µîÀÇ Çàµ¿À» À§ÇØ ÇÊ¿ä
+    protected Rigidbody2D rb; // Ä³ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö¾îµµ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
     protected Animator anim;
 
     [Header("Character State")]
-    [Tooltip("Ä³¸¯ÅÍÀÇ µðÆúÆ® ½ºÅ×ÀÌÅÍ½º")]
-    protected float maxHp = 3f;    // memo: 3°³ÀÇ ÇÏÆ®¸¦ °¡Áö°í ÀÖÀ» °æ¿ì, ¹Ý¸¸ ±ð´Â »óÈ²À» »óÁ¤ÇÏ¿© float·Î ÁöÁ¤
+    [Tooltip("Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í½ï¿½")]
+    protected float maxHp = 3f;    // memo: 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½Ý¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ floatï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     protected float currentHp = 0f;
     protected float moveSpeed = 5f;
     protected float currentSpeed = 0f;
     protected float jumpPower = 3f;
     protected float currentJumpPower = 0f;
-    protected int maxJumpCount = 1;    // Ä³¸¯ÅÍ°¡ °øÁß Á¡ÇÁ È½¼ö
+    protected int maxJumpCount = 1;    // Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½
     protected int jumpCount = 0;
     protected bool isJumping = false;
     protected float slidePower = 2f;
@@ -24,10 +24,10 @@ public class CharacterBaseController : MonoBehaviour
     protected bool isGround = false;
 
     [Header("Character Interaction")]
-    private Vector2 knockBack = Vector2.zero;   // Àå¾Ö¹°¿¡ ºÎµúÈù ÀÌÈÄ Ä³¸¯ÅÍ°¡ ¹Ð·Á³ª´Â Èû
+    private Vector2 knockBack = Vector2.zero;   // ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     private float knockBackDuration = 0f;
 
-    private float invincibleDuration = 0f; // ¹«Àû ½Ã°£
+    private float invincibleDuration = 0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
     protected virtual void Awake()
     {
@@ -55,7 +55,7 @@ public class CharacterBaseController : MonoBehaviour
 
     }
 
-    // memo: ½½¶óÀÌµù ½Ã, ¼Óµµ¸¦ °¡¼Ó½ÃÅ°´Â ·ÎÁ÷ÀÌ ÇÊ¿äÇÒ±î?
+    // memo: ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½, ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ò±ï¿½?
     protected virtual void Jump()
     {
 
