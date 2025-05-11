@@ -34,6 +34,8 @@ public class MapManager
         GameObject randomMap = MapInstances[randomIndex];
 
         randomMap.SetActive(true);
+
+        mapWidth = GetMapWorldWidth(randomMap);
         randomMap.transform.position = new Vector3(mapWidth, 0);
 
     }
@@ -58,5 +60,23 @@ public class MapManager
             GameObject.Destroy(map);
         }
         MapInstances.Remove(map);
+    }
+
+
+    public float GetMapWorldWidth(GameObject tilemapObj)
+    {
+        Tilemap tilemap = tilemapObj.GetComponent<Tilemap>();
+
+        if (tilemap == null)
+        {
+            Debug.Log("fail to find tilemap. default = 10");
+            return 10;
+        }
+
+        tilemap.CompressBounds();
+
+        Bounds tilemapBounds = tilemap.localBounds;
+        Vector3 worldSize = Vector3.Scale(tilemapBounds.size, tilemap.transform.lossyScale);
+        return worldSize.x;
     }
 }

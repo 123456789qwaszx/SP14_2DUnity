@@ -16,28 +16,13 @@ public class MapController : MonoBehaviour
     // 또 아이템을 먹었을 때 발동하는 스킬들ex) ModifySpeed를 맵이 아니라 플레이어가 가지는게 맞아.
 
     // 맵의 가로 길이를 월드 좌표 기준으로 계산
-    public float GetMapWorldWidth()
-    {
-        Tilemap tilemap = GetComponent<Tilemap>();
-
-        if (tilemap == null)
-        {
-            Debug.Log("fail to find tilemap. default = 10");
-            return 10;
-        }
-
-        tilemap.CompressBounds();
-
-        Bounds tilemapBounds = tilemap.localBounds;
-        Vector3 worldSize = Vector3.Scale(tilemapBounds.size, tilemap.transform.lossyScale);
-        return worldSize.x;
-    }
+    
     
 
     void Update()
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-        mapWidth = GetMapWorldWidth();
+        mapWidth = Managers.Map.GetMapWorldWidth(gameObject);
 
         if (transform.position.x <= -mapWidth)
         {
