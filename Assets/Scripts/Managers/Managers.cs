@@ -15,11 +15,13 @@ public class Managers : MonoBehaviour
 
     static Managers Instance { get { Init(); return s_instance; } } //유일한 매니저를 가지고 온다.
     // Init() 재귀식으로 여러번 실행될까 걱정되지만, 실제론 Manager를 불러올 때 1번씩만 실행됨.
-
+    
+    MapManager _map = new MapManager();
     ObjectManager _object = new ObjectManager();
     ResourceManager _resource = new ResourceManager();
 
-    public static ObjectManager Object {get { return Instance._object; }} 
+    public static MapManager Map { get { return Instance._map; } }
+    public static ObjectManager Object { get { return Instance._object; } } 
     public static ResourceManager Resource { get { return Instance._resource; } }
 
 
