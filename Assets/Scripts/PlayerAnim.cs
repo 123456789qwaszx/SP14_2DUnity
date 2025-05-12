@@ -108,8 +108,8 @@ public class PlayerAnim : MonoBehaviour
         jDown = true;
     }
 
-    public void SetIsSliding(bool sliding)
+    public void OnSlidingInput()
     {
-        sDown = sliding;
+        sDown = true;
     }
 }
