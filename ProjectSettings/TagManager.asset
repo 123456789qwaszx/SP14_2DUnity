@@ -8,6 +8,7 @@ TagManager:
   - ScaleUp
   - SpeedUp
   - HpRecovery
+  - Items
   layers:
   - Default
   - TransparentFX
