@@ -93,12 +93,12 @@ public class CharacterController : CharacterBaseController
 
         if (jumpCount == 0)
         {
-            // anim.SetBool("isJump", true);   // 애니메이션 연결 후 사용
+            anim.SetBool("isJump", true);   // 애니메이션 연결 후 사용
         }
         else if (jumpCount >= 1)
         {
-            // anim.SetBool("isJump", false);   // 애니메이션 연결 후 사용
-            // anim.SetBool("isDoubleJump", true);   // 애니메이션 연결 후 사용
+            anim.SetBool("isJump", false);   // 애니메이션 연결 후 사용
+            anim.SetBool("isDoubleJump", true);   // 애니메이션 연결 후 사용
         }
 
         jumpCount++;
@@ -149,8 +149,8 @@ public class CharacterController : CharacterBaseController
         // 장애물 충돌 처리
         if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
-            float damage = collision.gameObject.GetComponent<Obstacle>().Damage;
-            float knockBackPower = collision.gameObject.GetComponent<Obstacle>().KnockBackPower;
+            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
+            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
 
             Damage(damage);
             ApplyKnockBack(collision.gameObject.transform, knockBackPower);
