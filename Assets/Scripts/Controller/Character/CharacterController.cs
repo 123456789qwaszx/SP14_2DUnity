@@ -147,19 +147,22 @@ public class CharacterController : CharacterBaseController
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // 厘局拱 面倒 贸府
-        if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
-        {
-            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
-            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Debug.Log("面倒");
+    //    Debug.Log(gameObject.tag);
+    //    Debug.Log(gameObject.name);
+    //    // 厘局拱 面倒 贸府
+    //    if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
+    //    {
+    //        float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
+    //        float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
 
-            Damage(damage);
-            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
-            ApplyInvincible();
-        }
-    }
+    //        Damage(damage);
+    //        ApplyKnockBack(collision.gameObject.transform, knockBackPower);
+    //        ApplyInvincible();
+    //    }
+    //}
 
     protected override void ApplyInvincible()
     {

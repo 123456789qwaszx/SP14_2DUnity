@@ -38,6 +38,7 @@ public class Items : MonoBehaviour
     {
         StartCoroutine(SpeedUpCoroutine(_player, _speedUp, _duration));
     }
+
     public void ScaleUp(CharacterController _player, float _duration)
     {
         StartCoroutine(ScaleUpCoroutine(_player, _duration));
@@ -51,8 +52,8 @@ public class Items : MonoBehaviour
 
         _player.transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
 
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponentInChildren<Collider2D>().enabled = false;
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
 
         yield return new WaitForSeconds(_duration);
 
@@ -67,14 +68,12 @@ public class Items : MonoBehaviour
 
     private IEnumerator SpeedUpCoroutine(CharacterController _player, float _speedUp, float _duration)
     {
-        // x °ª ¼Óµµ »ó½Â
-        _player.CurrentSpeed = 5f;
         float originSpeed = _player.CurrentSpeed;
 
         _player.CurrentSpeed += _speedUp;
 
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponentInChildren<Collider2D>().enabled = false;
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
 
         yield return new WaitForSeconds(_duration);
 
