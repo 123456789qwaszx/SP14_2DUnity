@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using System.Xml.Serialization;
-using JetBrains.Annotations; // UnityAction을 사용하기 위해 추가
+using UnityEngine.EventSystems; // PointerDownHandler, PointerUpHandler 인터페이스 사용
 
 // -인게임-
 
@@ -27,11 +26,14 @@ public class GameUI : MonoBehaviour
     TextMeshProUGUI currentScoreTxt; // 현재 점수 
     TextMeshProUGUI bestScoreTxt; // 최고 점수
     Button jumpButton; // 점프 버튼
-    Button slidingButton; // 슬라이딩 버튼
     Button restartButton; // 재시작 버튼
     Button backButton; // 뒤로가기 버튼
     Button homeButton; // 홈으로 가기 버튼
     Button pauseButton; // 일시정지 버튼
+
+    public Button slidingButton; // 슬라이딩 버튼
+    private bool isSlidingButtonDown = false; // 슬라이딩 버튼이 눌렸는지 여부
+    public PlayerAnim playerAnim;
 
     private void Start()
     {
@@ -66,6 +68,11 @@ public class GameUI : MonoBehaviour
         homeButton.onClick.AddListener(OnClickHomeButton);
         pauseButton.onClick.AddListener(OnClickPauseButton);
 
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+        playerAnim = playerObject.GetComponent<PlayerAnim>();
+
+
         _gameUICanvas.SetActive(true);
     }
 
@@ -93,11 +100,12 @@ public class GameUI : MonoBehaviour
 
     private void OnClickJumpButton() // 점프 버튼
     {
-        Debug.Log("점프");
+        playerAnim.OnJumpInput();
     }
 
     private void OnClickSlidingButton() // 슬라이딩 버튼
     {
+        playerAnim.OnSlidingInput();
         Debug.Log("슬라이딩");
     }
 
@@ -116,7 +124,6 @@ public class GameUI : MonoBehaviour
     private void OnClickHomeButton() // 홈 버튼
     {
         SceneManager.LoadScene("Main");
-        Debug.Log("홈으로 이동");
     }
 
     private void OnClickPauseButton() // 일시정지 버튼
@@ -124,7 +131,6 @@ public class GameUI : MonoBehaviour
         Time.timeScale = 0f; // 게임 정지
         _gameStateText.text = _gameStateMessages[2]; // "일시정지" 출력
         _gameStateUICanvas.SetActive(true);
-        Debug.Log("일시정지");
     }
 
     #endregion

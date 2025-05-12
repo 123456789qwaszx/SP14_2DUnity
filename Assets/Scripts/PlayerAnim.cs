@@ -19,8 +19,8 @@ public class PlayerAnim : MonoBehaviour
 
     bool isJump;
     bool jDown;
-    bool sDown;
- 
+    public bool sDown;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,7 +30,17 @@ public class PlayerAnim : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        Jump();
+        //Jump();
+        if (jDown) // UI 버튼 클릭으로 jDown이 true가 되면 점프 실행
+        {
+            Jump();
+            jDown = false; // 점프 처리 후 초기화
+        }
+        //if (sDown) // UI 버튼 클릭으로 jDown이 true가 되면 점프 실행
+        //{
+        //    Sliding();
+        //    sDown = false; // 점프 처리 후 초기화
+        //}
         Sliding();
     }
     private void Update()
@@ -41,8 +51,8 @@ public class PlayerAnim : MonoBehaviour
     void GetInput()
     {
         hAxis = Input.GetAxisRaw("Horizontal");
-        jDown = Input.GetButtonDown("Jump");
-        sDown = Input.GetButton("Fire3");
+        //jDown = Input.GetButtonDown("Jump");
+        //sDown = Input.GetButton("Fire3");
     }
     private void Move()
     {
@@ -51,10 +61,11 @@ public class PlayerAnim : MonoBehaviour
 
         anim.SetBool("isRun", rb.velocity != Vector2.zero);
     }
-    void Jump()
+    public void Jump()
     {
         if (jDown && jumpCount > 0)
         {
+
             rb.AddForce(Vector2.up * baseJump, ForceMode2D.Impulse);
 
             if (jumpCount == maxJumpCount)
@@ -90,5 +101,15 @@ public class PlayerAnim : MonoBehaviour
             anim.SetBool("isHit", true);
             anim.SetBool("isHit", false);
         }
+    }
+
+    public void OnJumpInput()
+    {
+        jDown = true;
+    }
+
+    public void SetIsSliding(bool sliding)
+    {
+        sDown = sliding;
     }
 }
