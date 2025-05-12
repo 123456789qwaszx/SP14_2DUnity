@@ -35,7 +35,7 @@ public class CharacterController : CharacterBaseController
 
 
         // 점프
-        if (jumpCount < maxJumpCount)
+        if (jumpCount < maxJumpCount && !isSliding)
         {
             // 테스트용 점프 코드. 실제로는 모바일 환경에 맞춰 OnClick으로 구현 예정
             if (Input.GetKeyDown(KeyCode.Space))
