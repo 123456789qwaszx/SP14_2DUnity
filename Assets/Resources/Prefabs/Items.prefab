@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6603762899003873618}
   m_Layer: 0
   m_Name: HeathRecovery
-  m_TagString: Untagged
+  m_TagString: HeathRecovery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5867131896965331597}
   m_Layer: 0
   m_Name: ScaleUp
-  m_TagString: Untagged
+  m_TagString: ScaleUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
