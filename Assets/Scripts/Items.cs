@@ -11,6 +11,8 @@ public class Items : MonoBehaviour
     [SerializeField] private SpriteRenderer _heathREcovery;
     [SerializeField] private SpriteRenderer _speedUp;
 
+    bool isItem = false;
+
     private float maxSpeed = 5f;
     private float duration = 2f;
     public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
@@ -56,7 +58,9 @@ public class Items : MonoBehaviour
 
         _player.transform.localScale = originalScale;
 
-        Destroy(gameObject);
+        gameObject.SetActive(isItem);
+
+        isItem = true;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,6 +80,8 @@ public class Items : MonoBehaviour
 
         _player.CurrentSpeed = originSpeed;
 
-        Destroy(gameObject);
+        gameObject.SetActive(isItem);
+
+        isItem = true;
     }
 }
