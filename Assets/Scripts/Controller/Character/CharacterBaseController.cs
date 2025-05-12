@@ -24,10 +24,12 @@ public class CharacterBaseController : MonoBehaviour
     protected bool isGround = false;
 
     [Header("Character Interaction")]
-    private Vector2 knockBack = Vector2.zero;   // 장애물에 부딪힌 이후 캐릭터가 밀려나는 힘
-    private float knockBackDuration = 0f;
+    protected Vector2 knockBack = Vector2.zero;   // 장애물에 부딪힌 이후 캐릭터가 밀려나는 힘
+    protected float knockBackDuration = 0f;
 
-    private float invincibleDuration = 0f; // 무적 시간
+    protected float invincibleDuration = 2f; // 무적 시간
+    protected bool isInvincible = false;  // 무적 상태 체크
+    private Coroutine invincibleCoroutine = null;
 
     protected virtual void Awake()
     {
@@ -48,7 +50,15 @@ public class CharacterBaseController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (knockBackDuration > 0f)
+        {
+            knockBackDuration -= Time.fixedDeltaTime;
+        }
 
+        if (knockBackDuration <= 0f)
+        {
+            RecoverKnockBack();
+        }
     }
 
     protected virtual void SetCharacterState()
@@ -72,14 +82,80 @@ public class CharacterBaseController : MonoBehaviour
 
     }
 
-    protected virtual void ApplyKnockBack(Transform other, float power, float duration)
+    public virtual void Damage(float damage)
     {
-        knockBackDuration = duration;
+        currentHp -= damage;
+        
+        if (currentHp <= 0f)    // 체력이 0 이하로 떨어지는 데미지를 입었을 경우, 사망 처리
+        {
+            Dead();
+        }
+    }
+
+    public virtual void Heal()
+    {
+        if (currentHp < maxHp)
+        {
+            currentHp++;
+
+            if (currentHp > maxHp)
+            {
+                currentHp = maxHp;
+            }
+        }
+    }
+
+    public virtual void Dead()
+    {
+        rb.velocity = Vector3.zero;
+
+        foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+        {
+            component.enabled = false;
+        }
+
+        // to do: 사망 애니메이션 추가
+
+        Destroy(gameObject, 2f);
+    }
+
+    protected virtual void ApplyKnockBack(Transform other, float power)
+    {
+        knockBackDuration = power / 1;  // 밀어내는 힘이 강할수록 오랫동안 날아간다
         knockBack = (other.position - transform.position).normalized * power;
+
+        rb.velocity -= knockBack;
+    }
+
+    // 경직 후, 캐릭터를 화면 중앙으로 복귀시킴
+    protected virtual void RecoverKnockBack()
+    {
+        
     }
 
     protected virtual void ApplyInvincible()
     {
+        if (invincibleCoroutine != null)    // 코루틴 중복 실행 방지
+        {
+            StopCoroutine(invincibleCoroutine);
+        }
 
+        invincibleCoroutine = StartCoroutine(InvincibleCoroutine(invincibleDuration));
+    }
+
+    private IEnumerator InvincibleCoroutine(float duration)
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(duration);  // 무적 시간 동안 무적 종료 함수 호출 대기
+
+        EndInvincible();
+
+        invincibleCoroutine = null;
+    }
+
+    protected virtual void EndInvincible()
+    {
+        isInvincible = false;
     }
 }
