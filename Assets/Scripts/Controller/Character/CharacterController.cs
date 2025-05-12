@@ -131,6 +131,9 @@ public class CharacterController : CharacterBaseController
             {
                 isJumping = false;
 
+                anim.SetBool("isJump", isJumping);   // 애니메이션 연결 후 사용
+                anim.SetBool("isDoubleJump", isJumping);   // 애니메이션 연결 후 사용
+
                 jumpCount = 0;
             }
         }
