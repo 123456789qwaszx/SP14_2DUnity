@@ -19,7 +19,7 @@ public class Items : MonoBehaviour
     public float Duration { get { return duration; } set { duration = value; } }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     public void HpRecovery(CharacterController _player)
     {
         // 플레이어 hp받아서 증가

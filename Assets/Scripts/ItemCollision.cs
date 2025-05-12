@@ -7,9 +7,10 @@ public class ItemCollision : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log($"[{name}] 아이템 충돌 발생! 충돌한 오브젝트: {collision.name}");
         CharacterController _player = collision.gameObject.GetComponent<CharacterController>();
 
-        Items items = GetComponentInChildren<Items>();
+        Items items = GetComponent<Items>();
 
         if (_player == null || items == null)
         {
