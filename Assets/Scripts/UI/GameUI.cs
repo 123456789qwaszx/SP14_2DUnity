@@ -71,8 +71,9 @@ public class GameUI : MonoBehaviour
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         character = playerObject.GetComponent<CharacterController>();
-
         _gameUICanvas.SetActive(true);
+
+        Time.timeScale = 1.0f; // 게임시작
     }
 
     public void SetUI(int currentscore, int bestscore) // 점수를 받아옴
@@ -104,8 +105,18 @@ public class GameUI : MonoBehaviour
 
     private void OnClickSlidingButton() // 슬라이딩 버튼
     {
-        character.Slide();
-        Debug.Log("슬라이딩");
+        if (character.isSliding == false)
+        {
+            character.Slide();
+            character.isSliding = true;
+            Debug.Log(character.isSliding);
+        }
+        else
+        {
+            character.EndSlide();
+            character.isSliding = false;
+            Debug.Log(character.isSliding);
+        }
     }
 
     private void OnClickRestartButton() // 재시작 버튼

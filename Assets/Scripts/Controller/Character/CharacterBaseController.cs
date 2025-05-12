@@ -20,8 +20,8 @@ public class CharacterBaseController : MonoBehaviour
     protected int jumpCount = 0;
     protected bool isJumping = false;
     protected float slidePower = 2f;
-    protected bool isSliding = false;
-    protected bool isGround = false;
+    public bool isSliding = false;
+    public bool isGround = false;
     public float CurrentHp { get; set; }
     public float CurrentSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
