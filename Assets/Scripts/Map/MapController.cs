@@ -22,12 +22,12 @@ public class MapController : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-        mapWidth = Managers.Map.GetMapWorldWidth(gameObject);
+        // mapWidth = Managers.Map.GetMapWorldWidth(gameObject);
 
-        if (transform.position.x <= -mapWidth)
-        {
-            gameObject.SetActive(false);
-        }
+        // if (transform.position.x <= -mapWidth)
+        // {
+        //     gameObject.SetActive(false);
+        // }
     }
 
     

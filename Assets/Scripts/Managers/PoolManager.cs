@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PoolManager
@@ -12,24 +11,26 @@ public class PoolManager
 
         Stack<Poolable> _poolStack = new Stack<Poolable>();
 
-        public void Init(GameObject original, int count = 5)
+        public void Init(GameObject original, int count = 3)
         {
             Original = original;
             Root = new GameObject().transform;
-            Root.name = $"{Original.name}";
+            Root.name = $"{original.name}_Root";
 
             for (int i = 0; i < count; i++)
-            {
                 Push(Create());
-            }
         }
 
-        //아예 새로운 객체를 만들고, 풀러블로 반환을 하는 것임.
+
         Poolable Create()
         {
             GameObject go = Object.Instantiate<GameObject>(Original);
             go.name = Original.name;
-            return go.GetOrAddComponent<Poolable>();
+
+            Poolable component = go.GetComponent<Poolable>();
+            if (component == null)
+                go.AddComponent<Poolable>();
+            return component;
         }
 
         public void Push(Poolable poolable)
@@ -42,42 +43,61 @@ public class PoolManager
             poolable.IsUsing = false;
 
             _poolStack.Push(poolable);
-
         }
 
+        // Pool 클래스의 메소드 '팝' = 풀로부터 꺼내오기 (오브젝트 활성화)
         public Poolable Pop(Transform parent)
         {
             Poolable poolable;
 
-            if (_poolStack.Count > 0)
+            if (_poolStack.Count > 0) // 스택이 빈상태x, 즉 1개라도 대기중이면
                 poolable = _poolStack.Pop();
-            else
+            else  // 지금 비어있다면 새로 생성 -> Create()로 넘어감.
                 poolable = Create();
 
-                poolable.gameObject.SetActive(true);
-                poolable.transform.parent = parent;
-                poolable.IsUsing = true;
+            poolable.gameObject.SetActive(true); // 직접 접근해서 활성화
 
-                return poolable;
+            poolable.transform.parent = parent; // 파라미터로 받은 parent를 부모로 설정
+            poolable.IsUsing = true;
 
+            return poolable;
         }
     }
 
-
+    // 여러 종류의 풀들을 모아둔 Dictionary, 즉 _pool에서 게임 내 모든 Pool들을 관리
+    // 중요! Key는 원본 프리팹의 이름으로 쓸 것! 
     Dictionary<string, Pool> _pool = new Dictionary<string, Pool>();
+    GameObject _root;
 
-    Transform _root;
 
-    public void init()
+    public void Init()
     {
         if (_root == null)
         {
-            _root = new GameObject { name = "Pool_Root" }.transform;
+            _root = new GameObject { name = "@Pool_Root" };
             Object.DontDestroyOnLoad(_root);
         }
+        
     }
 
-    public void CreatePool(GameObject original, int count = 5)
+    // 다 사용한 오브젝트를, 다시 풀에 넣어 대기상태로 만들기
+    // 그냥 _pool[name].Push(poolable) 해주면 땡
+    // 이름(Key)과 일치하는 해당 풀에 해당 오브젝트 poolable을 Push 함수 호출해서 넣어줌.
+    public void Push(Poolable poolable)
+    {
+        string name = poolable.gameObject.name;
+        if (_pool.ContainsKey(name) == false)
+        {
+            GameObject.Destroy(poolable.gameObject);
+            return;
+        }
+
+        //Pool클래스의 Push메소드를, Managers.Pool.Push를 통해 호출하는 셈.
+        _pool[name].Push(poolable);
+    }
+
+
+    public void CreatePool(GameObject original, int count = 3)
     {
         Pool pool = new Pool();
         pool.Init(original, count);
@@ -86,12 +106,6 @@ public class PoolManager
         _pool.Add(original.name, pool);
     }
 
-    public void Push(Poolable poolable)
-    {
-        string name = poolable.gameObject.name;
-
-        _pool[name].Push(poolable);
-    }
 
     public Poolable Pop(GameObject original, Transform parent = null)
     {
@@ -104,14 +118,14 @@ public class PoolManager
     public GameObject GetOriginal(string name)
     {
         if (_pool.ContainsKey(name) == false)
-        return null;
+            return null;
         return _pool[name].Original;
     }
 
+
     public void Clear()
     {
-        foreach (Transform child in _root)
-        GameObject.Destroy (child.gameObject);
-        _pool.Clear();
+        
     }
+
 }

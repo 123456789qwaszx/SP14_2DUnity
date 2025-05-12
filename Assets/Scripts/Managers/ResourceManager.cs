@@ -1,34 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ResourceManager
 {
     // 원본 'GameObject prefab'을 참조하여 씬에 복사를 해줌.
     public GameObject Instantiate(string path, Transform parent = null)
     {
-        GameObject original = Resources.Load<GameObject>($"Prefabs/{path}");
+        GameObject original = Load<GameObject>($"Prefabs/{path}");
         if (original == null)
         {
             Debug.Log($"Failed to load prefab : {path}");
             return null;
         }
 
-if (original.GetComponent<Poolable>() != null)
-return Managers.Pool.Pop(original, parent).gameObject;
-
+        if (original.GetComponent<Poolable>() != null)
+            return Managers.Pool.Pop(original, parent).gameObject;
 
         GameObject go = Object.Instantiate(original, parent);
         go.name = original.name;
-
         return go;
-        
     }
 
     public void Destroy(GameObject go)
     {
-        if(go == null)  
-        return;
+        if (go == null)
+            return;
 
         //만약게 풀링이 필요한 아이라면, 풀링 매니저에게 위탁.
         Poolable poolable = go.GetComponent<Poolable>();
@@ -50,13 +48,38 @@ return Managers.Pool.Pop(original, parent).gameObject;
         {
             string name = path;
             int index = name.LastIndexOf('/');
-            if (index >=0)
-            name = name.Substring(index + 1);
+            if (index >= 0)
+                name = name.Substring(index + 1);
 
             GameObject go = Managers.Pool.GetOriginal(name);
             if (go != null)
-            return go as T;
+                return go as T;
         }
+
         return Resources.Load<T>(path);
+    }
+
+
+    public void LoadMap(int mapid)
+    {
+        string mapName = "Map_" + mapid.ToString("000");
+        GameObject map = Managers.Resource.Instantiate($"Map/{mapName}");
+    }
+
+    public float GetMapWorldWidth(GameObject tilemapObj)
+    {
+        Tilemap tilemap = tilemapObj.GetComponent<Tilemap>();
+
+        if (tilemap == null)
+        {
+            Debug.Log("fail to find tilemap. default = 10");
+            return 10;
+        }
+
+        tilemap.CompressBounds();
+
+        Bounds tilemapBounds = tilemap.localBounds;
+        Vector3 worldSize = Vector3.Scale(tilemapBounds.size, tilemap.transform.lossyScale);
+        return worldSize.x;
     }
 }

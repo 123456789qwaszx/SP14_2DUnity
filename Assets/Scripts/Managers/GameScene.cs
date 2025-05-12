@@ -16,36 +16,40 @@ public class GameScene : BaseScene
         GameObject parallax = Managers.Resource.Instantiate("Parallax/Parallax_001");
         parallax.name = "Parallax";
 
-    
-    }
+        GameObject map = Managers.Resource.Instantiate("Map/Map_default");
 
-    public IEnumerator MapRoutin()
-    {
-        // float a = (mapWidth / 2) / moveSpeed;
-        yield return new WaitForSeconds(6f);
-        Managers.Map.SpawnRandonMap();
+        //Managers.Resource.Instantiate("Map/Map_001");
+
+        for (int i = 1; i < 7; i++)
+        Managers.Resource.LoadMap(i);
+
+        //Managers.Map.SpawnRandonMap();
+
+
+    
     }
 
     void Start()
     {
-        GameObject map = Managers.Resource.Instantiate("Map/Map_default");
-        map.name = "Map";
 
-        Managers.Map.LoadMap(1);
-        Managers.Map.LoadMap(2);
-        Managers.Map.LoadMap(3);
-        Managers.Map.LoadMap(4);
-        Managers.Map.LoadMap(5);
-        Managers.Map.LoadMap(6);
+        //StratCoroutine(CreateMap());
+    }
 
-        Managers.Map.SpawnRandonMap();
-        StartCoroutine(MapRoutin());
+    IEnumerator CreateMap()
+    {
+        while (true)
+        {
+            // 우린 맵을 순서대로 생성하기로 했으니까.
+            // 풀매니저에서 GetPool을 해준다.
+            // 그리고 count ++ 로 인덱스를 1더해주고
+            // yield (화면바깥까지의 거리 - 처음생성위치)의 절대값 / 속도의 절대값 마다 반복실행
+        }
     }
 
     
 
     public override void Clear()
     {
-
+        
     }
 }
