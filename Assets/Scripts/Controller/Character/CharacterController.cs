@@ -150,8 +150,10 @@ public class CharacterController : CharacterBaseController
         if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
             float damage = collision.gameObject.GetComponent<Obstacle>().Damage;
+            float knockBackPower = collision.gameObject.GetComponent<Obstacle>().KnockBackPower;
 
             Damage(damage);
+            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
             ApplyInvincible();
         }
     }
@@ -168,9 +170,9 @@ public class CharacterController : CharacterBaseController
         base.Damage(damage);
     }
 
-    protected override void ApplyKnockBack(Transform other, float power, float duration)
+    protected override void ApplyKnockBack(Transform other, float power)
     {
-        base.ApplyKnockBack(other, power, duration);
+        base.ApplyKnockBack(other, power);
     }
 
     public override void Heal()

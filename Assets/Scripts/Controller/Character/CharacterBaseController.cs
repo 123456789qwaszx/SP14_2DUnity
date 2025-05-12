@@ -53,6 +53,11 @@ public class CharacterBaseController : MonoBehaviour
         {
             knockBackDuration -= Time.fixedDeltaTime;
         }
+
+        if (knockBackDuration <= 0f)
+        {
+            RecoverKnockBack();
+        }
     }
 
     protected virtual void SetCharacterState()
@@ -78,7 +83,12 @@ public class CharacterBaseController : MonoBehaviour
 
     public virtual void Damage(float damage)
     {
-
+        currentHp -= damage;
+        
+        if (currentHp <= 0f)    // 체력이 0 이하로 떨어지는 데미지를 입었을 경우, 사망 처리
+        {
+            Dead();
+        }
     }
 
     public virtual void Heal()
@@ -103,13 +113,23 @@ public class CharacterBaseController : MonoBehaviour
             component.enabled = false;
         }
 
+        // to do: 사망 애니메이션 추가
+
         Destroy(gameObject, 2f);
     }
 
-    protected virtual void ApplyKnockBack(Transform other, float power, float duration)
+    protected virtual void ApplyKnockBack(Transform other, float power)
     {
-        knockBackDuration = duration;
+        knockBackDuration = power / 1;  // 밀어내는 힘이 강할수록 오랫동안 날아간다
         knockBack = (other.position - transform.position).normalized * power;
+
+        rb.velocity -= knockBack;
+    }
+
+    // 경직 후, 캐릭터를 화면 중앙으로 복귀시킴
+    protected virtual void RecoverKnockBack()
+    {
+        
     }
 
     protected virtual void ApplyInvincible()
@@ -126,14 +146,6 @@ public class CharacterBaseController : MonoBehaviour
     {
         isInvincible = true;
 
-        // memo: 무적 상태 테스트용 코드. 애니메이션이 준비되면 애니메이션 연결
-        foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
-        {
-            Color color = renderer.color;
-            color.a = 0.5f;
-            renderer.color = color;
-        }
-
         yield return new WaitForSeconds(duration);  // 무적 시간 동안 무적 종료 함수 호출 대기
 
         EndInvincible();
@@ -144,13 +156,5 @@ public class CharacterBaseController : MonoBehaviour
     protected virtual void EndInvincible()
     {
         isInvincible = false;
-
-        // memo: 무적 상태 테스트용 코드. 애니메이션이 준비되면 애니메이션 연결
-        foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
-        {
-            Color color = renderer.color;
-            color.a = 1f;
-            renderer.color = color;
-        }
     }
 }
