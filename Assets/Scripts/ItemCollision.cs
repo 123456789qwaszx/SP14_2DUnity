@@ -12,15 +12,15 @@ public class ItemCollision : MonoBehaviour
 
         if (_player == null) return;
 
-        if (collision.gameObject.CompareTag("HpRecovery"))
+        if (gameObject.CompareTag("HpRecovery"))
         {
             items.HpRecovery(_player);
         }
-        else if (collision.gameObject.CompareTag("ScaleUp"))
+        else if (gameObject.CompareTag("ScaleUp"))
         {
             items.ScaleUp(_player, items.Duration);
         }
-        else if (collision.gameObject.CompareTag("SpeedUp"))
+        else if (gameObject.CompareTag("SpeedUp"))
         {
             items.SpeedUp(_player, items.MaxSpeed, items.Duration);
         }
