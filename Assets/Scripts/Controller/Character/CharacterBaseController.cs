@@ -31,6 +31,9 @@ public class CharacterBaseController : MonoBehaviour
     protected bool isInvincible = false;  // 무적 상태 체크
     private Coroutine invincibleCoroutine = null;
 
+    private Vector3 returnPosition = Vector3.zero;   // 캐릭터 복귀 위치
+    private float returnDistance = 5f; // 캐릭터 복귀 속도
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,8 +56,7 @@ public class CharacterBaseController : MonoBehaviour
         {
             knockBackDuration -= Time.fixedDeltaTime;
         }
-
-        if (knockBackDuration <= 0f)
+        else if (knockBack != Vector2.zero)   // 넉백이 끝났을 경우, 넉백 상태를 초기화
         {
             RecoverKnockBack();
         }
@@ -120,7 +122,9 @@ public class CharacterBaseController : MonoBehaviour
 
     protected virtual void ApplyKnockBack(Transform other, float power)
     {
-        knockBackDuration = power / 1;  // 밀어내는 힘이 강할수록 오랫동안 날아간다
+        returnPosition.x = transform.position.x;   // 캐릭터 복귀 위치를 넉백 전의 위치로 설정
+
+        knockBackDuration = power / 3;  // 밀어내는 힘이 강할수록 오랫동안 날아간다
         knockBack = (other.position - transform.position).normalized * power;
 
         rb.velocity -= knockBack;
@@ -129,7 +133,21 @@ public class CharacterBaseController : MonoBehaviour
     // 경직 후, 캐릭터를 화면 중앙으로 복귀시킴
     protected virtual void RecoverKnockBack()
     {
-        
+        float currentXPos = transform.position.x;   // 넉백 직후 캐릭터 x좌표값
+        float targetXPos = returnPosition.x;
+
+        if (Mathf.Abs(currentXPos - targetXPos) < 0.001f)   // 넉백이 끝나고, 캐릭터가 복귀 위치에 도달했을 경우
+        {
+            knockBack = Vector2.zero;
+            rb.velocity = Vector2.zero;
+
+            return;
+            // returnPosition.x = currentX;   // 복귀 위치를 현재 위치로 설정
+        }
+
+        float returnXPos = Mathf.Lerp(currentXPos, targetXPos, Time.deltaTime * returnDistance);
+
+        transform.position = new Vector3(returnXPos, transform.position.y, transform.position.z);
     }
 
     protected virtual void ApplyInvincible()
