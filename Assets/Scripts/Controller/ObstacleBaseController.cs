@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI : MonoBehaviour
+public class ObstacleBaseController : MonoBehaviour
 {
     Rigidbody2D rb;
 
@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
 
     protected virtual void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
