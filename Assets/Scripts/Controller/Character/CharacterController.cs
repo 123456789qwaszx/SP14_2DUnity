@@ -93,12 +93,12 @@ public class CharacterController : CharacterBaseController
 
         if (jumpCount == 0)
         {
-            // anim.SetBool("isJump", true);   // 애니메이션 연결 후 사용
+             anim.SetBool("isJump", true);   // 애니메이션 연결 후 사용
         }
         else if (jumpCount >= 1)
         {
-            // anim.SetBool("isJump", false);   // 애니메이션 연결 후 사용
-            // anim.SetBool("isDoubleJump", true);   // 애니메이션 연결 후 사용
+            anim.SetBool("isJump", false);   // 애니메이션 연결 후 사용
+            anim.SetBool("isDoubleJump", true);   // 애니메이션 연결 후 사용
         }
 
         jumpCount++;
@@ -107,13 +107,13 @@ public class CharacterController : CharacterBaseController
     protected override void Slide()
     {
         isSliding = true;
-        // anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
+         anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
     }
 
     protected override void EndSlide()
     {
         isSliding = false;
-        // anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
+        anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
     }
 
     private void IncreaseSpeed()
@@ -144,24 +144,24 @@ public class CharacterController : CharacterBaseController
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // 장애물 충돌 처리
-        if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
-        {
-            float damage = collision.gameObject.GetComponent<Obstacle>().Damage;
-            float knockBackPower = collision.gameObject.GetComponent<Obstacle>().KnockBackPower;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    // 장애물 충돌 처리
+    //    if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
+    //    {
+    //        float damage = collision.gameObject.GetComponent<Obstacle>().Damage;
+    //        float knockBackPower = collision.gameObject.GetComponent<Obstacle>().KnockBackPower;
 
-            Damage(damage);
-            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
-            ApplyInvincible();
-        }
-    }
+    //        Damage(damage);
+    //        ApplyKnockBack(collision.gameObject.transform, knockBackPower);
+    //        ApplyInvincible();
+    //    }
+    //}
 
     protected override void ApplyInvincible()
     {
         base.ApplyInvincible();
-        // anim.SetBool("isInvincible", isInvincible);   // 애니메이션 연결 후 사용
+         //anim.SetBool("isInvincible", isInvincible);   // 애니메이션 연결 후 사용
     }
 
     // 닿은 오브젝트가 주는 데미지에 따라 캐릭터의 체력을 감소시킴
