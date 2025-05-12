@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 289998662292577483}
   - component: {fileID: 6603762899003873618}
   m_Layer: 0
-  m_Name: HeathRecovery
-  m_TagString: HeathRecovery
+  m_Name: HpRecovery
+  m_TagString: HpRecovery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

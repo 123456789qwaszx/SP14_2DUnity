@@ -5,7 +5,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Items : MonoBehaviour
 {
-    CharacterController _player;
     Rigidbody2D _rigidbody2D;
 
     [SerializeField] private SpriteRenderer _scaleUp;
@@ -14,10 +13,12 @@ public class Items : MonoBehaviour
 
     private float maxSpeed = 5f;
     private float duration = 2f;
+    public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
+    public float Duration { get { return duration; } set { duration = value; } }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    private void HeathRecovery()
+    public void HpRecovery(CharacterController _player)
     {
         // 플레이어 hp받아서 증가
         if (_player.CurrentHp > 0 && _player.CurrentHp < 3)
@@ -31,18 +32,18 @@ public class Items : MonoBehaviour
             return;
         }
     }
-    private void SpeedUp(float _speedUp, float _duration)
+    public void SpeedUp(CharacterController _player, float _speedUp, float _duration)
     {
-        StartCoroutine(SpeedUpCoroutine(_speedUp, _duration));
+        StartCoroutine(SpeedUpCoroutine(_player, _speedUp, _duration));
     }
-    private void ScaleUp(float _duration)
+    public void ScaleUp(CharacterController _player, float _duration)
     {
-        StartCoroutine(ScaleUpCoroutine(_duration));
+        StartCoroutine(ScaleUpCoroutine(_player, _duration));
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    private IEnumerator ScaleUpCoroutine(float _duration)
+    private IEnumerator ScaleUpCoroutine(CharacterController _player, float _duration)
     {
         Vector3 originalScale = _player.transform.localScale;
 
@@ -60,7 +61,7 @@ public class Items : MonoBehaviour
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private IEnumerator SpeedUpCoroutine(float _speedUp, float _duration)
+    private IEnumerator SpeedUpCoroutine(CharacterController _player, float _speedUp, float _duration)
     {
         // x 값 속도 상승
         _player.CurrentSpeed = 5f;
@@ -76,27 +77,5 @@ public class Items : MonoBehaviour
         _player.CurrentSpeed = originSpeed;
 
         Destroy(gameObject);
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        _player = collision.gameObject.GetComponent<CharacterController>();
-
-        if (_player == null) return;
-
-        if (collision.gameObject.CompareTag("HeathRecovery"))
-        {
-            HeathRecovery();
-        }
-        else if (collision.gameObject.CompareTag("ScaleUp"))
-        {
-            ScaleUp(duration);
-        }
-        else if (collision.gameObject.CompareTag("SpeedUp"))
-        {
-            SpeedUp(maxSpeed, duration);
-        }
     }
 }
