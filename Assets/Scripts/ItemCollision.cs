@@ -6,7 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class ItemCollision : MonoBehaviour
 {
     Items items = new Items();
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterController _player = collision.gameObject.GetComponent<CharacterController>();
 
