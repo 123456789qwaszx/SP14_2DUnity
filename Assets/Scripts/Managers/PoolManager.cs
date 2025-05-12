@@ -117,6 +117,7 @@ public class PoolManager
         return _pool[original.name].Pop(parent);
     }
 
+
     public GameObject GetOriginal(string name)
     {
         if (_pool.ContainsKey(name) == false)

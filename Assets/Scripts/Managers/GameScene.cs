@@ -16,15 +16,14 @@ public class GameScene : BaseScene
         GameObject parallax = Managers.Resource.Instantiate("Parallax/Parallax_001");
         parallax.name = "Parallax";
 
-        GameObject map = Managers.Resource.Instantiate("Map/Map_default");
+        // GameObject map = Managers.Resource.Instantiate("Map/Map_default");
 
         //Managers.Resource.Instantiate("Map/Map_001");
 
-        for (int i = 1; i < 7; i++)
+        for (int i = 1; i < 3; i++)
         Managers.Resource.LoadMap(i);
 
         //Managers.Map.SpawnRandonMap();
-
 
     
     }

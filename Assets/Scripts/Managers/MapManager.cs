@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class MapManager
 {
-    // private int randomIndex;
+
     // private float mapWidth = 0.0f;
     // private float moveSpeed = 5.0f;
 

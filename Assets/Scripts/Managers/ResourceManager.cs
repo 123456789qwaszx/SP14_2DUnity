@@ -28,7 +28,7 @@ public class ResourceManager
 
         GameObject go = Object.Instantiate(original, parent);
         go.name = original.name;
-        return go;
+        return go; 
     }
 
     public void Destroy(GameObject go)
@@ -72,7 +72,19 @@ public class ResourceManager
     {
         string mapName = "Map_" + mapid.ToString("000");
         GameObject map = Managers.Resource.Instantiate($"Map/{mapName}");
+
+        
     }
+
+    // public void SpawnRandonMap()
+    // {
+    //     randomIndex = UnityEngine.Random.Range(0, MapInstances.Count);
+    //     GameObject randomMap = MapInstances[randomIndex];
+
+    //     randomMap.SetActive(true);
+    //     mapWidth = GetMapWorldWidth(randomMap);
+    //     randomMap.transform.position = new Vector3(mapWidth, 0);
+    // }
 
     public float GetMapWorldWidth(GameObject tilemapObj)
     {
