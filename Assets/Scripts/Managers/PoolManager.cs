@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PoolManager
 {
+    // 이 Pool 클래스의 메소드들은 직접 호출하는게 아니라, PoolManager의 동일한 이름의 메소드를 통해 사용됨.
     class Pool
     {
         public GameObject Original { get; private set; }
@@ -33,6 +34,7 @@ public class PoolManager
             return component;
         }
 
+        // 풀에 넣기(오브젝트 비활성화)
         public void Push(Poolable poolable)
         {
             if (poolable == null)
@@ -120,12 +122,6 @@ public class PoolManager
         if (_pool.ContainsKey(name) == false)
             return null;
         return _pool[name].Original;
-    }
-
-
-    public void Clear()
-    {
-        
     }
 
 }

@@ -5,6 +5,14 @@ using UnityEngine.Tilemaps;
 
 public class ResourceManager
 {
+    // 처음 맵 오브젝트 생성시,
+    // Resource의 Instantiate 부분 안에 PoolManager의 Pop함수 호출 -> 풀이 존재 하지 않는 상태이므로 CreatePool 호출 -> 풀을 생성하고 Pool클래스의 Init호출 ->
+    // count의 디폴트 값은 3이므로 3개의 게임 오브젝트를 생성해서 스택에 넣어준다.
+    // 스택에 넣어주는 Pool클래스의 Push함수 과정에서 이 오브젝트의 부모는 @Pool_Root 산하가 된다.
+    // 첫번째 오브젝트는 풀을 만들고 스택 3개를 생성해 넣어주는 위 과정을 끝내고 즉시 Pop으로 튀어나온다.
+    // 2~3번째 오브젝트들은 위에서 만든 3크기의 스택에서(현재 크기2) 하나하나 빼와서 재활용 한다. 비활성화 된 상태에서 풀에 있던 오브젝트들을 빼온 뒤 SetActive(true)
+
+
     // 원본 'GameObject prefab'을 참조하여 씬에 복사를 해줌.
     public GameObject Instantiate(string path, Transform parent = null)
     {
