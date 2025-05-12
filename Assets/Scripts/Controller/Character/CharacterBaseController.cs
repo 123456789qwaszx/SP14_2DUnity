@@ -24,10 +24,12 @@ public class CharacterBaseController : MonoBehaviour
     protected bool isGround = false;
 
     [Header("Character Interaction")]
-    private Vector2 knockBack = Vector2.zero;   // 장애물에 부딪힌 이후 캐릭터가 밀려나는 힘
-    private float knockBackDuration = 0f;
+    protected Vector2 knockBack = Vector2.zero;   // 장애물에 부딪힌 이후 캐릭터가 밀려나는 힘
+    protected float knockBackDuration = 0f;
 
-    private float invincibleDuration = 0f; // 무적 시간
+    protected float invincibleDuration = 2f; // 무적 시간
+    protected bool isInvincible = false;  // 무적 상태 체크
+    private Coroutine invincibleCoroutine = null;
 
     protected virtual void Awake()
     {
@@ -74,7 +76,7 @@ public class CharacterBaseController : MonoBehaviour
 
     }
 
-    public virtual void Damage()
+    public virtual void Damage(float damage)
     {
 
     }
@@ -112,6 +114,43 @@ public class CharacterBaseController : MonoBehaviour
 
     protected virtual void ApplyInvincible()
     {
+        if (invincibleCoroutine != null)    // 코루틴 중복 실행 방지
+        {
+            StopCoroutine(invincibleCoroutine);
+        }
 
+        invincibleCoroutine = StartCoroutine(InvincibleCoroutine(invincibleDuration));
+    }
+
+    private IEnumerator InvincibleCoroutine(float duration)
+    {
+        isInvincible = true;
+
+        // memo: 무적 상태 테스트용 코드. 애니메이션이 준비되면 애니메이션 연결
+        foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            Color color = renderer.color;
+            color.a = 0.5f;
+            renderer.color = color;
+        }
+
+        yield return new WaitForSeconds(duration);  // 무적 시간 동안 무적 종료 함수 호출 대기
+
+        EndInvincible();
+
+        invincibleCoroutine = null;
+    }
+
+    protected virtual void EndInvincible()
+    {
+        isInvincible = false;
+
+        // memo: 무적 상태 테스트용 코드. 애니메이션이 준비되면 애니메이션 연결
+        foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            Color color = renderer.color;
+            color.a = 1f;
+            renderer.color = color;
+        }
     }
 }

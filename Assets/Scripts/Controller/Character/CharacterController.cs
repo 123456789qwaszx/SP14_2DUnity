@@ -144,6 +144,35 @@ public class CharacterController : CharacterBaseController
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 장애물 충돌 처리
+        if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
+        {
+            float damage = collision.gameObject.GetComponent<Obstacle>().Damage;
+
+            Damage(damage);
+            ApplyInvincible();
+        }
+    }
+
+    protected override void ApplyInvincible()
+    {
+        base.ApplyInvincible();
+        // anim.SetBool("isInvincible", isInvincible);   // 애니메이션 연결 후 사용
+    }
+
+    // 닿은 오브젝트가 주는 데미지에 따라 캐릭터의 체력을 감소시킴
+    public override void Damage(float damage)
+    {
+        base.Damage(damage);
+    }
+
+    protected override void ApplyKnockBack(Transform other, float power, float duration)
+    {
+        base.ApplyKnockBack(other, power, duration);
+    }
+
     public override void Heal()
     {
         base.Heal();
