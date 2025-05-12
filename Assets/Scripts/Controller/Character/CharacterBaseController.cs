@@ -23,8 +23,8 @@ public class CharacterBaseController : MonoBehaviour
     protected bool isSliding = false;
     protected bool isGround = false;
     public float CurrentHp { get; set; }
-    public float CurrentSpeed { get; set; }
-    public float CurrentJumpPower { get; set; }
+    public float CurrentSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
+    public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
 
     [Header("Character Interaction")]
     private Vector2 knockBack = Vector2.zero;   // 장애물에 부딪힌 이후 캐릭터가 밀려나는 힘
