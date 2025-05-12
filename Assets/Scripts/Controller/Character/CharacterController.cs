@@ -87,6 +87,8 @@ public class CharacterController : CharacterBaseController
     {
         isJumping = true;
 
+        rb.velocity = Vector2.zero;   // 낙하 중, 점프력 저하를 막기 위해 속도를 초기화
+
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
         if (jumpCount == 0)
