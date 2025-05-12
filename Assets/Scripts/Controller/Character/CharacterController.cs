@@ -89,21 +89,29 @@ public class CharacterController : CharacterBaseController
 
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
-        // anim.SetTrigger("Jump"); // 애니메이션 연결 후 사용
+        if (jumpCount == 0)
+        {
+            // anim.SetBool("isJump", true);   // 애니메이션 연결 후 사용
+        }
+        else if (jumpCount >= 1)
+        {
+            // anim.SetBool("isJump", false);   // 애니메이션 연결 후 사용
+            // anim.SetBool("isDoubleJump", true);   // 애니메이션 연결 후 사용
+        }
 
         jumpCount++;
     }
 
     protected override void Slide()
     {
-        // anim.SetBool("Slide", true); // 애니메이션 연결 후 사용
         isSliding = true;
+        // anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
     }
 
     protected override void EndSlide()
     {
-        // anim.SetBool("Slide", false); // 애니메이션 연결 후 사용
         isSliding = false;
+        // anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
     }
 
     private void IncreaseSpeed()
@@ -120,6 +128,7 @@ public class CharacterController : CharacterBaseController
             if (isJumping)
             {
                 isJumping = false;
+
                 jumpCount = 0;
             }
         }
@@ -131,5 +140,17 @@ public class CharacterController : CharacterBaseController
         {
             isGround = false;
         }
+    }
+
+    public override void Heal()
+    {
+        base.Heal();
+    }
+
+    public override void Dead()
+    {
+        base.Dead();
+
+        // to do: 게임 오버 처리 (게임 매니저의 게임 오버 호출) 추가
     }
 }

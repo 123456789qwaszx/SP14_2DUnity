@@ -47,7 +47,10 @@ public class CharacterBaseController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-
+        if (knockBackDuration > 0f)
+        {
+            knockBackDuration -= Time.fixedDeltaTime;
+        }
     }
 
     protected virtual void SetCharacterState()
@@ -69,6 +72,36 @@ public class CharacterBaseController : MonoBehaviour
     protected virtual void EndSlide()
     {
 
+    }
+
+    public virtual void Damage()
+    {
+
+    }
+
+    public virtual void Heal()
+    {
+        if (currentHp < maxHp)
+        {
+            currentHp++;
+
+            if (currentHp > maxHp)
+            {
+                currentHp = maxHp;
+            }
+        }
+    }
+
+    public virtual void Dead()
+    {
+        rb.velocity = Vector3.zero;
+
+        foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+        {
+            component.enabled = false;
+        }
+
+        Destroy(gameObject, 2f);
     }
 
     protected virtual void ApplyKnockBack(Transform other, float power, float duration)
