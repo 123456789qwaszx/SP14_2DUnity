@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 1493565620524838104}
   m_Layer: 0
   m_Name: Items
-  m_TagString: Untagged
+  m_TagString: SpeedUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,4 +386,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scaleUp: {fileID: 5867131896965331597}
   _heathREcovery: {fileID: 6603762899003873618}
-  _speedUp: {fileID: 0}
+  _speedUp: {fileID: 824378563837045501}
