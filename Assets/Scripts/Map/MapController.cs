@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class MapController : MonoBehaviour
 {
     private float mapWidth;
-    private float moveSpeed { get; set; } = 4.0f;
+    private float moveSpeed { get; set; } = 5.0f;
     private float speedModifier = 0f;
 
     public float CurrentSpeed => this.moveSpeed + speedModifier;

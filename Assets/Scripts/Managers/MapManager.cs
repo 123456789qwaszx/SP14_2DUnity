@@ -7,6 +7,7 @@ public class MapManager
 {
     private int randomIndex;
     private float mapWidth = 0.0f;
+    private float moveSpeed = 5.0f;
 
     // 이런 배열을 오브젝트 매니저에 넣고 싶긴한데 이거 하나론 의미가 없어. 걍 여기에 씀.
     private List<GameObject> MapInstances = new List<GameObject>();
@@ -18,27 +19,37 @@ public class MapManager
 
     public void CreateMapRoutin()
     {
-        // 처음 타일맵 프리팹은 (0,0,0) 위치에 생성
         // 화면바깥까지의 거리 - 처음생성위치 / 속도 마다 반복실행
+        // 바깝까지의 거리 = mapWidth /2
+        // 이동속도 = moveSpeed
+        // 즉 현재는 2초마다 1회 반복하면 됨.
+
         // mapwidth = GetTilemapWorldLength(currentTilemap);맵의 가로 길이 계산
-        // 새로운 맵생성위치를 맵 가장 오른쪽 끝 위치로 설정
-        // 다음 타일맵 프리팹을 활성 및 그 위치로 이동
-        // 
+        // moveSpeed는 플레이어 완성되면 받아오기
+
+
+        // 또 이렇게 배열로 만든다면 내부쿨타임이 필요함.
+        // 랜덤 주사위를 굴리더라도 최소한 2초동안은 똑같은 수가 나오면 안됨.
+
+
+    }
+
+    public IEnumerator MapRoutin(int mapWidth, int moveSpeed)
+    {
+        float a = (mapWidth / 2) / moveSpeed;
+        yield return new WaitForSeconds(a);
+        SpawnRandonMap();
     }
 
 
     public void SpawnRandonMap()
     {
-        this.randomIndex = UnityEngine.Random.Range(0, MapInstances.Count);
-
+        randomIndex = UnityEngine.Random.Range(0, MapInstances.Count);
         GameObject randomMap = MapInstances[randomIndex];
 
         randomMap.SetActive(true);
-        randomMap.transform.position = new Vector3(mapWidth, 0);
-
-        // 이렇게 아래로 빼둬야 첫 맵은 기본값인 (0, 0) 좌표에서 생성
         mapWidth = GetMapWorldWidth(randomMap);
-
+        randomMap.transform.position = new Vector3(mapWidth, 0);
     }
 
 
