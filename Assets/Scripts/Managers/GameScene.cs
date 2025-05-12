@@ -19,7 +19,8 @@ public class GameScene : BaseScene
         GameObject ground = Managers.Resource.Instantiate("BG/Ground_001");
         ground.name = "Ground";
 
-
+        GameObject items = Managers.Resource.Instantiate("Items");
+        items.name = "Items";
     }
     
 
