@@ -31,7 +31,7 @@ public class GameUI : MonoBehaviour
     Button homeButton; // 홈으로 가기 버튼
     Button pauseButton; // 일시정지 버튼
 
-    public Button slidingButton; // 슬라이딩 버튼
+    Button slidingButton; // 슬라이딩 버튼
     private bool isSlidingButtonDown = false; // 슬라이딩 버튼이 눌렸는지 여부
     public PlayerAnim playerAnim;
 
@@ -71,7 +71,6 @@ public class GameUI : MonoBehaviour
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         playerAnim = playerObject.GetComponent<PlayerAnim>();
-
 
         _gameUICanvas.SetActive(true);
     }
