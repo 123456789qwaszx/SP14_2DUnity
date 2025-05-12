@@ -98,6 +98,5 @@ public class Items : MonoBehaviour
         {
             SpeedUp(maxSpeed, duration);
         }
-        Debug.Log("Ãæµ¹");
     }
 }
