@@ -40,7 +40,7 @@ public class CharacterBaseController : MonoBehaviour
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         
     }
 
@@ -72,17 +72,17 @@ public class CharacterBaseController : MonoBehaviour
     }
 
     // memo: 슬라이딩 시, 속도를 가속시키는 로직이 필요할까?
-    protected virtual void Jump()
+    public virtual void Jump()
     {
 
     }
 
-    protected virtual void Slide()
+    public virtual void Slide()
     {
 
     }
 
-    protected virtual void EndSlide()
+    public virtual void EndSlide()
     {
 
     }

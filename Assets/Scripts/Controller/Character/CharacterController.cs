@@ -73,7 +73,7 @@ public class CharacterController : CharacterBaseController
         moveSpeed = 5f;
         currentSpeed = moveSpeed;
 
-        jumpPower = 5f;
+        jumpPower = 15f;
         maxJumpCount = 2;
         slidePower = 5f;
     }
@@ -83,7 +83,7 @@ public class CharacterController : CharacterBaseController
      * 2. 2단 점프
      * 3. 점프를 꾹 누르면 점프 높이 증가
      */
-    protected override void Jump()
+    public override void Jump()
     {
         isJumping = true;
 
@@ -104,16 +104,16 @@ public class CharacterController : CharacterBaseController
         jumpCount++;
     }
 
-    protected override void Slide()
+    public override void Slide()
     {
         isSliding = true;
-        // anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
+        anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
     }
 
-    protected override void EndSlide()
+    public override void EndSlide()
     {
         isSliding = false;
-        // anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
+        anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
     }
 
     private void IncreaseSpeed()
@@ -130,6 +130,9 @@ public class CharacterController : CharacterBaseController
             if (isJumping)
             {
                 isJumping = false;
+
+                anim.SetBool("isJump", isJumping);   // 애니메이션 연결 후 사용
+                anim.SetBool("isDoubleJump", isJumping);   // 애니메이션 연결 후 사용
 
                 jumpCount = 0;
             }

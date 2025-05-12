@@ -33,7 +33,7 @@ public class GameUI : MonoBehaviour
 
     Button slidingButton; // 슬라이딩 버튼
     private bool isSlidingButtonDown = false; // 슬라이딩 버튼이 눌렸는지 여부
-    public PlayerAnim playerAnim;
+    public CharacterController character;
 
     private void Start()
     {
@@ -70,7 +70,7 @@ public class GameUI : MonoBehaviour
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
-        playerAnim = playerObject.GetComponent<PlayerAnim>();
+        character = playerObject.GetComponent<CharacterController>();
 
         _gameUICanvas.SetActive(true);
     }
@@ -99,12 +99,12 @@ public class GameUI : MonoBehaviour
 
     private void OnClickJumpButton() // 점프 버튼
     {
-        playerAnim.OnJumpInput();
+        character.Jump();
     }
 
     private void OnClickSlidingButton() // 슬라이딩 버튼
     {
-        playerAnim.OnSlidingInput();
+        character.Slide();
         Debug.Log("슬라이딩");
     }
 
