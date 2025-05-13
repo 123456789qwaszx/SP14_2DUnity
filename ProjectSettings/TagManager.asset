@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Obstacle
+  - ScaleUp
+  - SpeedUp
+  - HpRecovery
   layers:
   - Default
   - TransparentFX

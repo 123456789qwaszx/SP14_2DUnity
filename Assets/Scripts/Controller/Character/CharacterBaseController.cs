@@ -20,8 +20,11 @@ public class CharacterBaseController : MonoBehaviour
     protected int jumpCount = 0;
     protected bool isJumping = false;
     protected float slidePower = 2f;
-    protected bool isSliding = false;
-    protected bool isGround = false;
+    public bool isSliding = false;
+    public bool isGround = false;
+    public float CurrentHp { get; set; }
+    public float CurrentSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
+    public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
 
     [Header("Character Interaction")]
     protected Vector2 knockBack = Vector2.zero;   // 장애물에 부딪힌 이후 캐릭터가 밀려나는 힘
@@ -38,6 +41,7 @@ public class CharacterBaseController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        
     }
 
     protected virtual void Start()
@@ -68,17 +72,17 @@ public class CharacterBaseController : MonoBehaviour
     }
 
     // memo: 슬라이딩 시, 속도를 가속시키는 로직이 필요할까?
-    protected virtual void Jump()
+    public virtual void Jump()
     {
 
     }
 
-    protected virtual void Slide()
+    public virtual void Slide()
     {
 
     }
 
-    protected virtual void EndSlide()
+    public virtual void EndSlide()
     {
 
     }

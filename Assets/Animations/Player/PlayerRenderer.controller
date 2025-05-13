@@ -20,7 +20,7 @@ AnimatorStateMachine:
     m_Position: {x: 810, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7775758070805962348}
-    m_Position: {x: 820, y: 30, z: 0}
+    m_Position: {x: 850, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3898711166636383725}
     m_Position: {x: 330, y: 200, z: 0}
@@ -30,9 +30,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 840, y: -50, z: 0}
-  m_EntryPosition: {x: 590, y: 30, z: 0}
-  m_ExitPosition: {x: 840, y: 120, z: 0}
+  m_AnyStatePosition: {x: 870, y: -20, z: 0}
+  m_EntryPosition: {x: 590, y: 40, z: 0}
+  m_ExitPosition: {x: 870, y: 130, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -2296014347167851379}
 --- !u!1102 &-7775758070805962348
@@ -176,7 +176,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isDoubleJump
+    m_ConditionEvent: isJump
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2296014347167851379}
@@ -184,10 +184,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.16666669
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -286,10 +286,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.5833334
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -353,7 +353,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: isJump
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2296014347167851379}
   m_Solo: 0

@@ -35,7 +35,7 @@ public class CharacterController : CharacterBaseController
 
 
         // 점프
-        if (jumpCount < maxJumpCount)
+        if (jumpCount < maxJumpCount && !isSliding)
         {
             // 테스트용 점프 코드. 실제로는 모바일 환경에 맞춰 OnClick으로 구현 예정
             if (Input.GetKeyDown(KeyCode.Space))
@@ -73,7 +73,7 @@ public class CharacterController : CharacterBaseController
         moveSpeed = 5f;
         currentSpeed = moveSpeed;
 
-        jumpPower = 5f;
+        jumpPower = 15f;
         maxJumpCount = 2;
         slidePower = 5f;
     }
@@ -83,7 +83,7 @@ public class CharacterController : CharacterBaseController
      * 2. 2단 점프
      * 3. 점프를 꾹 누르면 점프 높이 증가
      */
-    protected override void Jump()
+    public override void Jump()
     {
         isJumping = true;
 
@@ -93,7 +93,7 @@ public class CharacterController : CharacterBaseController
 
         if (jumpCount == 0)
         {
-             anim.SetBool("isJump", true);   // 애니메이션 연결 후 사용
+            anim.SetBool("isJump", true);   // 애니메이션 연결 후 사용
         }
         else if (jumpCount >= 1)
         {
@@ -104,13 +104,13 @@ public class CharacterController : CharacterBaseController
         jumpCount++;
     }
 
-    protected override void Slide()
+    public override void Slide()
     {
         isSliding = true;
-         anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
+        anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
     }
 
-    protected override void EndSlide()
+    public override void EndSlide()
     {
         isSliding = false;
         anim.SetBool("isSliding", isSliding); // 애니메이션 연결 후 사용
@@ -131,6 +131,9 @@ public class CharacterController : CharacterBaseController
             {
                 isJumping = false;
 
+                anim.SetBool("isJump", isJumping);   // 애니메이션 연결 후 사용
+                anim.SetBool("isDoubleJump", isJumping);   // 애니메이션 연결 후 사용
+
                 jumpCount = 0;
             }
         }
@@ -144,24 +147,24 @@ public class CharacterController : CharacterBaseController
         }
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    // 장애물 충돌 처리
-    //    if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
-    //    {
-    //        float damage = collision.gameObject.GetComponent<Obstacle>().Damage;
-    //        float knockBackPower = collision.gameObject.GetComponent<Obstacle>().KnockBackPower;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 장애물 충돌 처리
+        if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
+        {
+            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
+            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
 
-    //        Damage(damage);
-    //        ApplyKnockBack(collision.gameObject.transform, knockBackPower);
-    //        ApplyInvincible();
-    //    }
-    //}
+            Damage(damage);
+            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
+            ApplyInvincible();
+        }
+    }
 
     protected override void ApplyInvincible()
     {
         base.ApplyInvincible();
-         //anim.SetBool("isInvincible", isInvincible);   // 애니메이션 연결 후 사용
+        // anim.SetBool("isInvincible", isInvincible);   // 애니메이션 연결 후 사용
     }
 
     // 닿은 오브젝트가 주는 데미지에 따라 캐릭터의 체력을 감소시킴
