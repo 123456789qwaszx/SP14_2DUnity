@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4410695336916295960}
   - component: {fileID: 1794607940870187531}
+  - component: {fileID: 1101180940451491053}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -177,6 +178,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectSoundSource: {fileID: 4326156333769411333}
   _buttonClickSound: {fileID: 8300000, guid: b06d7462e5dde53438daf6227acb33ee, type: 3}
+--- !u!114 &1101180940451491053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800399998703019857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9903dd9e13a32d64ca1c87a617985637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioMixer: {fileID: 24100000, guid: 46f6d9d27d6c464488db385a2d61ebe2, type: 2}
+  _masterSlider: {fileID: 0}
+  _bgmSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
 --- !u!1 &7498107400942520844
 GameObject:
   m_ObjectHideFlags: 0

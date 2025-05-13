@@ -11,13 +11,13 @@ public class MainUI : MonoBehaviour
     // 시작, 나가기
     // 설정
 
-    public GameObject _mainUICanvas;
-    public GameObject _soundUICanvas;
+    [SerializeField] private GameObject _mainUICanvas;
+    [SerializeField] private GameObject _soundUICanvas;
 
-    Button startButton;
-    Button exitButton;
-    Button soundButton;
-    Button closeButton;
+    private Button startButton;
+    private Button exitButton;
+    private Button soundButton;
+    private Button closeButton;
 
     private void Start()
     {

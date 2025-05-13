@@ -709,19 +709,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 628537206}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 863385985}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayButtonClickSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &628537206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,7 +774,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648047138}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
@@ -1368,19 +1356,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 843318032}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 863385985}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayButtonClickSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &843318032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,15 +1395,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843318029}
   m_CullTransparentMesh: 1
---- !u!114 &863385985 stripped
+--- !u!114 &863385987 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1794607940870187531, guid: c57d374ad8b70df44bf27df326a732b0, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1101180940451491053, guid: c57d374ad8b70df44bf27df326a732b0, type: 3}
   m_PrefabInstance: {fileID: 949393919024069093}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5246bd7c0f06148b78138b689becc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9903dd9e13a32d64ca1c87a617985637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &883189773
@@ -1556,10 +1532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9903dd9e13a32d64ca1c87a617985637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioMixer: {fileID: 24100000, guid: 46f6d9d27d6c464488db385a2d61ebe2, type: 2}
-  _masterSlider: {fileID: 1192503192}
-  _bgmSlider: {fileID: 1724828985}
-  _sfxSlider: {fileID: 1261415960}
+  _audioMixer: {fileID: 0}
+  _masterSlider: {fileID: 0}
+  _bgmSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
 --- !u!1 &1192503190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,8 +1626,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1142892414}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+      - m_Target: {fileID: 863385987}
+        m_TargetAssemblyTypeName: SoundController, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 1
         m_Arguments:
@@ -1673,7 +1649,7 @@ GameObject:
   - component: {fileID: 1261415959}
   - component: {fileID: 1261415960}
   m_Layer: 0
-  m_Name: Slider - SFXVolume (2)
+  m_Name: Slider - SFXVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1752,9 +1728,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1142892414}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: SetBgmVolume
+      - m_Target: {fileID: 863385987}
+        m_TargetAssemblyTypeName: SoundController, Assembly-CSharp
+        m_MethodName: SetSfxVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2170,7 +2146,7 @@ GameObject:
   - component: {fileID: 1724828984}
   - component: {fileID: 1724828985}
   m_Layer: 0
-  m_Name: Slider - BGMVolume (1)
+  m_Name: Slider - BGMVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2249,8 +2225,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1142892414}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+      - m_Target: {fileID: 863385987}
+        m_TargetAssemblyTypeName: SoundController, Assembly-CSharp
         m_MethodName: SetBgmVolume
         m_Mode: 1
         m_Arguments:
@@ -2356,7 +2332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4872bd1108769a946a6acb68dc156fcf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6d14bcb8d9dbb349beb9d3619096732, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2589,19 +2565,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1941826268}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 863385985}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayButtonClickSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1941826268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2990,19 +2954,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2119089854}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 863385985}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayButtonClickSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2119089854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3124,6 +3076,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1101180940451491053, guid: c57d374ad8b70df44bf27df326a732b0, type: 3}
+      propertyPath: _bgmSlider
+      value: 
+      objectReference: {fileID: 1724828985}
+    - target: {fileID: 1101180940451491053, guid: c57d374ad8b70df44bf27df326a732b0, type: 3}
+      propertyPath: _sfxSlider
+      value: 
+      objectReference: {fileID: 1261415960}
+    - target: {fileID: 1101180940451491053, guid: c57d374ad8b70df44bf27df326a732b0, type: 3}
+      propertyPath: _masterSlider
+      value: 
+      objectReference: {fileID: 1192503192}
     - target: {fileID: 3800399998703019857, guid: c57d374ad8b70df44bf27df326a732b0, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -3179,5 +3143,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 101416220}
   - {fileID: 84552843}
-  - {fileID: 24747802}
   - {fileID: 949393919024069093}
+  - {fileID: 24747802}
