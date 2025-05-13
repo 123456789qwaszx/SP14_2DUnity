@@ -72,9 +72,12 @@ public class ResourceManager
     {
         string mapName = "Map_" + mapid.ToString("000");
         GameObject map = Managers.Resource.Instantiate($"Map/{mapName}");
-
-        
     }
+
+    // public void SetMap(GameObject map, float mapWidth)
+    // {
+    //     map.transform.position = new Vector3(mapWidth, 0);
+    // }
 
     // public void SpawnRandonMap()
     // {

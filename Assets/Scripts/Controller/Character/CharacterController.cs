@@ -5,11 +5,11 @@ using UnityEngine;
 public class CharacterController : CharacterBaseController
 {
     /*
-     * Ä³¸¯ÅÍ µ¿ÀÛ Á¤ÀÇ Å¬·¡½º
-     * 1. Á¡ÇÁ
-     * 2. ½½¶óÀÌµù
-     * 3. ¾ÆÀÌÅÛ ½Àµæ
-     * 4. ¾ÆÀÌÅÛ ½Àµæ¿¡ µû¸¥ µ¿ÀÛ ±¸ºÐ ( Á¡¼ö Áõ°¡, ¼Óµµ Áõ°¡, ¼Óµµ °¨¼Ò µî )
+     * Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+     * 1. ï¿½ï¿½ï¿½ï¿½
+     * 2. ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
+     * 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+     * 4. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½æ¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ )
      */
 
     protected override void Awake()
@@ -27,24 +27,24 @@ public class CharacterController : CharacterBaseController
     protected override void Update()
     {
         /*
-         * ¸ð¹ÙÀÏ È¯°æÀÌ±â ¶§¹®¿¡ OnClickÀ» »óÁ¤ÇØ¾ß ÇÔ
-         * ¾î¶² ¹öÆ°À» ´©¸£³Ä¿¡ µû¶ó Á¡ÇÁ, ½½¶óÀÌµå°¡ ÇàÇØÁü
-         * Á¡ÇÁ¸¦ ´©¸£¸é Ä³¸¯ÅÍÀÇ Jump¸¦ È£ÃâÇÏ°í ½½¶óÀÌµå¸¦ ´©¸£¸é Slide¸¦ È£Ãâ
-         * SlideÀÇ °æ¿ì ´©¸£´Â µ¿¾È °è¼Ó Ä³¸¯ÅÍ ¼Óµµ¸¦ ³ôÀÌ¸ç ½½¶óÀÌµù
+         * ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ OnClickï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½
+         * ï¿½î¶² ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ìµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+         * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Jumpï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Slideï¿½ï¿½ È£ï¿½ï¿½
+         * Slideï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
          */
 
 
-        // Á¡ÇÁ
+        // ï¿½ï¿½ï¿½ï¿½
         if (jumpCount < maxJumpCount && !isSliding)
         {
-            // Å×½ºÆ®¿ë Á¡ÇÁ ÄÚµå. ½ÇÁ¦·Î´Â ¸ð¹ÙÀÏ È¯°æ¿¡ ¸ÂÃç OnClickÀ¸·Î ±¸Çö ¿¹Á¤
+            // ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½æ¿¡ ï¿½ï¿½ï¿½ï¿½ OnClickï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
         }
 
-        // ½½¶óÀÌµù
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
         if (!isSliding && isGround)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -53,7 +53,7 @@ public class CharacterController : CharacterBaseController
             }
         }
 
-        // ½½¶óÀÌµù Á¾·á
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isSliding)
         {
             if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -78,27 +78,27 @@ public class CharacterController : CharacterBaseController
         slidePower = 5f;
     }
 
-    /* ±¸Çö ¼ø¼­
-     * 1. ÀÏ¹Ý Á¡ÇÁ
-     * 2. 2´Ü Á¡ÇÁ
-     * 3. Á¡ÇÁ¸¦ ²Ú ´©¸£¸é Á¡ÇÁ ³ôÀÌ Áõ°¡
+    /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+     * 1. ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½
+     * 2. 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+     * 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
      */
     public override void Jump()
     {
         isJumping = true;
 
-        rb.velocity = Vector2.zero;   // ³«ÇÏ Áß, Á¡ÇÁ·Â ÀúÇÏ¸¦ ¸·±â À§ÇØ ¼Óµµ¸¦ ÃÊ±âÈ­
+        rb.velocity = Vector2.zero;   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
         if (jumpCount == 0)
         {
-            anim.SetBool("isJump", true);   // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á ÈÄ »ç¿ë
+            anim.SetBool("isJump", true);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
         }
         else if (jumpCount >= 1)
         {
-            anim.SetBool("isJump", false);   // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á ÈÄ »ç¿ë
-            anim.SetBool("isDoubleJump", true);   // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á ÈÄ »ç¿ë
+            anim.SetBool("isJump", false);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
+            anim.SetBool("isDoubleJump", true);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
         }
 
         jumpCount++;
@@ -107,18 +107,18 @@ public class CharacterController : CharacterBaseController
     public override void Slide()
     {
         isSliding = true;
-        anim.SetBool("isSliding", isSliding); // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á ÈÄ »ç¿ë
+        anim.SetBool("isSliding", isSliding); // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
     }
 
     public override void EndSlide()
     {
         isSliding = false;
-        anim.SetBool("isSliding", isSliding); // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á ÈÄ »ç¿ë
+        anim.SetBool("isSliding", isSliding); // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
     }
 
     private void IncreaseSpeed()
     {
-        Debug.Log("½ºÇÇµå Áõ°¡: " + currentSpeed);   // memo: ¸Ê¿¡¼­´Â PlayerÅÂ±×¸¦ ÃßÀûÇØ ÇöÀç ÇÃ·¹ÀÌ ÁßÀÎ Ä³¸¯ÅÍÀÇ currentSpeed¸¦ ¸Ê ½ºÇÇµå·Î Àû¿ë
+        Debug.Log("ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½: " + currentSpeed);   // memo: ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½ Playerï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ currentSpeedï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Çµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -131,11 +131,20 @@ public class CharacterController : CharacterBaseController
             {
                 isJumping = false;
 
-                anim.SetBool("isJump", isJumping);   // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á ÈÄ »ç¿ë
-                anim.SetBool("isDoubleJump", isJumping);   // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á ÈÄ »ç¿ë
+                anim.SetBool("isJump", isJumping);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
+                anim.SetBool("isDoubleJump", isJumping);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 
                 jumpCount = 0;
             }
+        }
+        else if (collision.gameObject.CompareTag("MapRoutin"))
+        {
+            Debug.Log("MapRoutin!");
+            Managers.Resource.Instantiate($"Map/Map_001");
+            GameObject RoutinMap = GameObject.Find("Map_001");
+        
+            float mapWidth = Managers.Resource.GetMapWorldWidth(RoutinMap);
+            RoutinMap.transform.position = new Vector3(mapWidth, 0);
         }
     }
 
@@ -149,25 +158,25 @@ public class CharacterController : CharacterBaseController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Àå¾Ö¹° Ãæµ¹ Ã³¸®
+        // ï¿½ï¿½Ö¹ï¿½ ï¿½æµ¹ Ã³ï¿½ï¿½
         if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
-            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
-            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
+            //float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
+            //float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
 
-            Damage(damage);
-            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
-            ApplyInvincible();
+            // Damage(damage);
+            // ApplyKnockBack(collision.gameObject.transform, knockBackPower);
+            // ApplyInvincible();
         }
     }
 
     protected override void ApplyInvincible()
     {
         base.ApplyInvincible();
-        // anim.SetBool("isInvincible", isInvincible);   // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á ÈÄ »ç¿ë
+        // anim.SetBool("isInvincible", isInvincible);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
     }
 
-    // ´êÀº ¿ÀºêÁ§Æ®°¡ ÁÖ´Â µ¥¹ÌÁö¿¡ µû¶ó Ä³¸¯ÅÍÀÇ Ã¼·ÂÀ» °¨¼Ò½ÃÅ´
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½Å´
     public override void Damage(float damage)
     {
         base.Damage(damage);
@@ -187,6 +196,6 @@ public class CharacterController : CharacterBaseController
     {
         base.Dead();
 
-        // to do: °ÔÀÓ ¿À¹ö Ã³¸® (°ÔÀÓ ¸Å´ÏÀúÀÇ °ÔÀÓ ¿À¹ö È£Ãâ) Ãß°¡
+        // to do: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½) ï¿½ß°ï¿½
     }
 }

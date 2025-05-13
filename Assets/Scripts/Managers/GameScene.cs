@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    public List<GameObject> MapInstances = new List<GameObject>();
+    List<GameObject> maplist = new List<GameObject>();
 
     protected override void Init()
     {
@@ -16,34 +16,52 @@ public class GameScene : BaseScene
         GameObject parallax = Managers.Resource.Instantiate("Parallax/Parallax_001");
         parallax.name = "Parallax";
 
-        // GameObject map = Managers.Resource.Instantiate("Map/Map_default");
 
-        //Managers.Resource.Instantiate("Map/Map_001");
+        for (int i = 1; i < 5; i++)
+        maplist.Add(Managers.Resource.Instantiate($"Map/Map_001"));
+        maplist.Add(Managers.Resource.Instantiate($"Map/Map_002"));
 
-        for (int i = 1; i < 3; i++)
-        Managers.Resource.LoadMap(i);
+        foreach (GameObject obj in maplist)
+        {
+            Managers.Resource.Destroy(obj);
+        }
 
-        //Managers.Map.SpawnRandonMap();
+        Managers.Resource.Instantiate("Map/Map_default");
+        Managers.Resource.Instantiate($"Map/Map_001");
+        GameObject RoutinMap = GameObject.Find("Map_001");
+        
+        float mapWidth = Managers.Resource.GetMapWorldWidth(RoutinMap);
+        RoutinMap.transform.position = new Vector3(mapWidth, 0);
 
-    
+        //StartCoroutine(CreateMap());
+        
     }
 
     void Start()
     {
 
-        //StratCoroutine(CreateMap());
     }
 
-    IEnumerator CreateMap()
-    {
-        while (true)
-        {
-            // 우린 맵을 순서대로 생성하기로 했으니까.
-            // 풀매니저에서 GetPool을 해준다.
-            // 그리고 count ++ 로 인덱스를 1더해주고
-            // yield (화면바깥까지의 거리 - 처음생성위치)의 절대값 / 속도의 절대값 마다 반복실행
-        }
-    }
+    // IEnumerator CreateMap()
+    // {
+    //     int randomIndex = UnityEngine.Random.Range(0, maplist.Count);
+
+    //     while (true)
+    //     {
+    //         Managers.Resource.Instantiate($"Map/Map_001");
+    //         GameObject RoutinMap = GameObject.Find("Map_001");
+    //         float mapWidth = Managers.Resource.GetMapWorldWidth(RoutinMap);
+    //         RoutinMap.transform.position = new Vector3(mapWidth, 0);
+
+    //         yield return new WaitForSeconds(8.0f);
+
+    //         // 우린 맵을 순서대로 생성하기로 했으니까.
+    //         // 풀매니저에서 GetPool을 해준다.
+    //         // 그리고 count ++ 로 인덱스를 1더해주고
+    //         // yield (화면바깥까지의 거리 - 처음생성위치)의 절대값 / 속도의 절대값 마다 반복실행
+    //     }
+    // }
+    
 
     
 

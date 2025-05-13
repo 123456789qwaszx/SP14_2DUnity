@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PoolManager
 {
-    // 이 Pool 클래스의 메소드들은 직접 호출하는게 아니라, PoolManager의 동일한 이름의 메소드를 통해 사용됨.
+    // PoolManager의 함수들은 자체적으로 사용되는 게 아니라, ResourceManager를 통해서만 사용됨.
+
+    // 아래 Pool 클래스의 메소드들은 직접 호출하는게 아니라, PoolManager의 동일한 이름의 메소드를 통해 사용됨.
     class Pool
     {
         public GameObject Original { get; private set; }
