@@ -28,11 +28,10 @@ public class MapManager
         }
 
         Managers.Resource.Instantiate("Map/Map_default");
-        Managers.Resource.Instantiate($"Map/Map_001");
-        GameObject RoutinMap = GameObject.Find("Map_001");
+        GameObject map = Managers.Resource.Instantiate($"Map/Map_001");
         
-        float mapWidth = Managers.Map.GetMapWorldWidth(RoutinMap);
-        RoutinMap.transform.position = new Vector3(mapWidth, 0);
+        float mapWidth = Managers.Map.GetMapWorldWidth(map);
+        map.transform.position = new Vector3(mapWidth, 0);
     }
 
 
@@ -47,7 +46,6 @@ public class MapManager
         }
 
         tilemap.CompressBounds();
-
         Bounds tilemapBounds = tilemap.localBounds;
         Vector3 worldSize = Vector3.Scale(tilemapBounds.size, tilemap.transform.lossyScale);
         return worldSize.x;

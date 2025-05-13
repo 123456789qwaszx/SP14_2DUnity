@@ -11,7 +11,7 @@ public class GameScene : BaseScene
         GameObject player = Managers.Resource.Instantiate("Player");
         player.name = "Player";
 
-        GameObject parallax = Managers.Resource.Instantiate("Parallax/Parallax_001");
+        GameObject parallax = Managers.Resource.Instantiate("Parallax/Parallax_004");
         parallax.name = "Parallax";
 
         Managers.Map.SetdefaultMap();
