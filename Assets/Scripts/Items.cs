@@ -11,6 +11,7 @@ public class Items : MonoBehaviour
     [SerializeField] private SpriteRenderer _heathREcovery;
     [SerializeField] private SpriteRenderer _speedUp;
 
+
     bool isItem = false;
 
     private float maxSpeed = 5f;
@@ -18,6 +19,11 @@ public class Items : MonoBehaviour
     public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     public float Duration { get { return duration; } set { duration = value; } }
 
+    private void Update()
+    {
+        float move = 2f;
+        transform.position += Vector3.left * move * Time.deltaTime;
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void HpRecovery(CharacterController _player)

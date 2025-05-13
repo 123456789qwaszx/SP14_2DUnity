@@ -9,6 +9,7 @@ TagManager:
   - SpeedUp
   - HpRecovery
   - Items
+  - Obstacle
   layers:
   - Default
   - TransparentFX

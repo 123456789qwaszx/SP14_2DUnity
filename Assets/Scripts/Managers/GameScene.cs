@@ -23,7 +23,7 @@ public class GameScene : BaseScene
         gameUI.name = "GameUI";
 
         GameObject items = Managers.Resource.Instantiate("Items");
-        items.name = "items";
+        items.name = "Items";
     }
     
 

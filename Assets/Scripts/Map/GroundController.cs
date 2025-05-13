@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GroundController : MonoBehaviour
 {
@@ -33,14 +34,12 @@ public class GroundController : MonoBehaviour
 
     void Update()
     {
-        
         scrollAmount = transform.lossyScale.x;
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
         if (transform.position.x <= -scrollAmount)
         {
             transform.position = target.position - Vector3.left * scrollAmount;
-            
         }
 
 
