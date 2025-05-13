@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterController : CharacterBaseController
 {
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,6 +19,7 @@ public class CharacterController : CharacterBaseController
 
     protected override void Update()
     {
+
         // ����
         if (jumpCount < maxJumpCount && !isSliding)
         {
@@ -154,6 +156,26 @@ public class CharacterController : CharacterBaseController
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
+        // ��ֹ� �浹 ó��
+        if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
+        {
+            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
+            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
+
+            Damage(damage);
+            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
+            ApplyInvincible();
+        }
+        
+
+        else if (collision.gameObject.CompareTag("MapRoutin"))
+        {
+            int randomIndex = UnityEngine.Random.Range(1, 3);
+            GameObject randomMap = Managers.Map.LoadMap(randomIndex);
+
+            float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
+            randomMap.transform.position = new Vector3(mapWidth, 0);
+        }
     }
 
     public override void ApplyInvincible()

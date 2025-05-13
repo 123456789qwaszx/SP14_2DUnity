@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ÇÃ·¹ÀÌ¾îºí Ä³¸¯ÅÍ Ãß°¡¸¦ ´ëºñÇÑ Ä³¸¯ÅÍ ±âº» Å¬·¡½º
+// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½âº» Å¬ï¿½ï¿½ï¿½ï¿½
 public class CharacterBaseController : MonoBehaviour
 {
-    protected Rigidbody2D rb; // Ä³¸¯ÅÍ´Â °íÁ¤µÇ¾î ÀÖ¾îµµ Á¡ÇÁ µîÀÇ Çàµ¿À» À§ÇØ ÇÊ¿ä
+    protected Rigidbody2D rb; // Ä³ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö¾îµµ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
     protected Animator anim;
 
     [Header("Character State")]
-    [Tooltip("Ä³¸¯ÅÍÀÇ µðÆúÆ® ½ºÅ×ÀÌÅÍ½º")]
-    protected float maxHp = 3f;    // memo: 3°³ÀÇ ÇÏÆ®¸¦ °¡Áö°í ÀÖÀ» °æ¿ì, ¹Ý¸¸ ±ð´Â »óÈ²À» »óÁ¤ÇÏ¿© float·Î ÁöÁ¤
+    [Tooltip("Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í½ï¿½")]
+    protected float maxHp = 3f;    // memo: 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½Ý¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ floatï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     protected float currentHp = 0f;
     protected float moveSpeed = 5f;
     protected float currentSpeed = 0f;
     protected float jumpPower = 3f;
     protected float currentJumpPower = 0f;
-    protected int maxJumpCount = 1;    // Ä³¸¯ÅÍ°¡ °øÁß Á¡ÇÁ È½¼ö
+    protected int maxJumpCount = 1;    // Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½
     protected int jumpCount = 0;
     protected bool isJumping = false;
-    protected bool isJumpHold = false;  // Á¡ÇÁÅ° Áö¼Ó È®ÀÎ
+    protected bool isJumpHold = false;  // ï¿½ï¿½ï¿½ï¿½Å° ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     protected float slidePower = 2f;
     public bool isSliding = false;
     public bool isGround = false;
@@ -28,15 +28,17 @@ public class CharacterBaseController : MonoBehaviour
     public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
 
     [Header("Character Interaction")]
-    protected Vector2 knockBack = Vector2.zero;   // Àå¾Ö¹°¿¡ ºÎµúÈù ÀÌÈÄ Ä³¸¯ÅÍ°¡ ¹Ð·Á³ª´Â Èû
+
+    protected Vector2 knockBack = Vector2.zero;   // ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     protected float knockBackDuration = 0f;
 
-    protected float invincibleDuration = 2f; // ¹«Àû ½Ã°£
-    public bool isInvincible = false;  // ¹«Àû »óÅÂ Ã¼Å©
+    protected float invincibleDuration = 2f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+    public bool isInvincible = false;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+
     private Coroutine invincibleCoroutine = null;
 
-    private Vector3 returnPosition = Vector3.zero;   // Ä³¸¯ÅÍ º¹±Í À§Ä¡
-    private float returnDistance = 5f; // Ä³¸¯ÅÍ º¹±Í ¼Óµµ
+    private Vector3 returnPosition = Vector3.zero;   // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+    private float returnDistance = 5f; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
 
     protected virtual void Awake()
     {
@@ -61,7 +63,7 @@ public class CharacterBaseController : MonoBehaviour
         {
             knockBackDuration -= Time.fixedDeltaTime;
         }
-        else if (knockBack != Vector2.zero)   // ³Ë¹éÀÌ ³¡³µÀ» °æ¿ì, ³Ë¹é »óÅÂ¸¦ ÃÊ±âÈ­
+        else if (knockBack != Vector2.zero)   // ï¿½Ë¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½Ë¹ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ê±ï¿½È­
         {
             RecoverKnockBack();
         }
@@ -72,8 +74,9 @@ public class CharacterBaseController : MonoBehaviour
 
     }
 
-    // memo: ½½¶óÀÌµù ½Ã, ¼Óµµ¸¦ °¡¼Ó½ÃÅ°´Â ·ÎÁ÷ÀÌ ÇÊ¿äÇÒ±î?
+    // memo: ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½, ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ò±ï¿½?
     public virtual void Jump()
+    
     {
 
     }
@@ -92,7 +95,7 @@ public class CharacterBaseController : MonoBehaviour
     {
         currentHp -= damage;
         
-        if (currentHp <= 0f)    // Ã¼·ÂÀÌ 0 ÀÌÇÏ·Î ¶³¾îÁö´Â µ¥¹ÌÁö¸¦ ÀÔ¾úÀ» °æ¿ì, »ç¸Á Ã³¸®
+        if (currentHp <= 0f)    // Ã¼ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         {
             Dead();
         }
@@ -120,34 +123,34 @@ public class CharacterBaseController : MonoBehaviour
             component.enabled = false;
         }
 
-        // to do: »ç¸Á ¾Ö´Ï¸ÞÀÌ¼Ç Ãß°¡
+        // to do: ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ß°ï¿½
 
         Destroy(gameObject, 2f);
     }
 
     public virtual void ApplyKnockBack(Transform other, float power)
     {
-        returnPosition.x = transform.position.x;   // Ä³¸¯ÅÍ º¹±Í À§Ä¡¸¦ ³Ë¹é ÀüÀÇ À§Ä¡·Î ¼³Á¤
+        returnPosition.x = transform.position.x;   // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ë¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        knockBackDuration = power / 3;  // ¹Ð¾î³»´Â ÈûÀÌ °­ÇÒ¼ö·Ï ¿À·§µ¿¾È ³¯¾Æ°£´Ù
+        knockBackDuration = power / 3;  // ï¿½Ð¾î³»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½
         knockBack = (other.position - transform.position).normalized * power;
 
         rb.velocity -= knockBack;
     }
 
-    // °æÁ÷ ÈÄ, Ä³¸¯ÅÍ¸¦ È­¸é Áß¾ÓÀ¸·Î º¹±Í½ÃÅ´
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, Ä³ï¿½ï¿½ï¿½Í¸ï¿½ È­ï¿½ï¿½ ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í½ï¿½Å´
     protected virtual void RecoverKnockBack()
     {
-        float currentXPos = transform.position.x;   // ³Ë¹é Á÷ÈÄ Ä³¸¯ÅÍ xÁÂÇ¥°ª
+        float currentXPos = transform.position.x;   // ï¿½Ë¹ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ xï¿½ï¿½Ç¥ï¿½ï¿½
         float targetXPos = returnPosition.x;
 
-        if (Mathf.Abs(currentXPos - targetXPos) < 0.001f)   // ³Ë¹éÀÌ ³¡³ª°í, Ä³¸¯ÅÍ°¡ º¹±Í À§Ä¡¿¡ µµ´ÞÇßÀ» °æ¿ì
+        if (Mathf.Abs(currentXPos - targetXPos) < 0.001f)   // ï¿½Ë¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         {
             knockBack = Vector2.zero;
             rb.velocity = Vector2.zero;
 
             return;
-            // returnPosition.x = currentX;   // º¹±Í À§Ä¡¸¦ ÇöÀç À§Ä¡·Î ¼³Á¤
+            // returnPosition.x = currentX;   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
 
         float returnXPos = Mathf.Lerp(currentXPos, targetXPos, Time.deltaTime * returnDistance);
@@ -157,7 +160,7 @@ public class CharacterBaseController : MonoBehaviour
 
     public virtual void ApplyInvincible()
     {
-        if (invincibleCoroutine != null)    // ÄÚ·çÆ¾ Áßº¹ ½ÇÇà ¹æÁö
+        if (invincibleCoroutine != null)    // ï¿½Ú·ï¿½Æ¾ ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             StopCoroutine(invincibleCoroutine);
         }
@@ -169,7 +172,7 @@ public class CharacterBaseController : MonoBehaviour
     {
         isInvincible = true;
 
-        yield return new WaitForSeconds(duration);  // ¹«Àû ½Ã°£ µ¿¾È ¹«Àû Á¾·á ÇÔ¼ö È£Ãâ ´ë±â
+        yield return new WaitForSeconds(duration);  // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½
 
         EndInvincible();
 

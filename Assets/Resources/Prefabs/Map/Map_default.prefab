@@ -580,11 +580,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8598760312460150176}
   - component: {fileID: 6439779343681675069}
+  - component: {fileID: 4352684289710160911}
   - component: {fileID: -5867584666385370383}
   - component: {fileID: 6117354404715668036}
   m_Layer: 0
   m_Name: Map_default
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,6 +619,18 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &4352684289710160911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027724712700460490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446cd5217665b1645a0ba53317a00f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1839735485 &-5867584666385370383
 Tilemap:
   m_ObjectHideFlags: 0

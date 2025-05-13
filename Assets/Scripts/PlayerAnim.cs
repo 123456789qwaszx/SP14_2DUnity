@@ -31,15 +31,15 @@ public class PlayerAnim : MonoBehaviour
     {
         Move();
         //Jump();
-        if (jDown) // UI ¹öÆ° Å¬¸¯À¸·Î jDownÀÌ true°¡ µÇ¸é Á¡ÇÁ ½ÇÇà
+        if (jDown) // UI ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jDownï¿½ï¿½ trueï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             Jump();
-            jDown = false; // Á¡ÇÁ Ã³¸® ÈÄ ÃÊ±âÈ­
+            jDown = false; // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­
         }
-        //if (sDown) // UI ¹öÆ° Å¬¸¯À¸·Î jDownÀÌ true°¡ µÇ¸é Á¡ÇÁ ½ÇÇà
+        //if (sDown) // UI ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jDownï¿½ï¿½ trueï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //{
         //    Sliding();
-        //    sDown = false; // Á¡ÇÁ Ã³¸® ÈÄ ÃÊ±âÈ­
+        //    sDown = false; // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­
         //}
         Sliding();
     }
