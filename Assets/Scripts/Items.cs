@@ -24,6 +24,7 @@ public class Items : MonoBehaviour
         float move = 2f;
         transform.position += Vector3.left * move * Time.deltaTime;
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void HpRecovery(CharacterController _player)
