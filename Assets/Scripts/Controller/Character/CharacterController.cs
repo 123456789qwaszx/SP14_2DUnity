@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class CharacterController : CharacterBaseController
 {
-    /*
-     * ĳ���� ���� ���� Ŭ����
-     * 1. ����
-     * 2. �����̵�
-     * 3. ������ ����
-     * 4. ������ ���濡 ���� ���� ���� ( ���� ����, �ӵ� ����, �ӵ� ���� �� )
-     */
 
     protected override void Awake()
     {
@@ -26,13 +19,6 @@ public class CharacterController : CharacterBaseController
 
     protected override void Update()
     {
-        /*
-         * ����� ȯ���̱� ������ OnClick�� �����ؾ� ��
-         * � ��ư�� �����Ŀ� ���� ����, �����̵尡 ������
-         * ������ ������ ĳ������ Jump�� ȣ���ϰ� �����̵带 ������ Slide�� ȣ��
-         * Slide�� ��� ������ ���� ��� ĳ���� �ӵ��� ���̸� �����̵�
-         */
-
 
         // ����
         if (jumpCount < maxJumpCount && !isSliding)
@@ -42,6 +28,17 @@ public class CharacterController : CharacterBaseController
             {
                 Jump();
             }
+
+            /*  ����Ű Ȧ�� �� ������ ���� ����
+            if (Input.GetKey(KeyCode.Space))
+            {
+                isJumpHold = true;   // ����Ű�� ������ �ִ��� Ȯ��
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                isJumpHold = false;
+            }
+            */
         }
 
         // �����̵�
@@ -63,6 +60,20 @@ public class CharacterController : CharacterBaseController
         }
     }
 
+    protected override void FixedUpdate()
+    {
+        /* ����Ű�� ������ ���� ������ ����
+        if (isJumpHold && rb.velocity.y > 0f)
+        {
+            rb.gravityScale = 5f;
+        }
+        else
+        {
+            rb.gravityScale = 10f;
+        }
+        */
+    }
+
     protected override void SetCharacterState()
     {
         base.SetCharacterState();
@@ -78,11 +89,6 @@ public class CharacterController : CharacterBaseController
         slidePower = 5f;
     }
 
-    /* ���� ����
-     * 1. �Ϲ� ����
-     * 2. 2�� ����
-     * 3. ������ �� ������ ���� ���� ����
-     */
     public override void Jump()
     {
         isJumping = true;
@@ -149,6 +155,7 @@ public class CharacterController : CharacterBaseController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         // ��ֹ� �浹 ó��
         if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
@@ -171,7 +178,7 @@ public class CharacterController : CharacterBaseController
         }
     }
 
-    protected override void ApplyInvincible()
+    public override void ApplyInvincible()
     {
         base.ApplyInvincible();
         // anim.SetBool("isInvincible", isInvincible);   // �ִϸ��̼� ���� �� ���
@@ -183,7 +190,7 @@ public class CharacterController : CharacterBaseController
         base.Damage(damage);
     }
 
-    protected override void ApplyKnockBack(Transform other, float power)
+    public override void ApplyKnockBack(Transform other, float power)
     {
         base.ApplyKnockBack(other, power);
     }
