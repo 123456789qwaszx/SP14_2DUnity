@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using UnityEngine.EventSystems; // PointerDownHandler, PointerUpHandler 인터페이스 사용
 
 // -인게임-
 
@@ -20,6 +19,7 @@ public class GameUI : MonoBehaviour
     // 스크립트 컴포넌트에 오브젝트 할당
     public GameObject _gameUICanvas;
     public GameObject _gameStateUICanvas;
+    private CharacterController _character;
     public TextMeshProUGUI _gameStateText; // 게임 상태 문구
     public string[] _gameStateMessages; // 게임 상태 문구 배열
 
@@ -30,10 +30,7 @@ public class GameUI : MonoBehaviour
     Button backButton; // 뒤로가기 버튼
     Button homeButton; // 홈으로 가기 버튼
     Button pauseButton; // 일시정지 버튼
-
     Button slidingButton; // 슬라이딩 버튼
-    private bool isSlidingButtonDown = false; // 슬라이딩 버튼이 눌렸는지 여부
-    public CharacterController character;
 
     private void Start()
     {
@@ -47,6 +44,12 @@ public class GameUI : MonoBehaviour
 
     public void Init() // 초기화
     {
+        if (_gameUICanvas == null || _gameStateUICanvas == null)
+        {
+            Debug.LogError("UI Canvas가 제대로 로드되지 않았습니다.");
+            return;
+        }
+
         // 인스펙터에 오브젝트 연결
         Transform gameCanvas = _gameUICanvas.transform;
         Transform gameStateCanvas = _gameStateUICanvas.transform;
@@ -70,7 +73,7 @@ public class GameUI : MonoBehaviour
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
-        character = playerObject.GetComponent<CharacterController>();
+        _character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
 
         Time.timeScale = 1.0f; // 게임시작
@@ -100,22 +103,20 @@ public class GameUI : MonoBehaviour
 
     private void OnClickJumpButton() // 점프 버튼
     {
-        character.Jump();
+        _character.Jump();
     }
 
     private void OnClickSlidingButton() // 슬라이딩 버튼
     {
-        if (character.isSliding == false)
+        if (_character.isSliding == false)
         {
-            character.Slide();
-            character.isSliding = true;
-            Debug.Log(character.isSliding);
+            _character.Slide();
+            _character.isSliding = true;
         }
         else
         {
-            character.EndSlide();
-            character.isSliding = false;
-            Debug.Log(character.isSliding);
+            _character.EndSlide();
+            _character.isSliding = false;
         }
     }
 

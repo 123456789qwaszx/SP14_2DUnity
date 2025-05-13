@@ -39,7 +39,8 @@ public class GameScene : BaseScene
 
     void Start()
     {
-
+        GameObject gameUI = Managers.Resource.Instantiate("GameUI");
+        gameUI.name = "GameUI";
     }
 
     // IEnumerator CreateMap()
