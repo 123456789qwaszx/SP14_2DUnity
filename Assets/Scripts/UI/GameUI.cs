@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.TextCore.Text;
 
 // -인게임-
 
@@ -17,11 +18,20 @@ using UnityEngine.Events;
 public class GameUI : MonoBehaviour
 {
     // 스크립트 컴포넌트에 오브젝트 할당
+    [Header("캔버스 오브젝트")]
     [SerializeField] private GameObject _gameUICanvas;
     [SerializeField] private GameObject _gameStateUICanvas;
-    private CharacterController _character;
+
+    [Header("하트 이미지")]
+    [SerializeField] private Sprite heart_full;
+    [SerializeField] private Sprite heart_empty;
+    [SerializeField] private List<Image> hearts;
+
+    [Header("게임 상태 문구")]
     [SerializeField] private TextMeshProUGUI _gameStateText; // 게임 상태 문구
     [SerializeField] private string[] _gameStateMessages; // 게임 상태 문구 배열
+
+    private CharacterBaseController character;
 
     TextMeshProUGUI currentScoreTxt; // 현재 점수 
     TextMeshProUGUI bestScoreTxt; // 최고 점수
@@ -32,24 +42,26 @@ public class GameUI : MonoBehaviour
     Button pauseButton; // 일시정지 버튼
     Button slidingButton; // 슬라이딩 버튼
 
+    public int Hp = 3; // 임의로 설정한 체력
+    public bool HpUp = false;
+    public bool HpDown = false;
+
     private void Start()
     {
         Init();
+        Debug.Log(character.CurrentHp);
+        Debug.Log(character.maxHp);
     }
 
     private void Update()
     {
         ShowGameStateUI();
+        UpdateHealthUI();
+
     }
 
     public void Init() // 초기화
     {
-        if (_gameUICanvas == null || _gameStateUICanvas == null)
-        {
-            Debug.LogError("UI Canvas가 제대로 로드되지 않았습니다.");
-            return;
-        }
-
         // 인스펙터에 오브젝트 연결
         Transform gameCanvas = _gameUICanvas.transform;
         Transform gameStateCanvas = _gameStateUICanvas.transform;
@@ -73,7 +85,7 @@ public class GameUI : MonoBehaviour
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
-        _character = playerObject.GetComponent<CharacterController>();
+        character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
 
         Time.timeScale = 1.0f; // 게임시작
@@ -87,11 +99,12 @@ public class GameUI : MonoBehaviour
 
     private void ShowGameStateUI() // 게임상태 UI
     {
-        //if (Die) // 죽은 상태일 때 - 게임 오버
-        //{
-        //_gameStateText.text = _gameStateMessages[1]; // "게임 오버" 출력
-        //_gameStateUICanvas.SetActive(true);
-        //}
+        if (Hp <= 0) // 죽은 상태일 때 - 게임 오버
+        {
+            _gameStateText.text = _gameStateMessages[1]; // "게임 오버" 출력
+            _gameStateUICanvas.SetActive(true);
+            Time.timeScale = 0f;
+        }
         //else if (stageClear) // 스테이지 클리어
         //{
         //_gameStateText.text = _gameStateMessages[0]; // "스테이지 클리어" 출력
@@ -99,24 +112,44 @@ public class GameUI : MonoBehaviour
         //}
     }
 
+    private void UpdateHealthUI() // Hp UI 업데이트
+    {
+        // 테스트라 나중에 합쳐졌을 때 현재 체력 부분 수정
+        if (HpUp)
+        {
+            if (Hp < character.maxHp)
+            {
+                hearts[Hp].sprite = heart_full;
+                Hp += 1;
+            }
+            HpUp = false;
+        }
+        else if (HpDown)
+        {
+            hearts[Hp - 1].sprite = heart_empty;
+            Hp -= 1;
+        }
+        HpDown = false;
+    }
+
     #region 버튼
 
     private void OnClickJumpButton() // 점프 버튼
     {
-        _character.Jump();
+        character.Jump();
     }
 
     private void OnClickSlidingButton() // 슬라이딩 버튼
     {
-        if (_character.isSliding == false)
+        if (character.isSliding == false)
         {
-            _character.Slide();
-            _character.isSliding = true;
+            character.Slide();
+            character.isSliding = true;
         }
         else
         {
-            _character.EndSlide();
-            _character.isSliding = false;
+            character.EndSlide();
+            character.isSliding = false;
         }
     }
 

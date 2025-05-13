@@ -869,16 +869,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2947507057582186328}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7425, y: 0.7425, z: 0.7425}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4350072314903490614}
+  m_Father: {fileID: 3490370747723893477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 114}
+  m_AnchoredPosition: {x: 319.275, y: 251.645}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1836220214151549606
@@ -1454,10 +1454,8 @@ RectTransform:
   - {fileID: 6026422462301969611}
   - {fileID: 3211788689213445700}
   - {fileID: 1047656179080598872}
-  - {fileID: 8612869111181906593}
-  - {fileID: 6055332067738387210}
-  - {fileID: 8113055987406575818}
   - {fileID: 5080906160352619929}
+  - {fileID: 3490370747723893477}
   m_Father: {fileID: 3743744935288956664}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1942,16 +1940,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7140215999158790111}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7425, y: 0.7425, z: 0.7425}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4350072314903490614}
+  m_Father: {fileID: 3490370747723893477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 114}
+  m_AnchoredPosition: {x: 274.725, y: 251.645}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &434437345151181878
@@ -1992,6 +1990,40 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7398542602090961691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3490370747723893477}
+  m_Layer: 0
+  m_Name: Hp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3490370747723893477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7398542602090961691}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -400.00003, y: -224.91583, z: 0}
+  m_LocalScale: {x: 1.3468014, y: 1.3468014, z: 1.3468014}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8612869111181906593}
+  - {fileID: 6055332067738387210}
+  - {fileID: 8113055987406575818}
+  m_Father: {fileID: 4350072314903490614}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7548670348242476373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,16 +2049,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7548670348242476373}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7425, y: 0.7425, z: 0.7425}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4350072314903490614}
+  m_Father: {fileID: 3490370747723893477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 114}
+  m_AnchoredPosition: {x: 297, y: 251.645}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2608143064443941738
@@ -2371,13 +2403,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameUICanvas: {fileID: 4496755031335381234}
   _gameStateUICanvas: {fileID: 1998449480553924864}
-  _character: {fileID: 0}
+  heart_full: {fileID: 21300000, guid: b9a4a1943b66b9f4c84f422b102c12b8, type: 3}
+  heart_empty: {fileID: 21300000, guid: b898be32ff4dbe644b25a9d1a6bfde6e, type: 3}
+  hearts:
+  - {fileID: 9032001103172723638}
+  - {fileID: 9073971885131168190}
+  - {fileID: 1428556770303571368}
   _gameStateText: {fileID: 6258370485507101264}
   _gameStateMessages:
   - "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4"
   - "\uAC8C\uC784 \uC624\uBC84"
   - "\uC77C\uC2DC\uC815\uC9C0"
-  uiPrefabName: GameUI
+  Hp: 3
+  HpUp: 0
+  HpDown: 0
 --- !u!1 &8560247638753441144
 GameObject:
   m_ObjectHideFlags: 0

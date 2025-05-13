@@ -10,7 +10,7 @@ public class CharacterBaseController : MonoBehaviour
 
     [Header("Character State")]
     [Tooltip("ĳ������ ����Ʈ �������ͽ�")]
-    protected float maxHp = 3f;    // memo: 3���� ��Ʈ�� ������ ���� ���, �ݸ� ��� ��Ȳ�� �����Ͽ� float�� ����
+    public float maxHp = 3f;    // memo: 3���� ��Ʈ�� ������ ���� ���, �ݸ� ��� ��Ȳ�� �����Ͽ� float�� ����
     protected float currentHp = 0f;
     protected float moveSpeed = 5f;
     protected float currentSpeed = 0f;
