@@ -19,7 +19,6 @@ public class MapManager
     // 시작 맵설정
     public void SetdefaultMap()
     {
-        for (int i = 1; i < 5; i++)
         MapInstances.Add(Managers.Resource.Instantiate($"Map/Map_001"));
         MapInstances.Add(Managers.Resource.Instantiate($"Map/Map_002"));
 

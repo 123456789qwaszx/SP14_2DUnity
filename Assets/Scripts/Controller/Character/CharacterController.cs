@@ -152,12 +152,12 @@ public class CharacterController : CharacterBaseController
         // ��ֹ� �浹 ó��
         if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
-            //float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
-            //float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
+            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
+            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
 
-            // Damage(damage);
-            // ApplyKnockBack(collision.gameObject.transform, knockBackPower);
-            // ApplyInvincible();
+            Damage(damage);
+            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
+            ApplyInvincible();
         }
         
 
