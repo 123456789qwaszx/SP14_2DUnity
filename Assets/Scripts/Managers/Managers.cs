@@ -12,11 +12,12 @@ public class Managers : MonoBehaviour
     MapManager _map = new MapManager();
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
+    //SelectCharacterUI _selectCharUI = new SelectCharacterUI();
 
     public static MapManager Map { get { return Instance._map; } }
     public static PoolManager Pool { get { return Instance._pool; } } 
     public static ResourceManager Resource { get { return Instance._resource; } }
-
+    //public static SelectCharacterUI SelectCharUI { get { return Instance._selectCharUI; } }
     void Start()
     {
         Init();
