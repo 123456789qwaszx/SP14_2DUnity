@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 8993351385209477204}
   - component: {fileID: 939402523450831462}
   m_Layer: 0
-  m_Name: Canvas - GameState UI
+  m_Name: Canvas - GameStateUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2371,12 +2371,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameUICanvas: {fileID: 4496755031335381234}
   _gameStateUICanvas: {fileID: 1998449480553924864}
+  _character: {fileID: 0}
   _gameStateText: {fileID: 6258370485507101264}
   _gameStateMessages:
   - "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4"
   - "\uAC8C\uC784 \uC624\uBC84"
   - "\uC77C\uC2DC\uC815\uC9C0"
-  slidingButton: {fileID: 0}
+  uiPrefabName: GameUI
 --- !u!1 &8560247638753441144
 GameObject:
   m_ObjectHideFlags: 0
