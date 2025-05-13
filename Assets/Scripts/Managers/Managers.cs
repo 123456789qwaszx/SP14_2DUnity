@@ -24,8 +24,6 @@ public class Managers : MonoBehaviour
     public static PoolManager Pool { get { return Instance._pool; } } 
     public static ResourceManager Resource { get { return Instance._resource; } }
 
-
-
     void Start()
     {
         // s_instance = this; 이렇게 기본적인 형태로 불러오면 @Managers가 여러개일 때 static이 불성립으로 오류남
