@@ -159,6 +159,7 @@ public class CharacterController : CharacterBaseController
         if (collision.gameObject.CompareTag("MapRoutin"))
         {
             int randomIndex = UnityEngine.Random.Range(1, 5);
+
             GameObject randomMap = Managers.Map.LoadMap(randomIndex);
 
             float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
