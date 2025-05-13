@@ -137,15 +137,6 @@ public class CharacterController : CharacterBaseController
                 jumpCount = 0;
             }
         }
-        else if (collision.gameObject.CompareTag("MapRoutin"))
-        {
-            Debug.Log("MapRoutin!");
-            Managers.Resource.Instantiate($"Map/Map_001");
-            GameObject RoutinMap = GameObject.Find("Map_001");
-        
-            float mapWidth = Managers.Resource.GetMapWorldWidth(RoutinMap);
-            RoutinMap.transform.position = new Vector3(mapWidth, 0);
-        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -167,6 +158,16 @@ public class CharacterController : CharacterBaseController
             // Damage(damage);
             // ApplyKnockBack(collision.gameObject.transform, knockBackPower);
             // ApplyInvincible();
+        }
+        
+
+        else if (collision.gameObject.CompareTag("MapRoutin"))
+        {
+            int randomIndex = UnityEngine.Random.Range(1, 3);
+            GameObject randomMap = Managers.Map.LoadMap(randomIndex);
+
+            float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
+            randomMap.transform.position = new Vector3(mapWidth, 0);
         }
     }
 

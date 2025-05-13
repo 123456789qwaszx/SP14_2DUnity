@@ -15,11 +15,11 @@ public class MapController : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-        mapWidth = Managers.Resource.GetMapWorldWidth(gameObject);
+        mapWidth = Managers.Map.GetMapWorldWidth(gameObject);
 
         if (transform.position.x <= -mapWidth)
         {
-            //Managers.Resource.Destroy(gameObject);
+            Managers.Resource.Destroy(gameObject);
         }
     }
 }
