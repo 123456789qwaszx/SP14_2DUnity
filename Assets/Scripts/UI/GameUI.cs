@@ -17,11 +17,11 @@ using UnityEngine.Events;
 public class GameUI : MonoBehaviour
 {
     // 스크립트 컴포넌트에 오브젝트 할당
-    public GameObject _gameUICanvas;
-    public GameObject _gameStateUICanvas;
+    [SerializeField] private GameObject _gameUICanvas;
+    [SerializeField] private GameObject _gameStateUICanvas;
     private CharacterController _character;
-    public TextMeshProUGUI _gameStateText; // 게임 상태 문구
-    public string[] _gameStateMessages; // 게임 상태 문구 배열
+    [SerializeField] private TextMeshProUGUI _gameStateText; // 게임 상태 문구
+    [SerializeField] private string[] _gameStateMessages; // 게임 상태 문구 배열
 
     TextMeshProUGUI currentScoreTxt; // 현재 점수 
     TextMeshProUGUI bestScoreTxt; // 최고 점수

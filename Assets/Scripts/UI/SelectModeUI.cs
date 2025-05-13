@@ -11,7 +11,8 @@ using UnityEngine.UI;
 
 public class SelectModeUI : MonoBehaviour
 {
-    public GameObject selectmodeUICanvas;
+    [SerializeField] private GameObject selectmodeUICanvas;
+
     Button stageButton;
     Button endlessButton;
     Button backButton;
@@ -26,9 +27,9 @@ public class SelectModeUI : MonoBehaviour
         // 컴포넌트와 연결
         Transform selectCanvas = selectmodeUICanvas.transform;
 
-        stageButton = selectCanvas.Find("StageButton").GetComponent<Button>();
-        endlessButton = selectCanvas.Find("EndlessButton").GetComponent<Button>();
-        backButton = selectCanvas.Find("BackButton").GetComponent<Button>();
+        stageButton = selectCanvas.Find("Button - Stage").GetComponent<Button>();
+        endlessButton = selectCanvas.Find("Button - Endless").GetComponent<Button>();
+        backButton = selectCanvas.Find("Button - Back").GetComponent<Button>();
 
         stageButton.onClick.AddListener(OnClickStageButton);
         endlessButton.onClick.AddListener(OnClickEndlessButton);

@@ -1,19 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    // 오디오 믹서
-    public AudioMixer _audioMixer;
+    public static SoundManager Instance; // 싱글톤 패턴으로 어디서든 접근 가능하도록
+    public AudioSource _effectSoundSource; // 효과음 재생을 위한 AudioSource 컴포넌트
+    public AudioClip _buttonClickSound; // 버튼 클릭 효과음 (다른 효과음들도 필요에 따라 추가)
 
-    // 슬라이더
-    public Slider _bgmSlider;
-
-    public void SetBgmVolume() // 볼륨 조절
+    private void Awake()
     {
-        _audioMixer.SetFloat("BGM", Mathf.Log10(_bgmSlider.value) * 20);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    public void PlayButtonClickSound()
+    {
+        _effectSoundSource.PlayOneShot(_buttonClickSound);
     }
 }

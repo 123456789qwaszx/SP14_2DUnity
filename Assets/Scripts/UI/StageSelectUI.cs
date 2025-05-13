@@ -10,7 +10,8 @@ using UnityEngine.UI;
 
 public class StageSelectUI : MonoBehaviour
 {
-    public GameObject stageUICanvas;
+    [SerializeField] private GameObject stageUICanvas;
+
     Button stageButton;
     Button backButton;
 
@@ -23,8 +24,8 @@ public class StageSelectUI : MonoBehaviour
     {
         Transform stageCanvas = stageUICanvas.transform;
 
-        stageButton = stageCanvas.Find("StageButton").GetComponent<Button>();
-        backButton = stageCanvas.Find("BackButton").GetComponent<Button>();
+        stageButton = stageCanvas.Find("Button - Stage").GetComponent<Button>();
+        backButton = stageCanvas.Find("Button - Back").GetComponent<Button>();
 
         stageButton.onClick.AddListener(OnClickStageButton);
         backButton.onClick.AddListener(OnClickBackButton);
