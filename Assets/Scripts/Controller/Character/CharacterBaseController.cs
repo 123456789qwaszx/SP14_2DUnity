@@ -19,6 +19,7 @@ public class CharacterBaseController : MonoBehaviour
     protected int maxJumpCount = 1;    // 캐릭터가 공중 점프 횟수
     protected int jumpCount = 0;
     protected bool isJumping = false;
+    protected bool isJumpHold = false;  // 점프키 지속 확인
     protected float slidePower = 2f;
     public bool isSliding = false;
     public bool isGround = false;
@@ -31,7 +32,7 @@ public class CharacterBaseController : MonoBehaviour
     protected float knockBackDuration = 0f;
 
     protected float invincibleDuration = 2f; // 무적 시간
-    protected bool isInvincible = false;  // 무적 상태 체크
+    public bool isInvincible = false;  // 무적 상태 체크
     private Coroutine invincibleCoroutine = null;
 
     private Vector3 returnPosition = Vector3.zero;   // 캐릭터 복귀 위치
@@ -124,7 +125,7 @@ public class CharacterBaseController : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
-    protected virtual void ApplyKnockBack(Transform other, float power)
+    public virtual void ApplyKnockBack(Transform other, float power)
     {
         returnPosition.x = transform.position.x;   // 캐릭터 복귀 위치를 넉백 전의 위치로 설정
 
@@ -154,7 +155,7 @@ public class CharacterBaseController : MonoBehaviour
         transform.position = new Vector3(returnXPos, transform.position.y, transform.position.z);
     }
 
-    protected virtual void ApplyInvincible()
+    public virtual void ApplyInvincible()
     {
         if (invincibleCoroutine != null)    // 코루틴 중복 실행 방지
         {
@@ -164,7 +165,7 @@ public class CharacterBaseController : MonoBehaviour
         invincibleCoroutine = StartCoroutine(InvincibleCoroutine(invincibleDuration));
     }
 
-    private IEnumerator InvincibleCoroutine(float duration)
+    protected IEnumerator InvincibleCoroutine(float duration)
     {
         isInvincible = true;
 
