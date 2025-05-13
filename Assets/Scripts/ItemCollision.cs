@@ -5,13 +5,17 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ItemCollision : MonoBehaviour
 {
-    Items items = new Items();
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterController _player = collision.gameObject.GetComponent<CharacterController>();
 
-        if (_player == null) return;
+        Items items = GetComponentInParent<Items>();
 
+        if (_player == null || items == null)
+        {
+            Debug.LogWarning("Player 또는 Items가 null입니다.");
+            return;
+        }
         if (gameObject.CompareTag("HpRecovery"))
         {
             items.HpRecovery(_player);

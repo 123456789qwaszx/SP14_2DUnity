@@ -8,8 +8,9 @@ TagManager:
   - ScaleUp
   - SpeedUp
   - HpRecovery
+  - Items
   - Obstacle
-  - MapRoutin
+  - BackGroundLayers
   layers:
   - Default
   - TransparentFX

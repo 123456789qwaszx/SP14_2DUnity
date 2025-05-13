@@ -15,6 +15,10 @@ public class ParallaxHandle : MonoBehaviour
     private float moveSpeed;
     [SerializeField]
     private Vector3 moveDirection;
+    public void SetMoveSpeed(float _move)
+    {
+        moveSpeed = _move;
+    }
 
     void Update()
     {
