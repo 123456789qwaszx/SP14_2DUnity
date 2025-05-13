@@ -11,12 +11,12 @@ public class GroundController : MonoBehaviour
     private float scrollAmount;
     private float moveSpeed = 4;
 
-    public float SetScrollAmount()
+    public float GetScrollAmount()
     {
         return scrollAmount ;
     }
 
-    public float SetMoveSpeed()
+    public float GetMoveSpeed()
     {
         return moveSpeed ;
     }

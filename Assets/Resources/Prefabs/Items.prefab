@@ -476,6 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405f142a6cf347b48bfe8163739b7cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleUp: {fileID: 5867131896965331597}
-  _heathREcovery: {fileID: 6603762899003873618}
-  _speedUp: {fileID: 824378563837045501}
+  _scaleUP: {fileID: 7383199539901367068}
+  _hpRecovery: {fileID: 2524674020696742916}
+  _speedUP: {fileID: 3089014545251770926}
+  groundControllers: []
+  parallaxHandles: []

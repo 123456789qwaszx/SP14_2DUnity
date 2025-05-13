@@ -10,6 +10,7 @@ TagManager:
   - HpRecovery
   - Items
   - Obstacle
+  - BackGroundLayers
   layers:
   - Default
   - TransparentFX

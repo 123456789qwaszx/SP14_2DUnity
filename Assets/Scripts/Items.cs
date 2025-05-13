@@ -7,15 +7,16 @@ public class Items : MonoBehaviour
 {
     Rigidbody2D _rigidbody2D;
 
-    [SerializeField] private SpriteRenderer _scaleUp;
-    [SerializeField] private SpriteRenderer _heathREcovery;
-    [SerializeField] private SpriteRenderer _speedUp;
+    [SerializeField] private GameObject _scaleUP;
+    [SerializeField] private GameObject _hpRecovery;
+    [SerializeField] private GameObject _speedUP;
 
+    public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
 
     bool isItem = false;
 
     private float maxSpeed = 5f;
-    private float duration = 2f;
+    private float duration = 3f;
     public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     public float Duration { get { return duration; } set { duration = value; } }
 
@@ -33,11 +34,11 @@ public class Items : MonoBehaviour
         if (_player.CurrentHp > 0 && _player.CurrentHp < 3)
         {
             _player.CurrentHp += 1;
-            Destroy(gameObject);
+            Destroy(_hpRecovery);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(_hpRecovery);
             return;
         }
     }
@@ -59,35 +60,38 @@ public class Items : MonoBehaviour
 
         _player.transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
 
-        GetComponentInChildren<Collider2D>().enabled = false;
-        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        Destroy(_scaleUP);
 
         yield return new WaitForSeconds(_duration);
 
         _player.transform.localScale = originalScale;
-
-        gameObject.SetActive(isItem);
-
-        isItem = true;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private IEnumerator SpeedUpCoroutine(CharacterController _player, float _speedUp, float _duration)
     {
-        float originSpeed = _player.CurrentSpeed;
+        
+        foreach (ParallaxHandle phUp in parallaxHandles)
+        {
+            phUp.SetMoveSpeed(_player.CurrentSpeed + _speedUp);
+        }
 
-        _player.CurrentSpeed += _speedUp;
-
-        GetComponentInChildren<Collider2D>().enabled = false;
-        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        Destroy(_speedUP);
 
         yield return new WaitForSeconds(_duration);
 
-        _player.CurrentSpeed = originSpeed;
-
-        gameObject.SetActive(isItem);
-
-        isItem = true;
+        foreach (ParallaxHandle phDown in parallaxHandles)
+        {
+            phDown.SetMoveSpeed(_player.CurrentSpeed);
+        }
+    }
+    private void Start()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("BackGroundLayers");
+        foreach (GameObject go in gameObjects)
+        {
+            parallaxHandles.Add(go.GetComponent<ParallaxHandle>());
+        }
     }
 }
