@@ -28,7 +28,7 @@ public class CharacterBaseController : MonoBehaviour
     protected float knockBackDuration = 0f;
 
     protected float invincibleDuration = 2f; // 무적 시간
-    protected bool isInvincible = false;  // 무적 상태 체크
+    public bool isInvincible = false;  // 무적 상태 체크
     private Coroutine invincibleCoroutine = null;
 
     private Vector3 returnPosition = Vector3.zero;   // 캐릭터 복귀 위치
@@ -120,7 +120,7 @@ public class CharacterBaseController : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
-    protected virtual void ApplyKnockBack(Transform other, float power)
+    public virtual void ApplyKnockBack(Transform other, float power)
     {
         returnPosition.x = transform.position.x;   // 캐릭터 복귀 위치를 넉백 전의 위치로 설정
 
@@ -150,7 +150,7 @@ public class CharacterBaseController : MonoBehaviour
         transform.position = new Vector3(returnXPos, transform.position.y, transform.position.z);
     }
 
-    protected virtual void ApplyInvincible()
+    public virtual void ApplyInvincible()
     {
         if (invincibleCoroutine != null)    // 코루틴 중복 실행 방지
         {
@@ -160,7 +160,7 @@ public class CharacterBaseController : MonoBehaviour
         invincibleCoroutine = StartCoroutine(InvincibleCoroutine(invincibleDuration));
     }
 
-    private IEnumerator InvincibleCoroutine(float duration)
+    protected IEnumerator InvincibleCoroutine(float duration)
     {
         isInvincible = true;
 

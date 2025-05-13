@@ -146,6 +146,7 @@ public class CharacterController : CharacterBaseController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         // 장애물 충돌 처리
         if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
@@ -156,9 +157,10 @@ public class CharacterController : CharacterBaseController
             ApplyKnockBack(collision.gameObject.transform, knockBackPower);
             ApplyInvincible();
         }
+        */
     }
 
-    protected override void ApplyInvincible()
+    public override void ApplyInvincible()
     {
         base.ApplyInvincible();
         // anim.SetBool("isInvincible", isInvincible);   // 애니메이션 연결 후 사용
@@ -170,7 +172,7 @@ public class CharacterController : CharacterBaseController
         base.Damage(damage);
     }
 
-    protected override void ApplyKnockBack(Transform other, float power)
+    public override void ApplyKnockBack(Transform other, float power)
     {
         base.ApplyKnockBack(other, power);
     }
