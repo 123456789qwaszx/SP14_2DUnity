@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class CharacterController : CharacterBaseController
 {
-    /*
-     * 캐릭터 동작 정의 클래스
-     * 1. 점프
-     * 2. 슬라이딩
-     * 3. 아이템 습득
-     * 4. 아이템 습득에 따른 동작 구분 ( 점수 증가, 속도 증가, 속도 감소 등 )
-     */
-
     protected override void Awake()
     {
         base.Awake();
@@ -26,14 +18,6 @@ public class CharacterController : CharacterBaseController
 
     protected override void Update()
     {
-        /*
-         * 모바일 환경이기 때문에 OnClick을 상정해야 함
-         * 어떤 버튼을 누르냐에 따라 점프, 슬라이드가 행해짐
-         * 점프를 누르면 캐릭터의 Jump를 호출하고 슬라이드를 누르면 Slide를 호출
-         * Slide의 경우 누르는 동안 계속 캐릭터 속도를 높이며 슬라이딩
-         */
-
-
         // 점프
         if (jumpCount < maxJumpCount)
         {
@@ -42,6 +26,17 @@ public class CharacterController : CharacterBaseController
             {
                 Jump();
             }
+
+            /*  점프키 홀드 중 점프력 증가 로직
+            if (Input.GetKey(KeyCode.Space))
+            {
+                isJumpHold = true;   // 점프키를 누르고 있는지 확인
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                isJumpHold = false;
+            }
+            */
         }
 
         // 슬라이딩
@@ -63,6 +58,20 @@ public class CharacterController : CharacterBaseController
         }
     }
 
+    protected override void FixedUpdate()
+    {
+        /* 점프키를 누르는 동안 점프력 증가
+        if (isJumpHold && rb.velocity.y > 0f)
+        {
+            rb.gravityScale = 5f;
+        }
+        else
+        {
+            rb.gravityScale = 10f;
+        }
+        */
+    }
+
     protected override void SetCharacterState()
     {
         base.SetCharacterState();
@@ -78,11 +87,6 @@ public class CharacterController : CharacterBaseController
         slidePower = 5f;
     }
 
-    /* 구현 순서
-     * 1. 일반 점프
-     * 2. 2단 점프
-     * 3. 점프를 꾹 누르면 점프 높이 증가
-     */
     protected override void Jump()
     {
         isJumping = true;
@@ -146,18 +150,7 @@ public class CharacterController : CharacterBaseController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
-        // 장애물 충돌 처리
-        if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
-        {
-            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
-            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
 
-            Damage(damage);
-            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
-            ApplyInvincible();
-        }
-        */
     }
 
     public override void ApplyInvincible()

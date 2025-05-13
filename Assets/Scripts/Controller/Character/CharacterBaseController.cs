@@ -19,6 +19,7 @@ public class CharacterBaseController : MonoBehaviour
     protected int maxJumpCount = 1;    // 캐릭터가 공중 점프 횟수
     protected int jumpCount = 0;
     protected bool isJumping = false;
+    protected bool isJumpHold = false;  // 점프키 지속 확인
     protected float slidePower = 2f;
     protected bool isSliding = false;
     protected bool isGround = false;
