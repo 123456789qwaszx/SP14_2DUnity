@@ -149,8 +149,8 @@ public class CharacterController : CharacterBaseController
         // 厘局拱 面倒 贸府
         if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
-            float damage = collision.gameObject.GetComponent<Obstacle>().Damage;
-            float knockBackPower = collision.gameObject.GetComponent<Obstacle>().KnockBackPower;
+            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
+            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
 
             Damage(damage);
             ApplyKnockBack(collision.gameObject.transform, knockBackPower);
