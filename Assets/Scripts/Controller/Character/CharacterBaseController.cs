@@ -25,7 +25,29 @@ public class CharacterBaseController : MonoBehaviour
     protected int bestScore = 0;
     public bool isSliding = false;
     public bool isGround = false;
-    public float CurrentHp { get { return currentHp; } set { currentHp = value; } }
+    public float CurrentHp {
+        get {
+            return currentHp;
+        }
+        set {
+            // ©¦?????? ????? ???????? ???
+            if (currentHp != value)
+            {
+                if (currentHp > value) // ?¡À???? ????? ????????
+                {
+                    currentHp = value; // ?????? ©¦???? ??? ???
+
+                    gameUI.HpUp = false;
+                }
+                else if (currentHp < value)    // ?¡À???? ????? ????????
+                {
+                    currentHp = value; // ?????? ©¦???? ??? ???
+
+                    gameUI.HpUp = true;
+                }
+            }
+        }
+    }
     public float CurrentSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
     public int Score { get { return score; } set { score = value; } }
