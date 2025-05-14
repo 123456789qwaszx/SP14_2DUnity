@@ -35,6 +35,9 @@ public class GameUI : MonoBehaviour
 
     private TextMeshProUGUI currentScoreTxt; // ���� ���� 
     private TextMeshProUGUI bestScoreTxt; // �ְ� ����
+    private TextMeshProUGUI stateCurrentScoreTxt; // ���� ���� 
+    private TextMeshProUGUI stateBestScoreTxt; // �ְ� ����
+
     private Button jumpButton; // ���� ��ư
     private Button restartButton; // ����� ��ư
     private Button backButton; // �ڷΰ��� ��ư
@@ -65,7 +68,9 @@ public class GameUI : MonoBehaviour
         Transform gameStateCanvas = _gameStateUICanvas.transform;
 
         currentScoreTxt = gameCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
-        //bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
+        bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
+        stateCurrentScoreTxt = gameStateCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
+        stateBestScoreTxt = gameStateCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
 
         jumpButton = gameCanvas.Find("Button - Jump").GetComponent<Button>();
         slidingButton = gameCanvas.Find("Button - Sliding").GetComponent<Button>();
@@ -90,13 +95,35 @@ public class GameUI : MonoBehaviour
         Time.timeScale = 1.0f; // ���ӽ���
     }
 
-    public void SetUI(int currentscore) //, int bestscore) // ������ �޾ƿ�
+    public void SetUI(int currentscore, int bestscore) // 점수를 받아옴
     {
         currentScoreTxt.text = currentscore.ToString();
-        //bestScoreTxt.text = bestscore.ToString();
+        bestScoreTxt.text = bestscore.ToString();
+        stateCurrentScoreTxt.text = currentscore.ToString();
+        stateBestScoreTxt.text = bestscore.ToString();
     }
-    
-    private void ShowGameStateUI() // ���ӻ��� UI
+
+    public void SaveBestScore()
+    {
+        PlayerPrefs.SetInt("BestScore", character.BestScore);
+        PlayerPrefs.Save(); // 변경 사항을 디스크에 저장
+    }
+
+    public void LoadBestScore() // 최고 점수 저장
+    {
+        if (PlayerPrefs.HasKey("BestScore")) // 해당 키가 존재하는지 확인
+        {
+            character.BestScore = PlayerPrefs.GetInt("BestScore");
+            bestScoreTxt.text = character.BestScore.ToString();
+        }
+        else
+        {
+            character.BestScore = 0; // 저장된 최고 점수가 없으면 0으로 초기화
+            bestScoreTxt.text = "0";
+        }
+    }
+
+    public void ShowGameStateUI() // ���ӻ��� UI
     {
         if (character.CurrentHp <= 0) // ���� ������ �� - ���� ����
         {
@@ -104,11 +131,12 @@ public class GameUI : MonoBehaviour
             _gameStateUICanvas.SetActive(true);
             Time.timeScale = 0f;
         }
-        //else if (stageClear) // �������� Ŭ����
-        //{
-        //_gameStateText.text = _gameStateMessages[0]; // "�������� Ŭ����" ���
-        //_gameStateUICanvas.SetActive(true);
-        //}
+        else if (character.Score >= 5000) // �������� Ŭ����
+        {
+            _gameStateText.text = _gameStateMessages[0]; // "�������� Ŭ����" ���
+            _gameStateUICanvas.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     public void UpdateHealthUI() // Hp UI ������Ʈ
@@ -163,7 +191,7 @@ public class GameUI : MonoBehaviour
 
     #region ��ư
 
-    private void OnClickJumpButton() // ���� ��ư
+    public void OnClickJumpButton() // ���� ��ư
     {
         if (character.jumpCount < character.maxJumpCount && !character.isSliding)
         {
@@ -171,7 +199,7 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private void OnClickSlidingButton() // �����̵� ��ư
+    public void OnClickSlidingButton() // �����̵� ��ư
     {
         if (character.isSliding == false)
         {
@@ -185,24 +213,24 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private void OnClickRestartButton() // ����� ��ư
+    public void OnClickRestartButton() // ����� ��ư
     {
         Time.timeScale = 1f; // ���� ����
         SceneManager.LoadScene("Game");
         Debug.Log("�����");
     }
 
-    private void OnClickNextButton() // ���� �������� ��ư
+    public void OnClickNextButton() // ���� �������� ��ư
     {
         Debug.Log("���� ��������");
     }
 
-    private void OnClickHomeButton() // Ȩ ��ư
+    public void OnClickHomeButton() // Ȩ ��ư
     {
         SceneManager.LoadScene("Main");
     }
 
-    private void OnClickPauseButton() // �Ͻ����� ��ư
+    public void OnClickPauseButton() // �Ͻ����� ��ư
     {
         _gameStateText.text = _gameStateMessages[2]; // "�Ͻ�����" ���
         _gameStateUICanvas.SetActive(true);

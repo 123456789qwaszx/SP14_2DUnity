@@ -175,16 +175,40 @@ public class CharacterController : CharacterBaseController
         if (collision.gameObject.CompareTag("Score10"))
         {
             Score += 10;
-            gameUI.SetUI(Score);
+            gameUI.SetUI(Score, BestScore);
+
+            if (Score >= BestScore)
+            {
+                BestScore = Score;
+                gameUI.SaveBestScore();
+            }
+
+            if (Score >= 5000)
+            {
+                gameUI.ShowGameStateUI();
+            }
+
+            gameUI.SetUI(Score, BestScore);
             Destroy(collision.gameObject);
-            Debug.Log($"{Score}");
         }
         else if (collision.gameObject.CompareTag("Score50"))
         {
             Score += 50;
-            gameUI.SetUI(Score);
+            gameUI.SetUI(Score, BestScore);
+
+            if (Score >= BestScore)
+            {
+                BestScore = Score;
+                gameUI.SaveBestScore();
+            }
+
+            if (Score >= 5000)
+            {
+                gameUI.ShowGameStateUI();
+            }
+
+            gameUI.SetUI(Score, BestScore);
             Destroy(collision.gameObject);
-            Debug.Log($"{Score}");
         }
         else if (collision.gameObject.CompareTag("HpRecovery"))
         {
@@ -202,7 +226,7 @@ public class CharacterController : CharacterBaseController
 
             }
             Destroy(collision.gameObject);
-            
+
         }
         else if (collision.gameObject.CompareTag("SpeedUp"))
         {
