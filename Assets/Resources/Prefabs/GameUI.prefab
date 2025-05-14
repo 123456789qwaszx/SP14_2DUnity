@@ -2700,7 +2700,7 @@ MonoBehaviour:
   charPrefabs:
   - {fileID: 746147536865273634, guid: 777c7de69b595db479cd8542b4dedb88, type: 3}
   - {fileID: 7178356147914428277, guid: 869af12cb8d195b49afdcb529d1d7b38, type: 3}
-  - {fileID: 7056983272221995112, guid: 8e787303bb99dd041acb768a3274ad0c, type: 3}
+  - {fileID: 7056983272221995112, guid: cb8d724d198c6a2418099b0426602a25, type: 3}
   - {fileID: 4534186034736943906, guid: c64519cb9d063c54381120d994247aa1, type: 3}
   player: {fileID: 0}
   HpUp: 0
