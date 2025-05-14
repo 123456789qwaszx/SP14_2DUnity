@@ -74,7 +74,7 @@ public class CharacterController : CharacterBaseController
         */
     }
 
-    protected override void SetCharacterState()
+    public override void SetCharacterState()
     {
         base.SetCharacterState();
 

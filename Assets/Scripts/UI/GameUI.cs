@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 // -인게임-
 
@@ -31,7 +32,9 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _gameStateText; // 게임 상태 문구
     [SerializeField] private string[] _gameStateMessages; // 게임 상태 문구 배열
 
-    private CharacterBaseController character;
+    private CharacterController character;
+    private ObstacleBaseController obstacle;
+    private Items items;
 
     TextMeshProUGUI currentScoreTxt; // 현재 점수 
     TextMeshProUGUI bestScoreTxt; // 최고 점수
@@ -42,9 +45,7 @@ public class GameUI : MonoBehaviour
     Button pauseButton; // 일시정지 버튼
     Button slidingButton; // 슬라이딩 버튼
 
-    public int Hp = 3; // 임의로 설정한 체력
-    public bool HpUp = false;
-    public bool HpDown = false;
+    bool HpUp= false;
 
     private void Start()
     {
@@ -86,6 +87,7 @@ public class GameUI : MonoBehaviour
 
         character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
+        character.SetCharacterState(); // 캐릭터 상태 초기화
 
         Time.timeScale = 1.0f; // 게임시작
     }
@@ -98,7 +100,7 @@ public class GameUI : MonoBehaviour
 
     private void ShowGameStateUI() // 게임상태 UI
     {
-        if (Hp <= 0) // 죽은 상태일 때 - 게임 오버
+        if (character.currentHp <= 0) // 죽은 상태일 때 - 게임 오버
         {
             _gameStateText.text = _gameStateMessages[1]; // "게임 오버" 출력
             _gameStateUICanvas.SetActive(true);
@@ -116,19 +118,22 @@ public class GameUI : MonoBehaviour
         // 테스트라 나중에 합쳐졌을 때 현재 체력 부분 수정
         if (HpUp)
         {
-            if (Hp < character.maxHp)
+            if (character.currentHp < character.maxHp)
             {
-                hearts[Hp].sprite = heart_full;
-                Hp += 1;
+                items.HpRecovery(character);
+                hearts[(int)character.currentHp].sprite = heart_full;
             }
+
             HpUp = false;
         }
-        else if (HpDown)
+        else if (character.isInvincible)
         {
-            hearts[Hp - 1].sprite = heart_empty;
-            Hp -= 1;
+            character.Damage(obstacle.damage);
+            Debug.Log($"체력 감소 {character.currentHp}");
+            hearts[(int)character.currentHp - 1].sprite = heart_empty;
         }
-        HpDown = false;
+
+        character.isInvincible = false;
     }
 
     #region 버튼
