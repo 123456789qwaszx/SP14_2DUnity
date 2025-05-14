@@ -15,7 +15,6 @@ public class Items : MonoBehaviour
     [SerializeField] private GameObject _bigScoreUP;
 
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
-    //public List<ObstacleBaseController> ob = new List<ObstacleBaseController>();
 
     private float maxSpeed = 5f;
     private float duration = 3f;
@@ -70,13 +69,6 @@ public class Items : MonoBehaviour
     private IEnumerator ScaleUpCoroutine(CharacterController _player, float _duration)
     {
         _player.transform.localScale = new Vector3(2.0f, 2.0f, 0f);
-
-        //if (!_player.isInvincible)
-        //{
-        //    _player.Damage(1);
-        //    _player.ApplyKnockBack(GameObject.FindWithTag("Obstacle").transform, _duration);
-        //    _player.ApplyInvincible();
-        //}
 
         _scaleUP.SetActive(false);
 
