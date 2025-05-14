@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// �÷��̾��? ĳ���� �߰��� �����? ĳ���� �⺻ Ŭ����
+// �÷��̾��? ĳ���� �߰��� �����? ĳ���� �⺻ Ŭ����
 public class CharacterBaseController : MonoBehaviour
 {
     protected Rigidbody2D rb; // ĳ���ʹ� �����Ǿ� �־ ���� ���� �ൿ�� ���� �ʿ�
@@ -11,7 +11,7 @@ public class CharacterBaseController : MonoBehaviour
 
     [Header("Character State")]
     [Tooltip("ĳ������ ����Ʈ �������ͽ�")]
-    public float maxHp = 3f;    // memo: 3���� ��Ʈ�� ������ ���� ���?, �ݸ� ���? ��Ȳ�� �����Ͽ� float�� ����
+    public float maxHp = 3f;    // memo: 3���� ��Ʈ�� ������ ���� ���?, �ݸ� ���? ��Ȳ�� �����Ͽ� float�� ����
     protected float currentHp = 0f;
     protected float moveSpeed = 5f;
     protected float currentSpeed = 0f;
@@ -39,7 +39,7 @@ public class CharacterBaseController : MonoBehaviour
 
     [Header("Character Interaction")]
 
-    protected Vector2 knockBack = Vector2.zero;   // ��ֹ���? �ε��� ���� ĳ���Ͱ� �з����� ��
+    protected Vector2 knockBack = Vector2.zero;   // ��ֹ���? �ε��� ���� ĳ���Ͱ� �з����� ��
     protected float knockBackDuration = 0f;
 
     protected float invincibleDuration = 2f; // ���� �ð�
@@ -73,7 +73,7 @@ public class CharacterBaseController : MonoBehaviour
         {
             knockBackDuration -= Time.fixedDeltaTime;
         }
-        else if (knockBack != Vector2.zero)   // �˹��� ������ ���?, �˹� ���¸� �ʱ�ȭ
+        else if (knockBack != Vector2.zero)   // �˹��� ������ ���?, �˹� ���¸� �ʱ�ȭ
         {
             RecoverKnockBack();
         }
@@ -105,7 +105,7 @@ public class CharacterBaseController : MonoBehaviour
     {
         currentHp -= damage;
 
-        if (currentHp <= 0f)    // ü���� 0 ���Ϸ� �������� �������� �Ծ��� ���?, ���? ó��
+        if (currentHp <= 0f)    // ü���� 0 ���Ϸ� �������� �������� �Ծ��� ���?, ���? ó��
         {
             gameUI.CheckGameOver();
             Dead();
@@ -134,7 +134,7 @@ public class CharacterBaseController : MonoBehaviour
             component.enabled = false;
         }
 
-        // to do: ���? �ִϸ��̼� �߰�
+        // to do: ���? �ִϸ��̼� �߰�
 
         Destroy(gameObject, 2f);
     }
@@ -155,7 +155,7 @@ public class CharacterBaseController : MonoBehaviour
         float currentXPos = transform.position.x;   // �˹� ���� ĳ���� x��ǥ��
         float targetXPos = returnPosition.x;
 
-        if (Mathf.Abs(currentXPos - targetXPos) < 0.001f)   // �˹��� ������, ĳ���Ͱ� ���� ��ġ�� �������� ���?
+        if (Mathf.Abs(currentXPos - targetXPos) < 0.001f)   // �˹��� ������, ĳ���Ͱ� ���� ��ġ�� �������� ���?
         {
             knockBack = Vector2.zero;
             rb.velocity = Vector2.zero;
@@ -183,7 +183,7 @@ public class CharacterBaseController : MonoBehaviour
     {
         isInvincible = true;
 
-        yield return new WaitForSeconds(duration);  // ���� �ð� ���� ���� ���� �Լ� ȣ�� ���?
+        yield return new WaitForSeconds(duration);  // ���� �ð� ���� ���� ���� �Լ� ȣ�� ���?
 
         EndInvincible();
 
