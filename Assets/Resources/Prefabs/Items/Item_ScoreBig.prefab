@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 74441807287064824}
   - component: {fileID: 6821676956229475681}
-  - component: {fileID: 8943605558742372971}
   - component: {fileID: 863451706691412255}
+  - component: {fileID: -2898852332882044417}
   m_Layer: 0
-  m_Name: HpRecovery
+  m_Name: Item_ScoreBig
   m_TagString: HpRecovery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,18 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8943605558742372971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2740231429903898679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c61b2c8b6c3df44c93a300beac741bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &863451706691412255
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0666667, y: 1.0666667}
   m_EdgeRadius: 0
+--- !u!114 &-2898852332882044417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2740231429903898679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6590a535cb8f841846caa8c0eaa3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
