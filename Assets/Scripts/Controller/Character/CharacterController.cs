@@ -9,6 +9,7 @@ public class CharacterController : CharacterBaseController
     [SerializeField] private GameObject _hpRecovery;
     [SerializeField] private GameObject _speedUP;
 
+    GameUI gameUI;
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
 
     bool isItem = false;
@@ -26,7 +27,6 @@ public class CharacterController : CharacterBaseController
     protected override void Start()
     {
         base.Start();
-
         SetCharacterState();
     }
 
@@ -165,19 +165,24 @@ public class CharacterController : CharacterBaseController
             isGround = false;
         }
     }
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
+        gameUI = gameUIObject.GetComponent<GameUI>();
+
         if (collision.gameObject.CompareTag("Score10"))
         {
             Score += 10;
+            gameUI.SetUI(Score);
             Destroy(collision.gameObject);
             Debug.Log($"{Score}");
         }
         else if (collision.gameObject.CompareTag("Score50"))
         {
             Score += 50;
+            gameUI.SetUI(Score);
             Destroy(collision.gameObject);
             Debug.Log($"{Score}");
         }
@@ -186,11 +191,11 @@ public class CharacterController : CharacterBaseController
             if (CurrentHp > 0 && CurrentHp < 3)
             {
                 CurrentHp += 1;
-                
+
             }
             else
             {
-                
+
             }
             Destroy(collision.gameObject);
             Debug.Log($"{"HpRecovery!"}");
@@ -202,7 +207,7 @@ public class CharacterController : CharacterBaseController
             Debug.Log($"SpeedUp!");
         }
         else if (collision.gameObject.CompareTag("ScaleUp"))
-        { 
+        {
             StartCoroutine(ScaleUpCoroutine(duration));
             Destroy(collision.gameObject);
             Debug.Log($"ScaleUp!");
@@ -219,7 +224,7 @@ public class CharacterController : CharacterBaseController
         }
         else if (collision.gameObject.CompareTag("MapRoutin"))
         {
-            //ë§µ ì¶”ê°€ì‹œ ëžœë¤ë²”ìœ„ ì§ì ‘ì¡°ì •
+            //¸Ê Ãß°¡½Ã ·£´ý¹üÀ§ Á÷Á¢Á¶Á¤
             int randomIndex = UnityEngine.Random.Range(1, 5);
 
             GameObject randomMap = Managers.Map.LoadMap(randomIndex);
@@ -233,9 +238,9 @@ public class CharacterController : CharacterBaseController
         }
     }
 
-    private IEnumerator SpeedUpCoroutine( float _speedUp, float _duration)
+    private IEnumerator SpeedUpCoroutine(float _speedUp, float _duration)
     {
-        
+
         foreach (ParallaxHandle phUp in parallaxHandles)
         {
             phUp.SetMoveSpeed(CurrentSpeed + _speedUp);

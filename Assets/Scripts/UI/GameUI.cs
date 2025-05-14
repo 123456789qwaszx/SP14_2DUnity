@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 // -인게임-
 
@@ -36,21 +35,21 @@ public class GameUI : MonoBehaviour
     private ObstacleBaseController obstacle;
     private Items items;
 
-    TextMeshProUGUI currentScoreTxt; // 현재 점수 
-    TextMeshProUGUI bestScoreTxt; // 최고 점수
-    Button jumpButton; // 점프 버튼
-    Button restartButton; // 재시작 버튼
-    Button backButton; // 뒤로가기 버튼
-    Button homeButton; // 홈으로 가기 버튼
-    Button pauseButton; // 일시정지 버튼
-    Button slidingButton; // 슬라이딩 버튼
+    private TextMeshProUGUI currentScoreTxt; // 현재 점수 
+    private TextMeshProUGUI bestScoreTxt; // 최고 점수
+    private Button jumpButton; // 점프 버튼
+    private Button restartButton; // 재시작 버튼
+    private Button backButton; // 뒤로가기 버튼
+    private Button homeButton; // 홈으로 가기 버튼
+    private Button pauseButton; // 일시정지 버튼
+    private Button slidingButton; // 슬라이딩 버튼
 
-    bool HpUp= false;
+    bool HpUp = false;
 
     private void Start()
     {
         Init();
-        Debug.Log(character.CurrentHp);
+        Debug.Log(character.currentHp);
         Debug.Log(character.maxHp);
     }
 
@@ -66,8 +65,11 @@ public class GameUI : MonoBehaviour
         Transform gameCanvas = _gameUICanvas.transform;
         Transform gameStateCanvas = _gameStateUICanvas.transform;
 
+        //Transform currentScoreTransform = gameCanvas.Find("CurrentScoreText");
+
+        //currentScoreTxt = currentScoreTransform.GetComponent<TextMeshProUGUI>();
         currentScoreTxt = gameCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
-        bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
+        //bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
 
         jumpButton = gameCanvas.Find("Button - Jump").GetComponent<Button>();
         slidingButton = gameCanvas.Find("Button - Sliding").GetComponent<Button>();
@@ -92,10 +94,10 @@ public class GameUI : MonoBehaviour
         Time.timeScale = 1.0f; // 게임시작
     }
 
-    public void SetUI(int currentscore, int bestscore) // 점수를 받아옴
+    public void SetUI(int currentscore) //, int bestscore) // 점수를 받아옴
     {
         currentScoreTxt.text = currentscore.ToString();
-        bestScoreTxt.text = bestscore.ToString();
+        //bestScoreTxt.text = bestscore.ToString();
     }
 
     private void ShowGameStateUI() // 게임상태 UI
