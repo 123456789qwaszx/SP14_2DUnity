@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
+using UnityEditor;
 
 // -인게임-
 
@@ -35,6 +36,9 @@ public class GameUI : MonoBehaviour
 
     private TextMeshProUGUI currentScoreTxt; // 현재 점수 
     private TextMeshProUGUI bestScoreTxt; // 최고 점수
+    private TextMeshProUGUI stateCurrentScoreTxt; // 게임 상태 현재 점수 
+    private TextMeshProUGUI stateBestScoreTxt; // 게임 상태 최고 점수
+
     private Button jumpButton; // 점프 버튼
     private Button restartButton; // 재시작 버튼
     private Button backButton; // 뒤로가기 버튼
@@ -42,7 +46,7 @@ public class GameUI : MonoBehaviour
     private Button pauseButton; // 일시정지 버튼
     private Button slidingButton; // 슬라이딩 버튼
 
-    public bool HpUp = false;
+    public bool HpUp = false; // 회복했는지 여부
 
     private void Start()
     {
@@ -61,7 +65,9 @@ public class GameUI : MonoBehaviour
         Transform gameStateCanvas = _gameStateUICanvas.transform;
 
         currentScoreTxt = gameCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
-        //bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
+        bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
+        stateCurrentScoreTxt = gameStateCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
+        stateBestScoreTxt = gameStateCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
 
         jumpButton = gameCanvas.Find("Button - Jump").GetComponent<Button>();
         slidingButton = gameCanvas.Find("Button - Sliding").GetComponent<Button>();
@@ -82,14 +88,37 @@ public class GameUI : MonoBehaviour
         character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
         character.SetCharacterState(); // 캐릭터 상태 초기화
+        LoadBestScore(); // 불러온 최고 점수 표시
 
         Time.timeScale = 1.0f; // 게임시작
     }
 
-    public void SetUI(int currentscore) //, int bestscore) // 점수를 받아옴
+    public void SetUI(int currentscore, int bestscore) // 점수를 받아옴
     {
         currentScoreTxt.text = currentscore.ToString();
-        //bestScoreTxt.text = bestscore.ToString();
+        bestScoreTxt.text = bestscore.ToString();
+        stateCurrentScoreTxt.text = currentscore.ToString();
+        stateBestScoreTxt.text = bestscore.ToString();
+    }
+
+    public void SaveBestScore()
+    {
+        PlayerPrefs.SetInt("BestScore", character.BestScore);
+        PlayerPrefs.Save(); // 변경 사항을 디스크에 저장
+    }
+
+    public void LoadBestScore() // 최고 점수 저장
+    {
+        if (PlayerPrefs.HasKey("BestScore")) // 해당 키가 존재하는지 확인
+        {
+            character.BestScore = PlayerPrefs.GetInt("BestScore");
+            bestScoreTxt.text = character.BestScore.ToString();
+        }
+        else
+        {
+            character.BestScore = 0; // 저장된 최고 점수가 없으면 0으로 초기화
+            bestScoreTxt.text = "0";
+        }
     }
 
     private void ShowGameStateUI() // 게임상태 UI
