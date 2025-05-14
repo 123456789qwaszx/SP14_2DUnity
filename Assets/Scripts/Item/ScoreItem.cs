@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Á¡¼ö¸¦ Áõ°¡½ÃÅ°´Â ¾ÆÀÌÅÛ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class ScoreItem : Items
 {
     private int score = 10;
@@ -15,7 +15,7 @@ public class ScoreItem : Items
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            // ScoreUp(score);  // Á¡¼ö Áõ°¡ ÇÔ¼ö
+            ScoreUp(_player, score);
         }
     }
 }

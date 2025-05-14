@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Á¡¼ö¸¦ ´ë·®À¸·Î ¿Ã·ÁÁÖ´Â ¾ÆÀÌÅÛÅÛ
-public class BigScoreItem : MonoBehaviour
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ë·®ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+public class BigScoreItem : Items
 {
     private int score = 50;
 
@@ -15,7 +15,7 @@ public class BigScoreItem : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            // ScoreUp(score);  // Á¡¼ö Áõ°¡ ÇÔ¼ö
+            ScoreUp(_player, score);
         }
     }
 }

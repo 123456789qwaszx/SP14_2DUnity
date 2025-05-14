@@ -7,61 +7,53 @@ using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour
 {
-    // -¸ÞÀÎ È­¸é-
-    // ½ÃÀÛ, ³ª°¡±â
-    // ¼³Á¤
+    // -ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½-
+    // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½
 
-    [SerializeField] private GameObject _mainUICanvas;
     [SerializeField] private GameObject _soundUICanvas;
 
-    private Button startButton;
-    private Button exitButton;
-    private Button soundButton;
-    private Button closeButton;
+    [SerializeField]private Button startButton;
+    [SerializeField]private Button exitButton;
+    [SerializeField]private Button soundButton;
+    [SerializeField]private Button closeButton;
 
     private void Start()
     {
         Init();
     }
 
-    public void Init() // ÃÊ±âÈ­
+    public void Init() // ï¿½Ê±ï¿½È­
     {
-        // ÄÄÆ÷³ÍÆ®¿Í ¿¬°á
-        Transform mainCanvas = _mainUICanvas.transform;
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Transform soundCanvas = _soundUICanvas.transform;
 
-        startButton = mainCanvas.Find("Button - Start").GetComponent<Button>();
-        exitButton = mainCanvas.Find("Button - Exit").GetComponent<Button>();
-        soundButton = mainCanvas.Find("Button - Sound").GetComponent<Button>();
         closeButton = soundCanvas.Find("Button - Close").GetComponent<Button>();
 
-        startButton.onClick.AddListener(OnClickStartButton);
-        exitButton.onClick.AddListener(OnClickExitButton);
-        soundButton.onClick.AddListener(OnClickSoundButton);
         closeButton.onClick.AddListener(OnClickSoundUICloseButton);
     }
 
-    private void OnClickStartButton() // ½ÃÀÛ¹öÆ°
+    public void OnClickStartButton() // ï¿½ï¿½ï¿½Û¹ï¿½Æ°
     {
         SceneManager.LoadScene("SelectCharacter");
         //SceneManager.LoadScene("SelectMode");
     }
 
-    private void OnClickExitButton() // ³ª°¡±â ¹öÆ°
+    public void OnClickExitButton() // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
-        Debug.Log("³ª°¡±â");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
     }
 
-    private void OnClickSoundButton()
+    public void OnClickSoundButton()
     {
         _soundUICanvas.SetActive(true);
     }
 
-    private void OnClickSoundUICloseButton()
+    public void OnClickSoundUICloseButton()
     {
         _soundUICanvas.SetActive(false);
     }

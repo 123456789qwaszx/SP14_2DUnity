@@ -60,6 +60,7 @@ public class GameUI : MonoBehaviour
     private void Update()
     {
         UpdateHealthUI();
+        UpdateScoreUI();
     }
 
     public void Init() // �ʱ�ȭ
@@ -178,6 +179,11 @@ public class GameUI : MonoBehaviour
         }
     }
 
+
+    public void UpdateScoreUI()
+    {
+        SetUI(character.Score, character.BestScore);
+    }
     public void CheckGameOver() // ���� ������ ��� ����
     {
         StartCoroutine(DelayedGameOverUI());

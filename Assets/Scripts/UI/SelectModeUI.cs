@@ -4,52 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// -½ºÅ×ÀÌÁö ¼±ÅÃ-
-// ½ºÅ×ÀÌÁö ¼±ÅÃ
-// µÚ·Î°¡±â
-// ¼³Á¤
+// -ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½-
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// ï¿½Ú·Î°ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½
 
 public class SelectModeUI : MonoBehaviour
 {
-    [SerializeField] private GameObject selectmodeUICanvas;
-
-    Button stageButton;
-    Button endlessButton;
-    Button backButton;
-
-    private void Start()
+    public void OnClickStageButton()
     {
-        Init();
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã·ï¿½ ï¿½Ìµï¿½");
+        SceneManager.LoadScene("Game");
     }
 
-    private void Init() // ÃÊ±âÈ­
+    public void OnClickEndlessButton() // ï¿½ï¿½ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     {
-        // ÄÄÆ÷³ÍÆ®¿Í ¿¬°á
-        Transform selectCanvas = selectmodeUICanvas.transform;
-
-        stageButton = selectCanvas.Find("Button - Stage").GetComponent<Button>();
-        endlessButton = selectCanvas.Find("Button - Endless").GetComponent<Button>();
-        backButton = selectCanvas.Find("Button - Back").GetComponent<Button>();
-
-        stageButton.onClick.AddListener(OnClickStageButton);
-        endlessButton.onClick.AddListener(OnClickEndlessButton);
-        backButton.onClick.AddListener(OnClickBackButton);
+        Debug.Log("ï¿½ï¿½ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½Ìµï¿½");
     }
 
-    private void OnClickStageButton() // ½ºÅ×ÀÌÁö ¼±ÅÃÀ¸·Î ÀÌµ¿
+    public void OnClickBackButton() // ï¿½Ú·Î°ï¿½ï¿½ï¿½
     {
-        Debug.Log("½ºÅ×ÀÌÁö ¼±ÅÃ·Î ÀÌµ¿");
-        SceneManager.LoadScene("StageSelect");
-    }
-
-    private void OnClickEndlessButton() // ¹«ÇÑ¸ðµå·Î ÀÌµ¿
-    {
-        Debug.Log("¹«ÇÑ¸ðµå·Î ÀÌµ¿");
-    }
-
-    private void OnClickBackButton() // µÚ·Î°¡±â
-    {
-        Debug.Log("µÚ·ÎÀÌµ¿");
+        Debug.Log("ï¿½Ú·ï¿½ï¿½Ìµï¿½");
         SceneManager.LoadScene("Main");
     }
 }
