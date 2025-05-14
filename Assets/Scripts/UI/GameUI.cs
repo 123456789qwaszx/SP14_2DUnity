@@ -6,31 +6,31 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-// -ÀÎ°ÔÀÓ-
+// -ï¿½Î°ï¿½ï¿½ï¿½-
 
-// Ã¼·Â¹Ù Ç¥½Ã
-// Á¡¼ö Ç¥½Ã
-// ÀÏ½ÃÁ¤Áö Ç¥½Ã
-// ½½¶óÀÌµù, Á¡ÇÁ Ç¥½Ã
+// Ã¼ï¿½Â¹ï¿½ Ç¥ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
+// ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½, ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 
 
 public class GameUI : MonoBehaviour
 {
-    // ½ºÅ©¸³Æ® ÄÄÆ÷³ÍÆ®¿¡ ¿ÀºêÁ§Æ® ÇÒ´ç
+    // ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ò´ï¿½
     public GameObject _gameUICanvas;
     public GameObject _gameStateUICanvas;
     private CharacterController _character;
-    public TextMeshProUGUI _gameStateText; // °ÔÀÓ »óÅÂ ¹®±¸
-    public string[] _gameStateMessages; // °ÔÀÓ »óÅÂ ¹®±¸ ¹è¿­
+    public TextMeshProUGUI _gameStateText; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public string[] _gameStateMessages; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
 
-    TextMeshProUGUI currentScoreTxt; // ÇöÀç Á¡¼ö 
-    TextMeshProUGUI bestScoreTxt; // ÃÖ°í Á¡¼ö
-    Button jumpButton; // Á¡ÇÁ ¹öÆ°
-    Button restartButton; // Àç½ÃÀÛ ¹öÆ°
-    Button backButton; // µÚ·Î°¡±â ¹öÆ°
-    Button homeButton; // È¨À¸·Î °¡±â ¹öÆ°
-    Button pauseButton; // ÀÏ½ÃÁ¤Áö ¹öÆ°
-    Button slidingButton; // ½½¶óÀÌµù ¹öÆ°
+    TextMeshProUGUI currentScoreTxt; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+    TextMeshProUGUI bestScoreTxt; // ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½
+    Button jumpButton; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    Button restartButton; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    Button backButton; // ï¿½Ú·Î°ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    Button homeButton; // È¨ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    Button pauseButton; // ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    Button slidingButton; // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Æ°
 
     private void Start()
     {
@@ -42,15 +42,15 @@ public class GameUI : MonoBehaviour
         ShowGameStateUI();
     }
 
-    public void Init() // ÃÊ±âÈ­
+    public void Init() // ï¿½Ê±ï¿½È­
     {
         if (_gameUICanvas == null || _gameStateUICanvas == null)
         {
-            Debug.LogError("UI Canvas°¡ Á¦´ë·Î ·ÎµåµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogError("UI Canvasï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
             return;
         }
 
-        // ÀÎ½ºÆåÅÍ¿¡ ¿ÀºêÁ§Æ® ¿¬°á
+        // ï¿½Î½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         Transform gameCanvas = _gameUICanvas.transform;
         Transform gameStateCanvas = _gameStateUICanvas.transform;
 
@@ -76,37 +76,37 @@ public class GameUI : MonoBehaviour
         _character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
 
-        Time.timeScale = 1.0f; // °ÔÀÓ½ÃÀÛ
+        Time.timeScale = 1.0f; // ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½
     }
 
-    public void SetUI(int currentscore, int bestscore) // Á¡¼ö¸¦ ¹Þ¾Æ¿È
+    public void SetUI(int currentscore, int bestscore) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½
     {
         currentScoreTxt.text = currentscore.ToString();
         bestScoreTxt.text = bestscore.ToString();
     }
 
-    private void ShowGameStateUI() // °ÔÀÓ»óÅÂ UI
+    private void ShowGameStateUI() // ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ UI
     {
-        //if (Die) // Á×Àº »óÅÂÀÏ ¶§ - °ÔÀÓ ¿À¹ö
+        //if (Die) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //{
-        //_gameStateText.text = _gameStateMessages[1]; // "°ÔÀÓ ¿À¹ö" Ãâ·Â
+        //_gameStateText.text = _gameStateMessages[1]; // "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿½
         //_gameStateUICanvas.SetActive(true);
         //}
-        //else if (stageClear) // ½ºÅ×ÀÌÁö Å¬¸®¾î
+        //else if (stageClear) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
         //{
-        //_gameStateText.text = _gameStateMessages[0]; // "½ºÅ×ÀÌÁö Å¬¸®¾î" Ãâ·Â
+        //_gameStateText.text = _gameStateMessages[0]; // "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿½
         //_gameStateUICanvas.SetActive(true);
         //}
     }
 
-    #region ¹öÆ°
+    #region ï¿½ï¿½Æ°
 
-    private void OnClickJumpButton() // Á¡ÇÁ ¹öÆ°
+    private void OnClickJumpButton() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
         _character.Jump();
     }
 
-    private void OnClickSlidingButton() // ½½¶óÀÌµù ¹öÆ°
+    private void OnClickSlidingButton() // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Æ°
     {
         if (_character.isSliding == false)
         {
@@ -120,27 +120,27 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private void OnClickRestartButton() // Àç½ÃÀÛ ¹öÆ°
+    private void OnClickRestartButton() // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
-        Time.timeScale = 1f; // °ÔÀÓ ½ÃÀÛ
+        Time.timeScale = 1f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         SceneManager.LoadScene("Game");
-        Debug.Log("Àç½ÃÀÛ");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 
-    private void OnClickNextButton() // ´ÙÀ½ ½ºÅ×ÀÌÁö ¹öÆ°
+    private void OnClickNextButton() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
-        Debug.Log("´ÙÀ½ ½ºÅ×ÀÌÁö");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 
-    private void OnClickHomeButton() // È¨ ¹öÆ°
+    private void OnClickHomeButton() // È¨ ï¿½ï¿½Æ°
     {
         SceneManager.LoadScene("Main");
     }
 
-    private void OnClickPauseButton() // ÀÏ½ÃÁ¤Áö ¹öÆ°
+    private void OnClickPauseButton() // ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
-        Time.timeScale = 0f; // °ÔÀÓ Á¤Áö
-        _gameStateText.text = _gameStateMessages[2]; // "ÀÏ½ÃÁ¤Áö" Ãâ·Â
+        Time.timeScale = 0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        _gameStateText.text = _gameStateMessages[2]; // "ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿½
         _gameStateUICanvas.SetActive(true);
     }
 

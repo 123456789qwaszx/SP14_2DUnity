@@ -5,6 +5,18 @@ using UnityEngine;
 public class CharacterController : CharacterBaseController
 {
 
+    [SerializeField] private GameObject _scaleUP;
+    [SerializeField] private GameObject _hpRecovery;
+    [SerializeField] private GameObject _speedUP;
+
+    public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
+
+    bool isItem = false;
+
+    private float maxSpeed = 5f;
+    private float duration = 3f;
+    public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
+    public float Duration { get { return duration; } set { duration = value; } }
 
     protected override void Awake()
     {
@@ -153,11 +165,13 @@ public class CharacterController : CharacterBaseController
             isGround = false;
         }
     }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("MapRoutin"))
         {
+            //맵 추가시 랜덤범위 직접조정
             int randomIndex = UnityEngine.Random.Range(1, 5);
 
             GameObject randomMap = Managers.Map.LoadMap(randomIndex);
@@ -166,6 +180,7 @@ public class CharacterController : CharacterBaseController
             randomMap.transform.position = new Vector3(mapWidth, 0);
         }
     }
+
 
     public override void ApplyInvincible()
     {

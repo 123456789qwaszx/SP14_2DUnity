@@ -30,7 +30,7 @@ public class Items : MonoBehaviour
 
     public void HpRecovery(CharacterController _player)
     {
-        // ÇÃ·¹ÀÌ¾î hp¹Ş¾Æ¼­ Áõ°¡
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ hpï¿½Ş¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (_player.CurrentHp > 0 && _player.CurrentHp < 3)
         {
             _player.CurrentHp += 1;

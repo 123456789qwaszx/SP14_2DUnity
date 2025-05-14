@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2270359661565362760}
   m_Layer: 0
   m_Name: Tilemap_score50
-  m_TagString: Untagged
+  m_TagString: Score50
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 1845122263844463828}
   m_Layer: 0
   m_Name: Tilemap_SpeedUp
-  m_TagString: Untagged
+  m_TagString: SpeedUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 8489983797359678203}
   m_Layer: 0
   m_Name: Tilemap_score10
-  m_TagString: Untagged
+  m_TagString: Score10
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 5744111855233586499}
   m_Layer: 0
   m_Name: Tilemap_ScaleUp
-  m_TagString: Untagged
+  m_TagString: ScaleUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1200,7 +1200,7 @@ GameObject:
   - component: {fileID: 4000572385834017747}
   m_Layer: 0
   m_Name: Tilemap_Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1391,7 +1391,7 @@ GameObject:
   - component: {fileID: 8992726985362181400}
   m_Layer: 0
   m_Name: Tilemap_HpRecovery
-  m_TagString: Untagged
+  m_TagString: HpRecovery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

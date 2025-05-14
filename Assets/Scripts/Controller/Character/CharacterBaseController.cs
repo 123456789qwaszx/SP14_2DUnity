@@ -21,11 +21,14 @@ public class CharacterBaseController : MonoBehaviour
     protected bool isJumping = false;
     protected bool isJumpHold = false;  // ����Ű ���� Ȯ��
     protected float slidePower = 2f;
+    protected int score = 0;
     public bool isSliding = false;
     public bool isGround = false;
     public float CurrentHp { get; set; }
     public float CurrentSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
+    public int Score { get; set;}
+    
 
     [Header("Character Interaction")]
 
