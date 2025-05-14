@@ -7,6 +7,7 @@ public class CharacterBaseController : MonoBehaviour
 {
     protected Rigidbody2D rb; // ĳ���ʹ� �����Ǿ� �־ ���� ���� �ൿ�� ���� �ʿ�
     protected Animator anim;
+    protected GameUI gameUI;
 
     [Header("Character State")]
     [Tooltip("ĳ������ ����Ʈ �������ͽ�")]
@@ -101,9 +102,10 @@ public class CharacterBaseController : MonoBehaviour
     public virtual void Damage(float damage)
     {
         currentHp -= damage;
-        
+
         if (currentHp <= 0f)    // ü���� 0 ���Ϸ� �������� �������� �Ծ��� ���?, ���? ó��
         {
+            gameUI.CheckGameOver();
             Dead();
         }
     }

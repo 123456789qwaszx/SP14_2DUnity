@@ -9,7 +9,6 @@ public class CharacterController : CharacterBaseController
     [SerializeField] private GameObject _hpRecovery;
     [SerializeField] private GameObject _speedUP;
 
-    GameUI gameUI;
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
 
     bool isItem = false;
@@ -28,6 +27,23 @@ public class CharacterController : CharacterBaseController
     {
         base.Start();
         SetCharacterState();
+
+        //GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
+        //gameUI = gameUIObject.GetComponent<GameUI>();
+        // GameUI 컴포넌트 찾아서 할당 (Start()에서 한 번만)
+        GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
+        if (gameUIObject != null)
+        {
+            gameUI = gameUIObject.GetComponent<GameUI>();
+            if (gameUI == null)
+            {
+                Debug.LogError("GameUI 태그를 가진 오브젝트에 GameUI 컴포넌트가 없습니다!");
+            }
+        }
+        else
+        {
+            Debug.LogError("GameUI 태그를 가진 오브젝트를 찾을 수 없습니다!");
+        }
     }
 
     protected override void Update()
@@ -169,9 +185,6 @@ public class CharacterController : CharacterBaseController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
-        gameUI = gameUIObject.GetComponent<GameUI>();
-
         if (collision.gameObject.CompareTag("Score10"))
         {
             Score += 10;
@@ -214,13 +227,19 @@ public class CharacterController : CharacterBaseController
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
+            isInvincible = true;
             if (isInvincible)
             {
+                ObstacleBaseController obstacle = collision.gameObject.GetComponent<ObstacleBaseController>();
+
                 Damage(damage);
                 ApplyKnockBack(transform, knockBackPower);
                 ApplyInvincible();
+                Debug.Log("체력 " + currentHp);
+                gameUI.UpdateHealthUI();
+                Debug.Log($"obstacle!");
             }
-            Debug.Log($"obstacle!");
+
         }
         else if (collision.gameObject.CompareTag("MapRoutin"))
         {

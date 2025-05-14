@@ -32,7 +32,6 @@ public class GameUI : MonoBehaviour
     [SerializeField] private string[] _gameStateMessages; // 게임 상태 문구 배열
 
     private CharacterController character;
-    private ObstacleBaseController obstacle;
     private Items items;
 
     private TextMeshProUGUI currentScoreTxt; // 현재 점수 
@@ -49,13 +48,11 @@ public class GameUI : MonoBehaviour
     private void Start()
     {
         Init();
-        Debug.Log(character.currentHp);
-        Debug.Log(character.maxHp);
+
     }
 
     private void Update()
     {
-        ShowGameStateUI();
         UpdateHealthUI();
     }
 
@@ -64,10 +61,22 @@ public class GameUI : MonoBehaviour
         // 인스펙터에 오브젝트 연결
         Transform gameCanvas = _gameUICanvas.transform;
         Transform gameStateCanvas = _gameStateUICanvas.transform;
+        //if (gameCanvas == null) Debug.LogError("_gameUICanvas가 할당되지 않았습니다!");
+        //if (gameStateCanvas == null) Debug.LogError("_gameStateUICanvas가 할당되지 않았습니다!");
 
         //Transform currentScoreTransform = gameCanvas.Find("CurrentScoreText");
-
-        //currentScoreTxt = currentScoreTransform.GetComponent<TextMeshProUGUI>();
+        //if (currentScoreTransform == null)
+        //{
+        //    Debug.LogError("CurrentScoreText 오브젝트를 찾을 수 없습니다!");
+        //}
+        //else
+        //{
+        //    currentScoreTxt = currentScoreTransform.GetComponent<TextMeshProUGUI>();
+        //    if (currentScoreTxt == null)
+        //    {
+        //        Debug.LogError("CurrentScoreText 오브젝트에 TextMeshProUGUI 컴포넌트가 없습니다!");
+        //    }
+        //}
         currentScoreTxt = gameCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
         //bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
 
@@ -115,7 +124,7 @@ public class GameUI : MonoBehaviour
         //}
     }
 
-    private void UpdateHealthUI() // Hp UI 업데이트
+    public void UpdateHealthUI() // Hp UI 업데이트
     {
         // 테스트라 나중에 합쳐졌을 때 현재 체력 부분 수정
         if (HpUp)
@@ -123,6 +132,7 @@ public class GameUI : MonoBehaviour
             if (character.currentHp < character.maxHp)
             {
                 items.HpRecovery(character);
+                Debug.Log($"체력 증가 {character.currentHp}");
                 hearts[(int)character.currentHp].sprite = heart_full;
             }
 
@@ -130,12 +140,27 @@ public class GameUI : MonoBehaviour
         }
         else if (character.isInvincible)
         {
-            character.Damage(obstacle.damage);
-            Debug.Log($"체력 감소 {character.currentHp}");
-            hearts[(int)character.currentHp - 1].sprite = heart_empty;
-        }
+            //Debug.Log(character.isInvincible);
+            //Debug.Log($"체력 감소 {character.currentHp}");
+            if ((int)character.currentHp >= 0)
+            {
+                hearts[(int)character.currentHp].sprite = heart_empty;
 
-        character.isInvincible = false;
+            }
+
+        }
+    }
+
+    public void CheckGameOver()
+    {
+        StartCoroutine(DelayedGameOverUI());
+    }
+
+    IEnumerator DelayedGameOverUI()
+    {
+        yield return new WaitForSeconds(0.5f); // 0.5초 대기 후 다시 작동
+        Debug.Log("0.5초 후 다시 시작");
+        ShowGameStateUI();
     }
 
     #region 버튼
@@ -181,9 +206,9 @@ public class GameUI : MonoBehaviour
 
     private void OnClickPauseButton() // 일시정지 버튼
     {
-        Time.timeScale = 0f; // 게임 정지
         _gameStateText.text = _gameStateMessages[2]; // "일시정지" 출력
         _gameStateUICanvas.SetActive(true);
+        Time.timeScale = 0f; // 게임 정지
     }
 
     #endregion
