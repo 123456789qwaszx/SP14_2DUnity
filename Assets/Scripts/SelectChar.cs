@@ -1,13 +1,7 @@
 using UnityEngine;
 
-public enum Character
-{
-    NinjaFrog, PinkMan, VirutalGuy, MaskDude
-}
-
 public class SelectChar : MonoBehaviour
 {
-    public static Character currentCharacter;
     public Character character;
 
     Animator anim;
@@ -17,14 +11,15 @@ public class SelectChar : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         sr = GetComponentInChildren<SpriteRenderer>();
-        if (currentCharacter == character) OnSelect();
+        if (Managers.data.currentCharacter == character) OnSelect();
         else OnDeSelect();
     }
 
     private void OnMouseUpAsButton()
     {
-        currentCharacter = character;
+        Managers.data.currentCharacter = character;
         OnSelect();
+        Debug.Log($"currentChar = {Managers.data.currentCharacter}");
 
         for(int i = 0; i < chars.Length; i++)
         {

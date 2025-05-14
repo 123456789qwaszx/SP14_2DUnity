@@ -42,7 +42,7 @@ public class CharacterController : CharacterBaseController
         }
 
         // �����̵�
-        if (!isSliding && !isJumping)
+        if (!isSliding && isGround)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {

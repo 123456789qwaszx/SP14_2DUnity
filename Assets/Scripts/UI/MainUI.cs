@@ -34,8 +34,7 @@ public class MainUI : MonoBehaviour
 
     private void OnClickStartButton() // 시작버튼
     {
-        //SceneManager.LoadScene("SelectMode");
-        SceneManager.LoadScene("SelectCharacter");
+        SceneManager.LoadScene("SelectMode");
     }
 
     private void OnClickExitButton() // 나가기 버튼
