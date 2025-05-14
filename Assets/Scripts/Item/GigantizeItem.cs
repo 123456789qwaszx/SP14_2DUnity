@@ -20,10 +20,6 @@ public class GigantizeItem : Items
         {
             if (_player.isInvincible)
             {
-                _player.Damage(1);
-
-                _player.ApplyKnockBack(GameObject.FindWithTag("Obstacle").transform, Duration);
-
                 _player.ApplyInvincible();
 
             }

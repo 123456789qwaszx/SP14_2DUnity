@@ -18,6 +18,8 @@ public class Items : MonoBehaviour
 
     private float maxSpeed = 8f;
     private float duration = 3f;
+
+    private Coroutine scaleUpCoroutine = null;
     public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     public float Duration { get { return duration; } set { duration = value; } }
 
@@ -34,7 +36,12 @@ public class Items : MonoBehaviour
 
     public void ScaleUp(CharacterController _player, float _duration)
     {
-        StartCoroutine(ScaleUpCoroutine(_player, _duration));
+        if (scaleUpCoroutine != null)
+        {
+            StopCoroutine(scaleUpCoroutine);
+        }
+
+        scaleUpCoroutine = StartCoroutine(ScaleUpCoroutine(_player, _duration));
     }
     public void ScoreUp(CharacterController _player, int score)
     {
@@ -70,13 +77,20 @@ public class Items : MonoBehaviour
     {
         _player.transform.localScale = new Vector3(2.0f, 2.0f, 0f);
 
-        _scaleUP.SetActive(false);
+        // _scaleUP.SetActive(false);
 
         yield return new WaitForSeconds(_duration);
 
-        _player.transform.localScale = new Vector3(1.0f, 1.0f, 0f);
+        ScaleDown(_player);
+
+        scaleUpCoroutine = null;
 
         _scaleUP.SetActive(true);
+    }
+
+    private void ScaleDown(CharacterController _player)
+    {
+        _player.transform.localScale = new Vector3(1.0f, 1.0f, 0f);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
