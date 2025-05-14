@@ -11,6 +11,7 @@ TagManager:
   - Items
   - Obstacle
   - BackGroundLayers
+  - MapRoutin
   layers:
   - Default
   - TransparentFX
