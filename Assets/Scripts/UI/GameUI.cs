@@ -52,6 +52,7 @@ public class GameUI : MonoBehaviour
     {
         UpdateHealthUI();
         UpdateScoreUI();
+        ShowGameStateUI();
     }
 
     public void Init() // �ʱ�ȭ
@@ -119,20 +120,21 @@ public class GameUI : MonoBehaviour
 
     private void ShowGameStateUI() // ���ӻ��� UI
     {
-        if (character.CurrentHp <= 0) // ���� ������ �� - ���� ����
+        if (character.CurrentHp <= 0) // 체ㄹ
         {
             _gameStateText.text = _gameStateMessages[1]; // "���� ����" ���
             _gameStateUICanvas.SetActive(true);
             Time.timeScale = 0f;
         }
-        //else if (stageClear) // �������� Ŭ����
-        //{
-        //_gameStateText.text = _gameStateMessages[0]; // "�������� Ŭ����" ���
-        //_gameStateUICanvas.SetActive(true);
-        //}
+        else if (character.Score >= 5000) // 스코어 5000점 이상이면 클리어 UI출력
+        {
+            _gameStateText.text = _gameStateMessages[0]; // 클리어 문구 출력
+            _gameStateUICanvas.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
-    public void UpdateHealthUI() // Hp UI ������Ʈ
+    public void UpdateHealthUI() // Hp UI 업데이트
     {
         if (HpUp)
         {

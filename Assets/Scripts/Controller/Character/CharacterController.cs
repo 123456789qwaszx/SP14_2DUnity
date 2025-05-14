@@ -163,7 +163,6 @@ public class CharacterController : CharacterBaseController
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
