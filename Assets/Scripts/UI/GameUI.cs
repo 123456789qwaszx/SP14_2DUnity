@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
-using UnityEditor;
 
 // -�ΰ���-
 
@@ -36,9 +35,6 @@ public class GameUI : MonoBehaviour
 
     private TextMeshProUGUI currentScoreTxt; // ���� ���� 
     private TextMeshProUGUI bestScoreTxt; // �ְ� ����
-    private TextMeshProUGUI stateCurrentScoreTxt; // ���� ���� ���� ���� 
-    private TextMeshProUGUI stateBestScoreTxt; // ���� ���� �ְ� ����
-
     private Button jumpButton; // ���� ��ư
     private Button restartButton; // ����� ��ư
     private Button backButton; // �ڷΰ��� ��ư
@@ -49,7 +45,7 @@ public class GameUI : MonoBehaviour
     public GameObject[] charPrefabs;
     public GameObject player;
 
-    public bool HpUp = false; // ȸ���ߴ��� ����
+    public bool HpUp = false;
 
     private void Start()
     {
@@ -69,9 +65,7 @@ public class GameUI : MonoBehaviour
         Transform gameStateCanvas = _gameStateUICanvas.transform;
 
         currentScoreTxt = gameCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
-        bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
-        stateCurrentScoreTxt = gameStateCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
-        stateBestScoreTxt = gameStateCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
+        //bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
 
         jumpButton = gameCanvas.Find("Button - Jump").GetComponent<Button>();
         slidingButton = gameCanvas.Find("Button - Sliding").GetComponent<Button>();
@@ -92,37 +86,14 @@ public class GameUI : MonoBehaviour
         character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
         character.SetCharacterState(); // ĳ���� ���� �ʱ�ȭ
-        LoadBestScore(); // �ҷ��� �ְ� ���� ǥ��
 
         Time.timeScale = 1.0f; // ���ӽ���
     }
 
-    public void SetUI(int currentscore, int bestscore) // ������ �޾ƿ�
+    public void SetUI(int currentscore) //, int bestscore) // ������ �޾ƿ�
     {
         currentScoreTxt.text = currentscore.ToString();
-        bestScoreTxt.text = bestscore.ToString();
-        stateCurrentScoreTxt.text = currentscore.ToString();
-        stateBestScoreTxt.text = bestscore.ToString();
-    }
-
-    public void SaveBestScore()
-    {
-        PlayerPrefs.SetInt("BestScore", character.BestScore);
-        PlayerPrefs.Save(); // ���� ������ ��ũ�� ����
-    }
-
-    public void LoadBestScore() // �ְ� ���� ����
-    {
-        if (PlayerPrefs.HasKey("BestScore")) // �ش� Ű�� �����ϴ��� Ȯ��
-        {
-            character.BestScore = PlayerPrefs.GetInt("BestScore");
-            bestScoreTxt.text = character.BestScore.ToString();
-        }
-        else
-        {
-            character.BestScore = 0; // ����� �ְ� ������ ������ 0���� �ʱ�ȭ
-            bestScoreTxt.text = "0";
-        }
+        //bestScoreTxt.text = bestscore.ToString();
     }
     
     private void ShowGameStateUI() // ���ӻ��� UI

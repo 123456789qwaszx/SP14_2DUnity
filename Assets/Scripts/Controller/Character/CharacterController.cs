@@ -175,27 +175,14 @@ public class CharacterController : CharacterBaseController
         if (collision.gameObject.CompareTag("Score10"))
         {
             Score += 10;
-
-            if (Score >= BestScore)
-            {
-                BestScore = Score;
-            }
-
-            gameUI.SetUI(Score, BestScore);
+            gameUI.SetUI(Score);
             Destroy(collision.gameObject);
             Debug.Log($"{Score}");
         }
         else if (collision.gameObject.CompareTag("Score50"))
         {
             Score += 50;
-
-            if (Score >= BestScore)
-            {
-                BestScore = Score;
-                gameUI.SaveBestScore();
-            }
-
-            gameUI.SetUI(Score, BestScore);
+            gameUI.SetUI(Score);
             Destroy(collision.gameObject);
             Debug.Log($"{Score}");
         }

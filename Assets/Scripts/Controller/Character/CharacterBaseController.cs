@@ -23,14 +23,12 @@ public class CharacterBaseController : MonoBehaviour
     public bool isJumpHold = false;  // ����Ű ���� Ȯ��
     protected float slidePower = 2f;
     protected int score = 0;
-    protected int bestScore = 0;
     public bool isSliding = false;
     public bool isGround = false;
     public float CurrentHp { get { return currentHp; } set { currentHp = value; } }
     public float CurrentSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
-    public int Score { get { return score; } set { score = value; } }
-    public int BestScore { get { return bestScore; } set { bestScore = value; } }
+    public int Score { get; set; }
     protected float damage = 1f;
 
     protected float knockBackPower = 3f;
