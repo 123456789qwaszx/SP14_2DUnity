@@ -4,17 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - ScaleUp
-  - SpeedUp
-  - HpRecovery
-  - Items
-  - Obstacle
-  - BackGroundLayers
-  - MapRoutin
-  - Score10
-  - Score50
   - GameUI
+  - Items
+  - HpRecovery
+  - SpeedUp
+  - ScaleUp
+  - BackGroundLayers
   layers:
   - Default
   - TransparentFX

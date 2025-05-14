@@ -13,7 +13,7 @@ public class ItemCollision : MonoBehaviour
 
         if (_player == null || items == null)
         {
-            Debug.LogWarning("Player �Ǵ� Items�� null�Դϴ�.");
+            Debug.LogWarning("Player is Items null.");
             return;
         }
         if (gameObject.CompareTag("HpRecovery"))
