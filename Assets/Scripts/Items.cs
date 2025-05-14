@@ -10,10 +10,16 @@ public class Items : MonoBehaviour
     [SerializeField] private GameObject _scaleUP;
     [SerializeField] private GameObject _hpRecovery;
     [SerializeField] private GameObject _speedUP;
+    [SerializeField] private GameObject _scoreUP;
+    [SerializeField] private GameObject _bigScoreUP;
 
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
 
-    bool isItem = false;
+    string[] itemName = { "ScaleUp", "SpeedUp", "HpRecovery" };
+
+    string[] itemName = { "ScaleUp", "SpeedUp", "HpRecovery" };
+
+    string[] itemName = { "ScaleUp", "SpeedUp", "HpRecovery" };
 
     private float maxSpeed = 5f;
     private float duration = 3f;
@@ -28,19 +34,9 @@ public class Items : MonoBehaviour
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void HpRecovery(CharacterController _player)
+    public void HpRecovery(CharacterController _player, float _duration)
     {
-        // �÷��̾� hp�޾Ƽ� ����
-        if (_player.CurrentHp > 0 && _player.CurrentHp < 3)
-        {
-            _player.CurrentHp += 1;
-            Destroy(_hpRecovery);
-        }
-        else
-        {
-            Destroy(_hpRecovery);
-            return;
-        }
+        StartCoroutine(HpRecoveryCoroutine(_player, _duration));
     }
     public void SpeedUp(CharacterController _player, float _speedUp, float _duration)
     {
@@ -52,40 +48,90 @@ public class Items : MonoBehaviour
         StartCoroutine(ScaleUpCoroutine(_player, _duration));
     }
 
+    public void ScoreUp(CharacterController _player, int score)
+    {
+        StartCoroutine(ScoreUpCoroutine(_player, score));
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+   
+    private IEnumerator HpRecoveryCoroutine(CharacterController _player, float _duration)
+    {
+        if (_player.CurrentHp > 0 && _player.CurrentHp < 3)
+        {
+            _player.CurrentHp += 1;
+            _hpRecovery.SetActive(false);
+        }
+        else
+        {
+            _hpRecovery.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(_duration);
+
+        _hpRecovery.SetActive(true);
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     private IEnumerator ScaleUpCoroutine(CharacterController _player, float _duration)
     {
         Vector3 originalScale = _player.transform.localScale;
 
         _player.transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
 
-        Destroy(_scaleUP);
+        _scaleUP.SetActive(false);
 
         yield return new WaitForSeconds(_duration);
 
         _player.transform.localScale = originalScale;
+
+        _scaleUP.SetActive(true);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private IEnumerator SpeedUpCoroutine(CharacterController _player, float _speedUp, float _duration)
     {
-        
-        foreach (ParallaxHandle phUp in parallaxHandles)
+        _speedUP.SetActive(false);
+
+        //Destroy(_speedUP);
+        isBool(isItem, itemName[0]);
+        //Destroy(_speedUP);
+        isBool(isItem, itemName[0]);
+        //Destroy(_speedUP);
+        isBool(isItem, itemName[0]);
+        _speedUP.SetActive(true);
+    }
+
+    private IEnumerator ScoreUpCoroutine(CharacterController _player, int score)
+    {
+        _player.Score += score;
+
+        if (score == 10)
         {
-            phUp.SetMoveSpeed(_player.CurrentSpeed + _speedUp);
+            _scoreUP.SetActive(false);
+
+            yield return new WaitForSeconds(duration);
+
+            _scoreUP.SetActive(true);
         }
-
-        Destroy(_speedUP);
-
-        yield return new WaitForSeconds(_duration);
-
-        foreach (ParallaxHandle phDown in parallaxHandles)
+        else if (score == 50)
         {
-            phDown.SetMoveSpeed(_player.CurrentSpeed);
+            _bigScoreUP.SetActive(false);
+
+            yield return new WaitForSeconds(duration);
+
+            _bigScoreUP.SetActive(true);
+        }
+            child.gameObject.SetActive(isItem);
+        }
+            child.gameObject.SetActive(isItem);
+        }
+            child.gameObject.SetActive(isItem);
         }
     }
+
     private void Start()
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("BackGroundLayers");

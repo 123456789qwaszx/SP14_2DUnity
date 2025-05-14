@@ -7,7 +7,7 @@ public class ScoreItem : Items
 {
     private int score = 10;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterController _player = collision.gameObject.GetComponent<CharacterController>();
 
@@ -15,7 +15,7 @@ public class ScoreItem : Items
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            // ScoreUp(score);  // 점수 증가 함수
+            ScoreUp(_player, score);  // 점수 증가 함수
         }
     }
 }

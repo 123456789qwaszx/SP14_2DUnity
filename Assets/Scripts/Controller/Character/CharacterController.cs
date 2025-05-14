@@ -33,7 +33,6 @@ public class CharacterController : CharacterBaseController
     protected override void Update()
     {
 
-        // ï¿½ï¿½ï¿½ï¿½
         if (jumpCount < maxJumpCount && !isSliding)
         {
             // Å×½ºÆ®¿ë ÄÚµå
@@ -42,7 +41,7 @@ public class CharacterController : CharacterBaseController
                 Jump();
             }
 
-            /*
+            /* ·Õ Á¡ÇÁ ±¸ÇöÇö
             if (Input.GetKey(KeyCode.Space))
             {
                 isJumpHold = true;
@@ -63,7 +62,6 @@ public class CharacterController : CharacterBaseController
             }
         }
 
-        // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isSliding)
         {
             if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -75,7 +73,7 @@ public class CharacterController : CharacterBaseController
 
     protected override void FixedUpdate()
     {
-        /* ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        /* ·Õ Á¡ÇÁ ±¸ÇöÇö
         if (isJumpHold && rb.velocity.y > 0f)
         {
             rb.gravityScale = 5f;
@@ -106,18 +104,18 @@ public class CharacterController : CharacterBaseController
     {
         isJumping = true;
 
-        rb.velocity = Vector2.zero;   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+        rb.velocity = Vector2.zero;
 
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
         if (jumpCount == 0)
         {
-            anim.SetBool("isJump", true);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿?
+            anim.SetBool("isJump", true);
         }
         else if (jumpCount >= 1)
         {
-            anim.SetBool("isJump", false);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿?
-            anim.SetBool("isDoubleJump", true);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿?
+            anim.SetBool("isJump", false);
+            anim.SetBool("isDoubleJump", true);
         }
 
         jumpCount++;
@@ -126,18 +124,18 @@ public class CharacterController : CharacterBaseController
     public override void Slide()
     {
         isSliding = true;
-        anim.SetBool("isSliding", isSliding); // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿?
+        anim.SetBool("isSliding", isSliding);
     }
 
     public override void EndSlide()
     {
         isSliding = false;
-        anim.SetBool("isSliding", isSliding); // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿?
+        anim.SetBool("isSliding", isSliding);
     }
 
     private void IncreaseSpeed()
     {
-        Debug.Log("ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½: " + currentSpeed);   // memo: ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½ Playerï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ currentSpeedï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Çµï¿½ï¿? ï¿½ï¿½ï¿½ï¿½
+        Debug.Log("increase Speed: " + currentSpeed);   // memo: ¼Óµµ Áõ°¡ ·ÎÁ÷ Ãß°¡
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -150,8 +148,8 @@ public class CharacterController : CharacterBaseController
             {
                 isJumping = false;
 
-                anim.SetBool("isJump", isJumping);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿?
-                anim.SetBool("isDoubleJump", isJumping);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿?
+                anim.SetBool("isJump", isJumping);
+                anim.SetBool("isDoubleJump", isJumping);
 
                 jumpCount = 0;
             }
@@ -172,92 +170,7 @@ public class CharacterController : CharacterBaseController
         GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
         gameUI = gameUIObject.GetComponent<GameUI>();
 
-        if (collision.gameObject.CompareTag("Score10"))
-        {
-            Score += 10;
-            gameUI.SetUI(Score, BestScore);
-
-            if (Score >= BestScore)
-            {
-                BestScore = Score;
-                gameUI.SaveBestScore();
-            }
-
-            if (Score >= 5000)
-            {
-                gameUI.ShowGameStateUI();
-            }
-
-            gameUI.SetUI(Score, BestScore);
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Score50"))
-        {
-            Score += 50;
-            gameUI.SetUI(Score, BestScore);
-
-            if (Score >= BestScore)
-            {
-                BestScore = Score;
-                gameUI.SaveBestScore();
-            }
-
-            if (Score >= 5000)
-            {
-                gameUI.ShowGameStateUI();
-            }
-
-            gameUI.SetUI(Score, BestScore);
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("HpRecovery"))
-        {
-            if (CurrentHp > 0 && CurrentHp < 3)
-            {
-                CurrentHp += 1;
-                gameUI.HpUp = true;
-                gameUI.UpdateHealthUI();
-                Debug.Log("Ã¼·ÂÈ¸º¹");
-                Debug.Log($"ÇöÀç Ã¼·Â: {CurrentHp}");
-                Debug.Log($"{"HpRecovery!"}");
-            }
-            else
-            {
-
-            }
-            Destroy(collision.gameObject);
-
-        }
-        else if (collision.gameObject.CompareTag("SpeedUp"))
-        {
-            StartCoroutine(SpeedUpCoroutine(maxSpeed, duration));
-            Destroy(collision.gameObject);
-            Debug.Log($"SpeedUp!");
-        }
-        else if (collision.gameObject.CompareTag("ScaleUp"))
-        {
-            StartCoroutine(ScaleUpCoroutine(duration));
-            Destroy(collision.gameObject);
-            Debug.Log($"ScaleUp!");
-        }
-        else if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            isInvincible = true;
-            if (isInvincible)
-            {
-                ObstacleBaseController obstacle = collision.gameObject.GetComponent<ObstacleBaseController>();
-
-                Damage(damage);
-                ApplyKnockBack(transform, knockBackPower);
-                ApplyInvincible();
-                Debug.Log("Ã¼·Â°¨¼Ò");
-                Debug.Log($"ÇöÀç Ã¼·Â: {CurrentHp}");
-                gameUI.UpdateHealthUI();
-                Debug.Log($"obstacle!");
-            }
-
-        }
-        else if (collision.gameObject.CompareTag("MapRoutin"))
+        if (collision.gameObject.CompareTag("MapRoutin"))
         {
             //¸Ê Ãß°¡½Ã ·£´ý¹üÀ§ Á÷Á¢Á¶Á¤
             int randomIndex = UnityEngine.Random.Range(1, 5);
@@ -266,10 +179,6 @@ public class CharacterController : CharacterBaseController
 
             float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
             randomMap.transform.position = new Vector3(mapWidth, 0);
-        }
-        else
-        {
-            Debug.Log("failed to find tag");
         }
     }
 
@@ -307,10 +216,9 @@ public class CharacterController : CharacterBaseController
     public override void ApplyInvincible()
     {
         base.ApplyInvincible();
-        // anim.SetBool("isInvincible", isInvincible);   // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿?
+        // anim.SetBool("isInvincible", isInvincible);
     }
 
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½Å´
     public override void Damage(float damage)
     {
         base.Damage(damage);
@@ -330,6 +238,6 @@ public class CharacterController : CharacterBaseController
     {
         base.Dead();
 
-        // to do: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½) ï¿½ß°ï¿½
+        // to do: °ÔÀÓ ¿À¹ö Ã³¸® Ãß°¡°¡
     }
 }

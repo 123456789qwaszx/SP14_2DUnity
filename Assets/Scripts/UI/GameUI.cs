@@ -7,48 +7,48 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
 
-// -ï¿½Î°ï¿½ï¿½ï¿½-
+// -? ì‹¸ê³¤ì˜™? ì™??
 
-// Ã¼ï¿½Â¹ï¿½ Ç¥ï¿½ï¿½
-// ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
-// ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
-// ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½, ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
+// ì²´å ?¹ë±„???œå ?™ì˜™
+// ? ì™?™å ?™ì˜™ ?œå ?™ì˜™
+// ? ì‹¹?™ì˜™? ì™?™å ?™ì˜™ ?œå ?™ì˜™
+// ? ì™?™å ?™ì˜™? ì‹±?¸ì˜™, ? ì™?™å ?™ì˜™ ?œå ?™ì˜™
 
 
 public class GameUI : MonoBehaviour
 {
-    // ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ò´ï¿½
-    [Header("Äµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®")]
+    // ? ì™?™í¬? ì™?™íŠ¸ ? ì™?™å ?™ì˜™? ì™?™íŠ¸? ì™??? ì™?™å ?™ì˜™? ì™?™íŠ¸ ? ì??ì˜™
+    [Header("ìº”å ?™ì˜™? ì™??? ì™?™å ?™ì˜™? ì™?™íŠ¸")]
     [SerializeField] private GameObject _gameUICanvas;
     [SerializeField] private GameObject _gameStateUICanvas;
 
-    [Header("ï¿½ï¿½Æ® ï¿½Ì¹ï¿½ï¿½ï¿½")]
+    [Header("? ì™?™íŠ¸ ? ì‹±ë±„ì˜™? ì™??)]
     [SerializeField] private Sprite heart_full;
     [SerializeField] private Sprite heart_empty;
     [SerializeField] private List<Image> hearts;
 
-    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
-    [SerializeField] private TextMeshProUGUI _gameStateText; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-    [SerializeField] private string[] _gameStateMessages; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
+    [Header("? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™")]
+    [SerializeField] private TextMeshProUGUI _gameStateText; // ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™
+    [SerializeField] private string[] _gameStateMessages; // ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™ ? ì¼??
 
     private CharacterController character;
 
     private TextMeshProUGUI currentScoreTxt; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     private TextMeshProUGUI bestScoreTxt; // ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½
-    private TextMeshProUGUI stateCurrentScoreTxt; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
-    private TextMeshProUGUI stateBestScoreTxt; // ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private TextMeshProUGUI stateCurrentScoreTxt; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+    private TextMeshProUGUI stateBestScoreTxt; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    private Button jumpButton; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
-    private Button restartButton; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
-    private Button backButton; // ï¿½Ú·Î°ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
-    private Button homeButton; // È¨ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
-    private Button pauseButton; // ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
-    private Button slidingButton; // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Æ°
+    private Button jumpButton; // ? ì™?™å ?™ì˜™ ? ì™?™íŠ¼
+    private Button restartButton; // ? ì™?™å ?™ì˜™?? ? ì™?™íŠ¼
+    private Button backButton; // ? ìŒ˜ë¡œê³¤?™å ?™ì˜™ ? ì™?™íŠ¼
+    private Button homeButton; // ?ˆå ?™ì˜™? ì™??? ì™?™å ?™ì˜™ ? ì™?™íŠ¼
+    private Button pauseButton; // ? ì‹¹?™ì˜™? ì™?™å ?™ì˜™ ? ì™?™íŠ¼
+    private Button slidingButton; // ? ì™?™å ?™ì˜™? ì‹±?¸ì˜™ ? ì™?™íŠ¼
 
     public GameObject[] charPrefabs;
     public GameObject player;
 
-    public bool HpUp = false;
+    public bool HpUp = false; // È¸ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private void Start()
     {
@@ -59,11 +59,12 @@ public class GameUI : MonoBehaviour
     private void Update()
     {
         UpdateHealthUI();
+        UpdateScoreUI();
     }
 
-    public void Init() // ï¿½Ê±ï¿½È­
+    public void Init() // ? ì‹­ê¹ì˜™??
     {
-        // ï¿½Î½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        // ? ì‹¸?™ì˜™? ì™?™å ?¶ìš¸??? ì™?™å ?™ì˜™? ì™?™íŠ¸ ? ì™?™å ?™ì˜™
         Transform gameCanvas = _gameUICanvas.transform;
         Transform gameStateCanvas = _gameStateUICanvas.transform;
 
@@ -91,11 +92,12 @@ public class GameUI : MonoBehaviour
         character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
         character.SetCharacterState(); // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+        LoadBestScore(); // ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 
-        Time.timeScale = 1.0f; // ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½
+        Time.timeScale = 1.0f; // ? ì™?™å ?ˆì™?™å ?™ì˜™
     }
 
-    public void SetUI(int currentscore, int bestscore) // ì ìˆ˜ë¥¼ ë°›ì•„ì˜´
+    public void SetUI(int currentscore, int bestscore) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¾Æ¿ï¿½
     {
         currentScoreTxt.text = currentscore.ToString();
         bestScoreTxt.text = bestscore.ToString();
@@ -106,40 +108,39 @@ public class GameUI : MonoBehaviour
     public void SaveBestScore()
     {
         PlayerPrefs.SetInt("BestScore", character.BestScore);
-        PlayerPrefs.Save(); // ë³€ê²½ ì‚¬í•­ì„ ë””ìŠ¤í¬ì— ì €ì¥
+        PlayerPrefs.Save(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
-    public void LoadBestScore() // ìµœê³  ì ìˆ˜ ì €ì¥
+    public void LoadBestScore() // ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        if (PlayerPrefs.HasKey("BestScore")) // í•´ë‹¹ í‚¤ê°€ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
+        if (PlayerPrefs.HasKey("BestScore")) // ï¿½Ø´ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         {
             character.BestScore = PlayerPrefs.GetInt("BestScore");
             bestScoreTxt.text = character.BestScore.ToString();
         }
         else
         {
-            character.BestScore = 0; // ì €ì¥ëœ ìµœê³  ì ìˆ˜ê°€ ì—†ìœ¼ë©´ 0ìœ¼ë¡œ ì´ˆê¸°í™”
+            character.BestScore = 0; // ï¿½ï¿½ï¿½ï¿½ï¿? ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
             bestScoreTxt.text = "0";
         }
     }
-
-    public void ShowGameStateUI() // ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ UI
+    
+    private void ShowGameStateUI() // ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ UI
     {
-        if (character.CurrentHp <= 0) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (character.CurrentHp <= 0) // ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™? ì™??? ì™??- ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™
         {
-            _gameStateText.text = _gameStateMessages[1]; // "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿½
+            _gameStateText.text = _gameStateMessages[1]; // "? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™" ? ì™?™å ?
             _gameStateUICanvas.SetActive(true);
             Time.timeScale = 0f;
         }
-        else if (character.Score >= 5000) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
-        {
-            _gameStateText.text = _gameStateMessages[0]; // "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿½
-            _gameStateUICanvas.SetActive(true);
-            Time.timeScale = 0f;
-        }
+        //else if (stageClear) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+        //{
+        //_gameStateText.text = _gameStateMessages[0]; // "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿?
+        //_gameStateUICanvas.SetActive(true);
+        //}
     }
 
-    public void UpdateHealthUI() // Hp UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+    public void UpdateHealthUI() // Hp UI ? ì™?™å ?™ì˜™? ì™?™íŠ¸
     {
         if (HpUp)
         {
@@ -177,21 +178,26 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void CheckGameOver() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public void UpdateScoreUI()
+    {
+        SetUI(character.Score, character.BestScore);
+    }
+
+    public void CheckGameOver() // ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™? ì™??? ì™?™å ? ? ì™?™å ?™ì˜™
     {
         StartCoroutine(DelayedGameOverUI());
     }
 
     IEnumerator DelayedGameOverUI()
     {
-        yield return new WaitForSeconds(0.5f); // 0.5ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ûµï¿½
-        Debug.Log("0.5ï¿½ï¿½ ï¿½Ä¿ï¿½ UIï¿½Ûµï¿½");
+        yield return new WaitForSeconds(0.5f); // 0.5? ì™??? ì™?™å ? ? ì™??? ìŒ•?™ì˜™ ? ìŒœ?¸ì˜™
+        Debug.Log("0.5? ì™??? ì‹?¸ì˜™ UI? ìŒœ?¸ì˜™");
         ShowGameStateUI();
     }
 
-    #region ï¿½ï¿½Æ°
+    #region ? ì™?™íŠ¼
 
-    public void OnClickJumpButton() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    private void OnClickJumpButton() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
         if (character.jumpCount < character.maxJumpCount && !character.isSliding)
         {
@@ -199,7 +205,7 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void OnClickSlidingButton() // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Æ°
+    private void OnClickSlidingButton() // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Æ°
     {
         if (character.isSliding == false)
         {
@@ -213,28 +219,28 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void OnClickRestartButton() // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    private void OnClickRestartButton() // ï¿½ï¿½ï¿½ï¿½ï¿? ï¿½ï¿½Æ°
     {
-        Time.timeScale = 1f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Time.timeScale = 1f; // ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™
         SceneManager.LoadScene("Game");
-        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½");
+        Debug.Log("? ì™?™å ?™ì˜™??");
     }
 
-    public void OnClickNextButton() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    private void OnClickNextButton() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
-        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+        Debug.Log("? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™? ì™?™å ?™ì˜™");
     }
 
-    public void OnClickHomeButton() // È¨ ï¿½ï¿½Æ°
+    private void OnClickHomeButton() // È¨ ï¿½ï¿½Æ°
     {
         SceneManager.LoadScene("Main");
     }
 
-    public void OnClickPauseButton() // ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    private void OnClickPauseButton() // ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
-        _gameStateText.text = _gameStateMessages[2]; // "ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿½
+        _gameStateText.text = _gameStateMessages[2]; // "? ì‹¹?™ì˜™? ì™?™å ?™ì˜™" ? ì™?™å ?
         _gameStateUICanvas.SetActive(true);
-        Time.timeScale = 0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Time.timeScale = 0f; // ? ì™?™å ?™ì˜™ ? ì™?™å ?™ì˜™
     }
 
     #endregion

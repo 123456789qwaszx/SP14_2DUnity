@@ -8,7 +8,7 @@ public class GigantizeItem : Items
     // memo: 슈퍼모드 부여 여부도 고려해볼 것
     private float scaleUpDuration = 2f; // 사이즈업은 이 아이템의 고유변수이므로 이관
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterController _player = collision.gameObject.GetComponent<CharacterController>();
 
