@@ -15,7 +15,7 @@ public class ScoreItem : Items
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            // ScoreUp(score);  // 점수 증가 함수
+            ScoreUp(_player, score);  // 점수 증가 함수
         }
     }
 }
