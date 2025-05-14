@@ -12,6 +12,7 @@ public class Items : MonoBehaviour
     [SerializeField] private GameObject _speedUP;
 
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
+    List<Items> items = new List<Items>();
 
     bool isItem = false;
 
@@ -71,7 +72,6 @@ public class Items : MonoBehaviour
 
     private IEnumerator SpeedUpCoroutine(CharacterController _player, float _speedUp, float _duration)
     {
-        
         foreach (ParallaxHandle phUp in parallaxHandles)
         {
             phUp.SetMoveSpeed(_player.CurrentSpeed + _speedUp);
