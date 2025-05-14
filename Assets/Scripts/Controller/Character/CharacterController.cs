@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterController : CharacterBaseController
 {
@@ -9,7 +10,6 @@ public class CharacterController : CharacterBaseController
     [SerializeField] private GameObject _hpRecovery;
     [SerializeField] private GameObject _speedUP;
 
-    GameUI gameUI;
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
 
     bool isItem = false;
@@ -191,14 +191,18 @@ public class CharacterController : CharacterBaseController
             if (CurrentHp > 0 && CurrentHp < 3)
             {
                 CurrentHp += 1;
-
+                gameUI.HpUp = true;
+                gameUI.UpdateHealthUI();
+                Debug.Log("체력회복");
+                Debug.Log($"현재 체력: {CurrentHp}");
+                Debug.Log($"{"HpRecovery!"}");
             }
             else
             {
 
             }
             Destroy(collision.gameObject);
-            Debug.Log($"{"HpRecovery!"}");
+            
         }
         else if (collision.gameObject.CompareTag("SpeedUp"))
         {
@@ -214,13 +218,20 @@ public class CharacterController : CharacterBaseController
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
+            isInvincible = true;
             if (isInvincible)
             {
+                ObstacleBaseController obstacle = collision.gameObject.GetComponent<ObstacleBaseController>();
+
                 Damage(damage);
                 ApplyKnockBack(transform, knockBackPower);
                 ApplyInvincible();
+                Debug.Log("체력감소");
+                Debug.Log($"현재 체력: {CurrentHp}");
+                gameUI.UpdateHealthUI();
+                Debug.Log($"obstacle!");
             }
-            Debug.Log($"obstacle!");
+
         }
         else if (collision.gameObject.CompareTag("MapRoutin"))
         {
