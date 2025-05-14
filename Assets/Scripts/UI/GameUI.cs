@@ -42,10 +42,14 @@ public class GameUI : MonoBehaviour
     private Button pauseButton; // �Ͻ����� ��ư
     private Button slidingButton; // �����̵� ��ư
 
+    public GameObject[] charPrefabs;
+    public GameObject player;
+
     public bool HpUp = false;
 
     private void Start()
     {
+        player = Instantiate(charPrefabs[(int)Managers.data.currentCharacter]);
         Init();
     }
 
@@ -78,11 +82,6 @@ public class GameUI : MonoBehaviour
         pauseButton.onClick.AddListener(OnClickPauseButton);
 
         GameObject playerObject = player;
-        Debug.Log($"player = {player}");
-        Debug.Log($"playerObject = {playerObject}");
-        
-        // ���� �ڵ�
-        //GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
