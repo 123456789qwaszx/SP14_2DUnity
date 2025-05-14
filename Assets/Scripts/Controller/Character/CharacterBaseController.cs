@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// �÷��̾��? ĳ���� �߰��� �����? ĳ���� �⺻ Ŭ����
 public class CharacterBaseController : MonoBehaviour
 {
-    protected Rigidbody2D rb; // ĳ���ʹ� �����Ǿ� �־ ���� ���� �ൿ�� ���� �ʿ�
+    protected Rigidbody2D rb;
     protected Animator anim;
     protected GameUI gameUI;
 
     [Header("Character State")]
     [Tooltip("ĳ������ ����Ʈ �������ͽ�")]
-    public float maxHp = 3f;    // memo: 3���� ��Ʈ�� ������ ���� ���?, �ݸ� ���? ��Ȳ�� �����Ͽ� float�� ����
+    public float maxHp = 3f;
     protected float currentHp = 0f;
     protected float moveSpeed = 5f;
     protected float currentSpeed = 0f;
     public float jumpPower = 3f;
     public float currentJumpPower = 0f;
-    public int maxJumpCount = 1;    // ĳ���Ͱ� ���� ���� Ƚ��
+    public int maxJumpCount = 1;
     public int jumpCount = 0;
     public bool isJumping = false;
-    public bool isJumpHold = false;  // ����Ű ���� Ȯ��
+    public bool isJumpHold = false;
     protected float slidePower = 2f;
     protected int score = 0;
     protected int bestScore = 0;
@@ -39,16 +38,16 @@ public class CharacterBaseController : MonoBehaviour
 
     [Header("Character Interaction")]
 
-    protected Vector2 knockBack = Vector2.zero;   // ��ֹ���? �ε��� ���� ĳ���Ͱ� �з����� ��
+    protected Vector2 knockBack = Vector2.zero;
     protected float knockBackDuration = 0f;
 
-    protected float invincibleDuration = 2f; // ���� �ð�
-    public bool isInvincible = false;  // ���� ���� üũ
+    protected float invincibleDuration = 2f;
+    public bool isInvincible = false;
 
     private Coroutine invincibleCoroutine = null;
 
-    private Vector3 returnPosition = Vector3.zero;   // ĳ���� ���� ��ġ
-    private float returnDistance = 5f; // ĳ���� ���� �ӵ�
+    private Vector3 returnPosition = Vector3.zero;
+    private float returnDistance = 5f;
 
     protected virtual void Awake()
     {
@@ -73,7 +72,7 @@ public class CharacterBaseController : MonoBehaviour
         {
             knockBackDuration -= Time.fixedDeltaTime;
         }
-        else if (knockBack != Vector2.zero)   // �˹��� ������ ���?, �˹� ���¸� �ʱ�ȭ
+        else if (knockBack != Vector2.zero)
         {
             RecoverKnockBack();
         }
@@ -84,7 +83,6 @@ public class CharacterBaseController : MonoBehaviour
 
     }
 
-    // memo: �����̵� ��, �ӵ��� ���ӽ�Ű�� ������ �ʿ��ұ�?
     public virtual void Jump()
 
     {
@@ -105,7 +103,7 @@ public class CharacterBaseController : MonoBehaviour
     {
         currentHp -= damage;
 
-        if (currentHp <= 0f)    // ü���� 0 ���Ϸ� �������� �������� �Ծ��� ���?, ���? ó��
+        if (currentHp <= 0f)
         {
             gameUI.CheckGameOver();
             Dead();
@@ -134,34 +132,33 @@ public class CharacterBaseController : MonoBehaviour
             component.enabled = false;
         }
 
-        // to do: ���? �ִϸ��̼� �߰�
+        // to do: ���� ���� ó�� �߰���
 
         Destroy(gameObject, 2f);
     }
 
     public virtual void ApplyKnockBack(Transform other, float power)
     {
-        returnPosition.x = transform.position.x;   // ĳ���� ���� ��ġ�� �˹� ���� ��ġ�� ����
+        returnPosition.x = transform.position.x;
 
-        knockBackDuration = power / 3;  // �о�� ���� ���Ҽ��� �������� ���ư���
+        knockBackDuration = power / 3;
         knockBack = (other.position - transform.position).normalized * power;
 
         rb.velocity -= knockBack;
     }
 
-    // ���� ��, ĳ���͸� ȭ�� �߾����� ���ͽ�Ŵ
     protected virtual void RecoverKnockBack()
     {
-        float currentXPos = transform.position.x;   // �˹� ���� ĳ���� x��ǥ��
+        float currentXPos = transform.position.x;
         float targetXPos = returnPosition.x;
 
-        if (Mathf.Abs(currentXPos - targetXPos) < 0.001f)   // �˹��� ������, ĳ���Ͱ� ���� ��ġ�� �������� ���?
+        if (Mathf.Abs(currentXPos - targetXPos) < 0.001f)
         {
             knockBack = Vector2.zero;
             rb.velocity = Vector2.zero;
 
             return;
-            // returnPosition.x = currentX;   // ���� ��ġ�� ���� ��ġ�� ����
+            // returnPosition.x = currentX;
         }
 
         float returnXPos = Mathf.Lerp(currentXPos, targetXPos, Time.deltaTime * returnDistance);
@@ -171,7 +168,7 @@ public class CharacterBaseController : MonoBehaviour
 
     public virtual void ApplyInvincible()
     {
-        if (invincibleCoroutine != null)    // �ڷ�ƾ �ߺ� ���� ����
+        if (invincibleCoroutine != null)
         {
             StopCoroutine(invincibleCoroutine);
         }
@@ -183,7 +180,7 @@ public class CharacterBaseController : MonoBehaviour
     {
         isInvincible = true;
 
-        yield return new WaitForSeconds(duration);  // ���� �ð� ���� ���� ���� �Լ� ȣ�� ���?
+        yield return new WaitForSeconds(duration);
 
         EndInvincible();
 
