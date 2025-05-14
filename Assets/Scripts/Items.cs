@@ -60,11 +60,13 @@ public class Items : MonoBehaviour
 
         _player.transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
 
-        Destroy(_scaleUP);
+        IsItems(isItem);
 
         yield return new WaitForSeconds(_duration);
 
         _player.transform.localScale = originalScale;
+
+        IsItems(!isItem);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +79,7 @@ public class Items : MonoBehaviour
             phUp.SetMoveSpeed(_player.CurrentSpeed + _speedUp);
         }
 
-        Destroy(_speedUP);
+        IsItems(isItem);
 
         yield return new WaitForSeconds(_duration);
 
@@ -85,7 +87,17 @@ public class Items : MonoBehaviour
         {
             phDown.SetMoveSpeed(_player.CurrentSpeed);
         }
+        IsItems(!isItem);
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    private void IsItems(bool _isItems)
+    {
+        gameObject.SetActive(_isItems);
+        Debug.Log($"게임오브젝트 : {gameObject}");
+    }
+
     private void Start()
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("BackGroundLayers");
