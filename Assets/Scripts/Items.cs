@@ -44,9 +44,12 @@ public class Items : MonoBehaviour
    
     private IEnumerator HpRecoveryCoroutine(CharacterController _player, float _duration)
     {
+        Debug.Log("Hp");
         if (_player.CurrentHp > 0 && _player.CurrentHp < 3)
         {
+            Debug.Log(_player.CurrentHp);
             _player.CurrentHp += 1;
+            Debug.Log(_player.CurrentHp);
             _hpRecovery.SetActive(false);
         }
         else
@@ -63,15 +66,13 @@ public class Items : MonoBehaviour
 
     private IEnumerator ScaleUpCoroutine(CharacterController _player, float _duration)
     {
-        Vector3 originalScale = _player.transform.localScale;
-
-        _player.transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
+        _player.transform.localScale = new Vector3(2.0f, 2.0f, 0f);
 
         _scaleUP.SetActive(false);
 
         yield return new WaitForSeconds(_duration);
 
-        _player.transform.localScale = originalScale;
+        _player.transform.localScale = new Vector3(1.0f, 1.0f, 0f);
 
         _scaleUP.SetActive(true);
     }
