@@ -146,4 +146,6 @@ MonoBehaviour:
   _scaleUP: {fileID: 2413797875124028402, guid: f507b8c1c41e4124bb5024e5d1497d18, type: 3}
   _hpRecovery: {fileID: 2740231429903898679, guid: a9040f858cffc09408a9749f5b3772c2, type: 3}
   _speedUP: {fileID: 7849743998566687225}
+  _scoreUP: {fileID: 0}
+  _bigScoreUP: {fileID: 0}
   parallaxHandles: []
