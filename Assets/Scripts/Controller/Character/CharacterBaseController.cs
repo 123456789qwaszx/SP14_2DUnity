@@ -49,7 +49,25 @@ public class CharacterBaseController : MonoBehaviour
     }
     public float CurrentSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
-    public int Score { get { return score; } set { score = value; } }
+    public int Score 
+    { 
+        get
+        { 
+            return score;
+        } 
+        set 
+        {
+            score = value;
+
+            if(score > bestScore)
+            {
+                bestScore = score;
+                gameUI.UpdateScoreUI();
+                Debug.Log($"최고 점수 갱신: {bestScore}"); // 로그 추가
+                gameUI.SaveBestScore();
+            }
+        } 
+    }
     public int BestScore { get { return bestScore; } set { bestScore = value; } }
     protected float damage = 1f;
 

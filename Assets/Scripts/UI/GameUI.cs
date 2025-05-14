@@ -116,7 +116,7 @@ public class GameUI : MonoBehaviour
             bestScoreTxt.text = "0";
         }
     }
-    
+
     private void ShowGameStateUI() // ���ӻ��� UI
     {
         if (character.CurrentHp <= 0) // ���� ������ �� - ���� ����
@@ -170,11 +170,11 @@ public class GameUI : MonoBehaviour
         }
     }
 
-
     public void UpdateScoreUI()
     {
         SetUI(character.Score, character.BestScore);
     }
+
     public void CheckGameOver() // ���� ������ ��� ����
     {
         StartCoroutine(DelayedGameOverUI());
