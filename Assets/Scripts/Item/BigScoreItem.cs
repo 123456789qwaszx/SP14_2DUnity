@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 점수를 대량으로 올려주는 아이템템
-public class BigScoreItem : Items
+public class BigScoreItem : MonoBehaviour
 {
     private int score = 50;
 
@@ -15,7 +15,7 @@ public class BigScoreItem : Items
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            ScoreUp(_player, score);  // 점수 증가 함수
+            // ScoreUp(score);  // 점수 증가 함수
         }
     }
 }
