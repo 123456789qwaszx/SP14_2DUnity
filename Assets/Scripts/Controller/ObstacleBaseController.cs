@@ -31,7 +31,7 @@ public class ObstacleBaseController : MonoBehaviour
         {
             CharacterController character = collision.gameObject.GetComponent<CharacterController>();
 
-            if (character.isInvincible)
+            if (!character.isInvincible)
             {
                 character.Damage(damage);
                 character.ApplyKnockBack(transform, knockBackPower);
