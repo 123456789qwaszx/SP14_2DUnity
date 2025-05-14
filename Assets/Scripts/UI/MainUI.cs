@@ -7,16 +7,12 @@ using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour
 {
-    // -���� ȭ��-
-    // ����, ������
-    // ����
-
+    // -메인 화면-
+    // 시작, 나가기
+    // 설정
     [SerializeField] private GameObject _soundUICanvas;
 
-    [SerializeField]private Button startButton;
-    [SerializeField]private Button exitButton;
-    [SerializeField]private Button soundButton;
-    [SerializeField]private Button closeButton;
+    private Button closeButton;
 
     private void Start()
     {
@@ -25,21 +21,19 @@ public class MainUI : MonoBehaviour
 
     public void Init() // �ʱ�ȭ
     {
-        // ������Ʈ�� ����
+        // 컴포넌트와 연결
         Transform soundCanvas = _soundUICanvas.transform;
 
         closeButton = soundCanvas.Find("Button - Close").GetComponent<Button>();
-
         closeButton.onClick.AddListener(OnClickSoundUICloseButton);
     }
 
-    public void OnClickStartButton() // ���۹�ư
+    public void OnClickStartButton() // 시작버튼
     {
         SceneManager.LoadScene("SelectCharacter");
-        //SceneManager.LoadScene("SelectMode");
     }
 
-    public void OnClickExitButton() // ������ ��ư
+    public void OnClickExitButton() // 나가기 버튼
     {
         Debug.Log("������");
 #if UNITY_EDITOR
