@@ -80,12 +80,10 @@ public class Items : MonoBehaviour
 
     private IEnumerator SpeedUpCoroutine(CharacterController _player, float _speedUp, float _duration)
     {
-        
         foreach (ParallaxHandle phUp in parallaxHandles)
         {
             phUp.SetMoveSpeed(_player.CurrentSpeed + _speedUp);
         }
-
         _speedUP.SetActive(false);
 
         yield return new WaitForSeconds(_duration);
