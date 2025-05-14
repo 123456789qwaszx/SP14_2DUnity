@@ -16,7 +16,7 @@ public class Items : MonoBehaviour
 
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
 
-    private float maxSpeed = 5f;
+    private float maxSpeed = 8f;
     private float duration = 3f;
     public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     public float Duration { get { return duration; } set { duration = value; } }
