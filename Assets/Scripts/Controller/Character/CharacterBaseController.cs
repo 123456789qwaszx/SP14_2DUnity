@@ -7,11 +7,12 @@ public class CharacterBaseController : MonoBehaviour
 {
     protected Rigidbody2D rb; // ĳ���ʹ� �����Ǿ� �־ ���� ���� �ൿ�� ���� �ʿ�
     protected Animator anim;
+    protected GameUI gameUI;
 
     [Header("Character State")]
     [Tooltip("ĳ������ ����Ʈ �������ͽ�")]
     public float maxHp = 3f;    // memo: 3���� ��Ʈ�� ������ ���� ���?, �ݸ� ���? ��Ȳ�� �����Ͽ� float�� ����
-    protected float currentHp = 0f;
+    public float currentHp = 0f;
     protected float moveSpeed = 5f;
     protected float currentSpeed = 0f;
     public float jumpPower = 3f;
@@ -76,7 +77,7 @@ public class CharacterBaseController : MonoBehaviour
         }
     }
 
-    protected virtual void SetCharacterState()
+    public virtual void SetCharacterState()
     {
 
     }
@@ -101,9 +102,10 @@ public class CharacterBaseController : MonoBehaviour
     public virtual void Damage(float damage)
     {
         currentHp -= damage;
-        
+
         if (currentHp <= 0f)    // ü���� 0 ���Ϸ� �������� �������� �Ծ��� ���?, ���? ó��
         {
+            gameUI.CheckGameOver();
             Dead();
         }
     }

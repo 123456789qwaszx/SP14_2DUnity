@@ -14,6 +14,7 @@ TagManager:
   - MapRoutin
   - Score10
   - Score50
+  - GameUI
   layers:
   - Default
   - TransparentFX

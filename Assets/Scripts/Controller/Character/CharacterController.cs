@@ -26,8 +26,24 @@ public class CharacterController : CharacterBaseController
     protected override void Start()
     {
         base.Start();
-
         SetCharacterState();
+
+        //GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
+        //gameUI = gameUIObject.GetComponent<GameUI>();
+        // GameUI ÄÄÆ÷³ÍÆ® Ã£¾Æ¼­ ÇÒ´ç (Start()¿¡¼­ ÇÑ ¹ø¸¸)
+        GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
+        if (gameUIObject != null)
+        {
+            gameUI = gameUIObject.GetComponent<GameUI>();
+            if (gameUI == null)
+            {
+                Debug.LogError("GameUI ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ®¿¡ GameUI ÄÄÆ÷³ÍÆ®°¡ ¾ø½À´Ï´Ù!");
+            }
+        }
+        else
+        {
+            Debug.LogError("GameUI ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù!");
+        }
     }
 
     protected override void Update()
@@ -87,7 +103,7 @@ public class CharacterController : CharacterBaseController
         */
     }
 
-    protected override void SetCharacterState()
+    public override void SetCharacterState()
     {
         base.SetCharacterState();
 
@@ -165,19 +181,21 @@ public class CharacterController : CharacterBaseController
             isGround = false;
         }
     }
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Score10"))
         {
             Score += 10;
+            gameUI.SetUI(Score);
             Destroy(collision.gameObject);
             Debug.Log($"{Score}");
         }
         else if (collision.gameObject.CompareTag("Score50"))
         {
             Score += 50;
+            gameUI.SetUI(Score);
             Destroy(collision.gameObject);
             Debug.Log($"{Score}");
         }
@@ -186,11 +204,11 @@ public class CharacterController : CharacterBaseController
             if (CurrentHp > 0 && CurrentHp < 3)
             {
                 CurrentHp += 1;
-                
+
             }
             else
             {
-                
+
             }
             Destroy(collision.gameObject);
             Debug.Log($"{"HpRecovery!"}");
@@ -202,24 +220,30 @@ public class CharacterController : CharacterBaseController
             Debug.Log($"SpeedUp!");
         }
         else if (collision.gameObject.CompareTag("ScaleUp"))
-        { 
+        {
             StartCoroutine(ScaleUpCoroutine(duration));
             Destroy(collision.gameObject);
             Debug.Log($"ScaleUp!");
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
+            isInvincible = true;
             if (isInvincible)
             {
+                ObstacleBaseController obstacle = collision.gameObject.GetComponent<ObstacleBaseController>();
+
                 Damage(damage);
                 ApplyKnockBack(transform, knockBackPower);
                 ApplyInvincible();
+                Debug.Log("Ã¼·Â " + currentHp);
+                gameUI.UpdateHealthUI();
+                Debug.Log($"obstacle!");
             }
-            Debug.Log($"obstacle!");
+
         }
         else if (collision.gameObject.CompareTag("MapRoutin"))
         {
-            //ë§µ ì¶”ê°€ì‹œ ëœë¤ë²”ìœ„ ì§ì ‘ì¡°ì •
+            //¸Ê Ãß°¡½Ã ·£´ı¹üÀ§ Á÷Á¢Á¶Á¤
             int randomIndex = UnityEngine.Random.Range(1, 5);
 
             GameObject randomMap = Managers.Map.LoadMap(randomIndex);
@@ -233,9 +257,9 @@ public class CharacterController : CharacterBaseController
         }
     }
 
-    private IEnumerator SpeedUpCoroutine( float _speedUp, float _duration)
+    private IEnumerator SpeedUpCoroutine(float _speedUp, float _duration)
     {
-        
+
         foreach (ParallaxHandle phUp in parallaxHandles)
         {
             phUp.SetMoveSpeed(CurrentSpeed + _speedUp);
