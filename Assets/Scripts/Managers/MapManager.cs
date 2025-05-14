@@ -30,7 +30,7 @@ public class MapManager
         }
 
         Managers.Resource.Instantiate("Map/Map_default");
-        GameObject map = Managers.Resource.Instantiate($"Map/Map_Test");
+        GameObject map = Managers.Resource.Instantiate($"Map/Map_001");
         
         float mapWidth = Managers.Map.GetMapWorldWidth(map);
         map.transform.position = new Vector3(mapWidth, 0);
