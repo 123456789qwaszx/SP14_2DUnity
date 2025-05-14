@@ -8,17 +8,8 @@ using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
 using UnityEditor;
 
-// -�ΰ���-
-
-// ü�¹� ǥ��
-// ���� ǥ��
-// �Ͻ����� ǥ��
-// �����̵�, ���� ǥ��
-
-
 public class GameUI : MonoBehaviour
 {
-    // ��ũ��Ʈ ������Ʈ�� ������Ʈ �Ҵ�
     [Header("ĵ���� ������Ʈ")]
     [SerializeField] private GameObject _gameUICanvas;
     [SerializeField] private GameObject _gameStateUICanvas;
@@ -29,8 +20,8 @@ public class GameUI : MonoBehaviour
     [SerializeField] private List<Image> hearts;
 
     [Header("���� ���� ����")]
-    [SerializeField] private TextMeshProUGUI _gameStateText; // ���� ���� ����
-    [SerializeField] private string[] _gameStateMessages; // ���� ���� ���� �迭
+    [SerializeField] private TextMeshProUGUI _gameStateText; // 게임 상태 문구
+    [SerializeField] private string[] _gameStateMessages; // 게임 상태 문구 배열
 
     private CharacterController character;
 
