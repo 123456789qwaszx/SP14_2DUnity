@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterController : CharacterBaseController
 {
@@ -27,23 +28,6 @@ public class CharacterController : CharacterBaseController
     {
         base.Start();
         SetCharacterState();
-
-        //GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
-        //gameUI = gameUIObject.GetComponent<GameUI>();
-        // GameUI 컴포넌트 찾아서 할당 (Start()에서 한 번만)
-        GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
-        if (gameUIObject != null)
-        {
-            gameUI = gameUIObject.GetComponent<GameUI>();
-            if (gameUI == null)
-            {
-                Debug.LogError("GameUI 태그를 가진 오브젝트에 GameUI 컴포넌트가 없습니다!");
-            }
-        }
-        else
-        {
-            Debug.LogError("GameUI 태그를 가진 오브젝트를 찾을 수 없습니다!");
-        }
     }
 
     protected override void Update()
@@ -185,6 +169,9 @@ public class CharacterController : CharacterBaseController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
+        gameUI = gameUIObject.GetComponent<GameUI>();
+
         if (collision.gameObject.CompareTag("Score10"))
         {
             Score += 10;
@@ -204,14 +191,18 @@ public class CharacterController : CharacterBaseController
             if (CurrentHp > 0 && CurrentHp < 3)
             {
                 CurrentHp += 1;
-
+                gameUI.HpUp = true;
+                gameUI.UpdateHealthUI();
+                Debug.Log("체력회복");
+                Debug.Log($"현재 체력: {CurrentHp}");
+                Debug.Log($"{"HpRecovery!"}");
             }
             else
             {
 
             }
             Destroy(collision.gameObject);
-            Debug.Log($"{"HpRecovery!"}");
+            
         }
         else if (collision.gameObject.CompareTag("SpeedUp"))
         {
@@ -235,7 +226,8 @@ public class CharacterController : CharacterBaseController
                 Damage(damage);
                 ApplyKnockBack(transform, knockBackPower);
                 ApplyInvincible();
-                Debug.Log("체력 " + currentHp);
+                Debug.Log("체력감소");
+                Debug.Log($"현재 체력: {CurrentHp}");
                 gameUI.UpdateHealthUI();
                 Debug.Log($"obstacle!");
             }

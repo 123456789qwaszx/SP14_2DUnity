@@ -32,7 +32,6 @@ public class GameUI : MonoBehaviour
     [SerializeField] private string[] _gameStateMessages; // 게임 상태 문구 배열
 
     private CharacterController character;
-    private Items items;
 
     private TextMeshProUGUI currentScoreTxt; // 현재 점수 
     private TextMeshProUGUI bestScoreTxt; // 최고 점수
@@ -43,12 +42,11 @@ public class GameUI : MonoBehaviour
     private Button pauseButton; // 일시정지 버튼
     private Button slidingButton; // 슬라이딩 버튼
 
-    bool HpUp = false;
+    public bool HpUp = false;
 
     private void Start()
     {
         Init();
-
     }
 
     private void Update()
@@ -61,22 +59,7 @@ public class GameUI : MonoBehaviour
         // 인스펙터에 오브젝트 연결
         Transform gameCanvas = _gameUICanvas.transform;
         Transform gameStateCanvas = _gameStateUICanvas.transform;
-        //if (gameCanvas == null) Debug.LogError("_gameUICanvas가 할당되지 않았습니다!");
-        //if (gameStateCanvas == null) Debug.LogError("_gameStateUICanvas가 할당되지 않았습니다!");
 
-        //Transform currentScoreTransform = gameCanvas.Find("CurrentScoreText");
-        //if (currentScoreTransform == null)
-        //{
-        //    Debug.LogError("CurrentScoreText 오브젝트를 찾을 수 없습니다!");
-        //}
-        //else
-        //{
-        //    currentScoreTxt = currentScoreTransform.GetComponent<TextMeshProUGUI>();
-        //    if (currentScoreTxt == null)
-        //    {
-        //        Debug.LogError("CurrentScoreText 오브젝트에 TextMeshProUGUI 컴포넌트가 없습니다!");
-        //    }
-        //}
         currentScoreTxt = gameCanvas.Find("CurrentScoreText").GetComponent<TextMeshProUGUI>();
         //bestScoreTxt = gameCanvas.Find("BestScoreText").GetComponent<TextMeshProUGUI>();
 
@@ -111,7 +94,7 @@ public class GameUI : MonoBehaviour
 
     private void ShowGameStateUI() // 게임상태 UI
     {
-        if (character.currentHp <= 0) // 죽은 상태일 때 - 게임 오버
+        if (character.CurrentHp <= 0) // 죽은 상태일 때 - 게임 오버
         {
             _gameStateText.text = _gameStateMessages[1]; // "게임 오버" 출력
             _gameStateUICanvas.SetActive(true);
@@ -126,32 +109,43 @@ public class GameUI : MonoBehaviour
 
     public void UpdateHealthUI() // Hp UI 업데이트
     {
-        // 테스트라 나중에 합쳐졌을 때 현재 체력 부분 수정
         if (HpUp)
         {
-            if (character.currentHp < character.maxHp)
+            if (character.CurrentHp > 0 && character.CurrentHp <= character.maxHp)
             {
-                items.HpRecovery(character);
-                Debug.Log($"체력 증가 {character.currentHp}");
-                hearts[(int)character.currentHp].sprite = heart_full;
+                if ((int)character.CurrentHp == 2)
+                {
+                    hearts[(int)character.CurrentHp - 1].sprite = heart_full;
+                }
+                else if ((int)character.CurrentHp == 3)
+                {
+                    hearts[(int)character.CurrentHp - 1].sprite = heart_full;
+                }
             }
 
             HpUp = false;
         }
         else if (character.isInvincible)
         {
-            //Debug.Log(character.isInvincible);
-            //Debug.Log($"체력 감소 {character.currentHp}");
-            if ((int)character.currentHp >= 0)
+            if (character.CurrentHp >= 0)
             {
-                hearts[(int)character.currentHp].sprite = heart_empty;
-
+                if ((int)character.CurrentHp == 2)
+                {
+                    hearts[(int)character.CurrentHp].sprite = heart_empty;
+                }
+                else if ((int)character.CurrentHp == 1)
+                {
+                    hearts[(int)character.CurrentHp].sprite = heart_empty;
+                }
+                else if ((int)character.CurrentHp == 0)
+                {
+                    hearts[(int)character.CurrentHp].sprite = heart_empty;
+                }
             }
-
         }
     }
 
-    public void CheckGameOver()
+    public void CheckGameOver() // 게임 오버후 잠시 멈춤
     {
         StartCoroutine(DelayedGameOverUI());
     }
@@ -159,7 +153,7 @@ public class GameUI : MonoBehaviour
     IEnumerator DelayedGameOverUI()
     {
         yield return new WaitForSeconds(0.5f); // 0.5초 대기 후 다시 작동
-        Debug.Log("0.5초 후 다시 시작");
+        Debug.Log("0.5초 후에 UI작동");
         ShowGameStateUI();
     }
 
