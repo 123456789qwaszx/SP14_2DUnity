@@ -77,7 +77,7 @@ public class Items : MonoBehaviour
     {
         _player.transform.localScale = new Vector3(2.0f, 2.0f, 0f);
 
-        // _scaleUP.SetActive(false);
+        GetComponent<Renderer>().enabled = false;
 
         yield return new WaitForSeconds(_duration);
 
@@ -85,7 +85,8 @@ public class Items : MonoBehaviour
 
         scaleUpCoroutine = null;
 
-        _scaleUP.SetActive(true);
+        GetComponent<Renderer>().enabled = true;
+
     }
 
     private void ScaleDown(CharacterController _player)
@@ -101,7 +102,7 @@ public class Items : MonoBehaviour
         {
             phUp.SetMoveSpeed(_player.CurrentSpeed + _speedUp);
         }
-        _speedUP.SetActive(false);
+        GetComponent<Renderer>().enabled = false;
 
         yield return new WaitForSeconds(_duration);
 
@@ -109,9 +110,9 @@ public class Items : MonoBehaviour
         {
             phDown.SetMoveSpeed(_player.CurrentSpeed);
         }
-        _speedUP.SetActive(true);
+        GetComponent<Renderer>().enabled = true;
     }
-     private IEnumerator ScoreUpCoroutine(CharacterController _player, int score)
+    private IEnumerator ScoreUpCoroutine(CharacterController _player, int score)
     {
         _player.Score += score;
 
