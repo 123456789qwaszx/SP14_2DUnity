@@ -44,6 +44,9 @@ public class GameUI : MonoBehaviour
     private Button pauseButton; // 일시정지 버튼
     private Button slidingButton; // 슬라이딩 버튼
 
+    public GameObject[] charPrefabs;
+    public GameObject player;
+
     bool HpUp = false;
 
     private void Start()
@@ -51,6 +54,13 @@ public class GameUI : MonoBehaviour
         Init();
         Debug.Log(character.currentHp);
         Debug.Log(character.maxHp);
+
+        //player = Instantiate(charPrefabs[(int)Managers.data.currentCharacter]);
+        player = Instantiate(charPrefabs[3]);
+        Debug.Log(player);
+
+        // 기존 코드
+        //player.transform.position = transform.position;
     }
 
     private void Update()
@@ -85,7 +95,12 @@ public class GameUI : MonoBehaviour
         homeButton.onClick.AddListener(OnClickHomeButton);
         pauseButton.onClick.AddListener(OnClickPauseButton);
 
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObject = player;
+        Debug.Log($"player = {player}");
+        Debug.Log($"playerObject = {playerObject}");
+        
+        // 기존 코드
+        //GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         character = playerObject.GetComponent<CharacterController>();
         _gameUICanvas.SetActive(true);
@@ -99,7 +114,7 @@ public class GameUI : MonoBehaviour
         currentScoreTxt.text = currentscore.ToString();
         //bestScoreTxt.text = bestscore.ToString();
     }
-
+    
     private void ShowGameStateUI() // 게임상태 UI
     {
         if (character.currentHp <= 0) // 죽은 상태일 때 - 게임 오버

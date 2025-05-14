@@ -17,7 +17,7 @@ public class SelectChar : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        Managers.data.currentCharacter = character;
+        Managers.data.currentCharacter = Character.VirutalGuy;
         OnSelect();
         Debug.Log($"currentChar = {Managers.data.currentCharacter}");
 

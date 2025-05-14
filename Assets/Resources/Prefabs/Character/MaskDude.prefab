@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 8556578848920489878}
   - component: {fileID: 972845993835160594}
   - component: {fileID: 7285922973579363613}
+  - component: {fileID: -8064875785309599892}
   m_Layer: 0
   m_Name: MaskDude
   m_TagString: Player
@@ -225,6 +226,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1255b0d52ebad824ba13ca522e748d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 3
+  currentHp: 0
+  jumpPower: 3
+  currentJumpPower: 0
+  maxJumpCount: 1
+  jumpCount: 0
+  isJumping: 0
+  isJumpHold: 0
   isSliding: 0
   isGround: 0
   isInvincible: 0
+  _scaleUP: {fileID: 0}
+  _hpRecovery: {fileID: 0}
+  _speedUP: {fileID: 0}
+  parallaxHandles: []
+--- !u!114 &-8064875785309599892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534186034736943906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df51afdb2f1a5a4a88307f0387eae89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: 3
+  chars:
+  - {fileID: -8064875785309599892}

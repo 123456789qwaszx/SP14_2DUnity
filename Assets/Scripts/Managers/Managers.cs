@@ -12,7 +12,7 @@ public class Managers : MonoBehaviour
     MapManager _map = new MapManager();
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
-    DataManager _data;
+    DataManager _data = new DataManager();
 
     public static MapManager Map { get { return Instance._map; } }
     public static PoolManager Pool { get { return Instance._pool; } } 
