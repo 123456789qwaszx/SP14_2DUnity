@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/z_Pixel Adventure 1/Scenes/Demo.unity
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 2b267e53eba723247bbaf1f94ec51f47
+  - enabled: 1
+    path: Assets/Scenes/SelectMode.unity
+    guid: 8cd846026233e6e4287efd09ea743289
+  - enabled: 1
+    path: Assets/Scenes/StageSelect.unity
+    guid: 0c7cb3cd371c18540acc0f91235e1680
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: f2f48aadf6da6c94481d4d118867c292
   m_configObjects: {}
