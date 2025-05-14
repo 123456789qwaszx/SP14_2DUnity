@@ -13,8 +13,6 @@ public class Items : MonoBehaviour
 
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
 
-    bool isItem = false;
-
     private float maxSpeed = 5f;
     private float duration = 3f;
     public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
@@ -28,19 +26,9 @@ public class Items : MonoBehaviour
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void HpRecovery(CharacterController _player)
+    public void HpRecovery(CharacterController _player, float _duration)
     {
-        // �÷��̾� hp�޾Ƽ� ����
-        if (_player.CurrentHp > 0 && _player.CurrentHp < 3)
-        {
-            _player.CurrentHp += 1;
-            Destroy(_hpRecovery);
-        }
-        else
-        {
-            Destroy(_hpRecovery);
-            return;
-        }
+        StartCoroutine(HpRecoveryCoroutine(_player, _duration));
     }
     public void SpeedUp(CharacterController _player, float _speedUp, float _duration)
     {
@@ -52,21 +40,40 @@ public class Items : MonoBehaviour
         StartCoroutine(ScaleUpCoroutine(_player, _duration));
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+   
+    private IEnumerator HpRecoveryCoroutine(CharacterController _player, float _duration)
+    {
+        if (_player.CurrentHp > 0 && _player.CurrentHp < 3)
+        {
+            _player.CurrentHp += 1;
+            _hpRecovery.SetActive(false);
+        }
+        else
+        {
+            _hpRecovery.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(_duration);
+
+        _hpRecovery.SetActive(true);
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     private IEnumerator ScaleUpCoroutine(CharacterController _player, float _duration)
     {
         Vector3 originalScale = _player.transform.localScale;
 
         _player.transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
 
-        IsItems(isItem);
+        _scaleUP.SetActive(false);
 
         yield return new WaitForSeconds(_duration);
 
         _player.transform.localScale = originalScale;
 
-        IsItems(!isItem);
+        _scaleUP.SetActive(true);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,7 +86,7 @@ public class Items : MonoBehaviour
             phUp.SetMoveSpeed(_player.CurrentSpeed + _speedUp);
         }
 
-        IsItems(isItem);
+        _speedUP.SetActive(false);
 
         yield return new WaitForSeconds(_duration);
 
@@ -87,15 +94,7 @@ public class Items : MonoBehaviour
         {
             phDown.SetMoveSpeed(_player.CurrentSpeed);
         }
-        IsItems(!isItem);
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    private void IsItems(bool _isItems)
-    {
-        gameObject.SetActive(_isItems);
-        Debug.Log($"게임오브젝트 : {gameObject}");
+        _speedUP.SetActive(true);
     }
 
     private void Start()

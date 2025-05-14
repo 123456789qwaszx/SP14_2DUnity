@@ -167,100 +167,100 @@ public class CharacterController : CharacterBaseController
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
-        gameUI = gameUIObject.GetComponent<GameUI>();
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
+    //    gameUI = gameUIObject.GetComponent<GameUI>();
 
-        if (collision.gameObject.CompareTag("Score10"))
-        {
-            Score += 10;
+    //    if (collision.gameObject.CompareTag("Score10"))
+    //    {
+    //        Score += 10;
 
-            if (Score >= BestScore)
-            {
-                BestScore = Score;
-            }
+    //        if (Score >= BestScore)
+    //        {
+    //            BestScore = Score;
+    //        }
 
-            gameUI.SetUI(Score, BestScore);
-            Destroy(collision.gameObject);
-            Debug.Log($"{Score}");
-        }
-        else if (collision.gameObject.CompareTag("Score50"))
-        {
-            Score += 50;
+    //        gameUI.SetUI(Score, BestScore);
+    //        Destroy(collision.gameObject);
+    //        Debug.Log($"{Score}");
+    //    }
+    //    else if (collision.gameObject.CompareTag("Score50"))
+    //    {
+    //        Score += 50;
 
-            if (Score >= BestScore)
-            {
-                BestScore = Score;
-                gameUI.SaveBestScore();
-            }
+    //        if (Score >= BestScore)
+    //        {
+    //            BestScore = Score;
+    //            gameUI.SaveBestScore();
+    //        }
 
-            gameUI.SetUI(Score, BestScore);
-            Destroy(collision.gameObject);
-            Debug.Log($"{Score}");
-        }
-        else if (collision.gameObject.CompareTag("HpRecovery"))
-        {
-            if (CurrentHp > 0 && CurrentHp < 3)
-            {
-                CurrentHp += 1;
-                gameUI.HpUp = true;
-                gameUI.UpdateHealthUI();
-                Debug.Log("체력회복");
-                Debug.Log($"현재 체력: {CurrentHp}");
-                Debug.Log($"{"HpRecovery!"}");
-            }
-            else
-            {
+    //        gameUI.SetUI(Score, BestScore);
+    //        Destroy(collision.gameObject);
+    //        Debug.Log($"{Score}");
+    //    }
+    //    else if (collision.gameObject.CompareTag("HpRecovery"))
+    //    {
+    //        if (CurrentHp > 0 && CurrentHp < 3)
+    //        {
+    //            CurrentHp += 1;
+    //            gameUI.HpUp = true;
+    //            gameUI.UpdateHealthUI();
+    //            Debug.Log("체력회복");
+    //            Debug.Log($"현재 체력: {CurrentHp}");
+    //            Debug.Log($"{"HpRecovery!"}");
+    //        }
+    //        else
+    //        {
 
-            }
-            Destroy(collision.gameObject);
+    //        }
+    //        Destroy(collision.gameObject);
             
-        }
-        else if (collision.gameObject.CompareTag("SpeedUp"))
-        {
-            StartCoroutine(SpeedUpCoroutine(maxSpeed, duration));
-            Destroy(collision.gameObject);
-            Debug.Log($"SpeedUp!");
-        }
-        else if (collision.gameObject.CompareTag("ScaleUp"))
-        {
-            StartCoroutine(ScaleUpCoroutine(duration));
-            Destroy(collision.gameObject);
-            Debug.Log($"ScaleUp!");
-        }
-        else if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            isInvincible = true;
-            if (isInvincible)
-            {
-                ObstacleBaseController obstacle = collision.gameObject.GetComponent<ObstacleBaseController>();
+    //    }
+    //    //else if (collision.gameObject.CompareTag("SpeedUp"))
+    //    //{
+    //    //    StartCoroutine(SpeedUpCoroutine(maxSpeed, duration));
+    //    //    Destroy(collision.gameObject);
+    //    //    Debug.Log($"SpeedUp!");
+    //    //}
+    //    //else if (collision.gameObject.CompareTag("ScaleUp"))
+    //    //{
+    //    //    StartCoroutine(ScaleUpCoroutine(duration));
+    //    //    Destroy(collision.gameObject);
+    //    //    Debug.Log($"ScaleUp!");
+    //    //}
+    //    else if (collision.gameObject.CompareTag("Obstacle"))
+    //    {
+    //        isInvincible = true;
+    //        if (isInvincible)
+    //        {
+    //            ObstacleBaseController obstacle = collision.gameObject.GetComponent<ObstacleBaseController>();
 
-                Damage(damage);
-                ApplyKnockBack(transform, knockBackPower);
-                ApplyInvincible();
-                Debug.Log("체력감소");
-                Debug.Log($"현재 체력: {CurrentHp}");
-                gameUI.UpdateHealthUI();
-                Debug.Log($"obstacle!");
-            }
+    //            Damage(damage);
+    //            ApplyKnockBack(transform, knockBackPower);
+    //            ApplyInvincible();
+    //            Debug.Log("체력감소");
+    //            Debug.Log($"현재 체력: {CurrentHp}");
+    //            gameUI.UpdateHealthUI();
+    //            Debug.Log($"obstacle!");
+    //        }
 
-        }
-        else if (collision.gameObject.CompareTag("MapRoutin"))
-        {
-            //맵 추가시 랜덤범위 직접조정
-            int randomIndex = UnityEngine.Random.Range(1, 5);
+    //    }
+    //    else if (collision.gameObject.CompareTag("MapRoutin"))
+    //    {
+    //        //맵 추가시 랜덤범위 직접조정
+    //        int randomIndex = UnityEngine.Random.Range(1, 5);
 
-            GameObject randomMap = Managers.Map.LoadMap(randomIndex);
+    //        GameObject randomMap = Managers.Map.LoadMap(randomIndex);
 
-            float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
-            randomMap.transform.position = new Vector3(mapWidth, 0);
-        }
-        else
-        {
-            Debug.Log("failed to find tag");
-        }
-    }
+    //        float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
+    //        randomMap.transform.position = new Vector3(mapWidth, 0);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("failed to find tag");
+    //    }
+    //}
 
     private IEnumerator SpeedUpCoroutine(float _speedUp, float _duration)
     {

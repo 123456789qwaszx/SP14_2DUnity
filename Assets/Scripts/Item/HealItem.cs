@@ -15,7 +15,7 @@ public class HealItem : Items
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            HpRecovery(_player);
+            HpRecovery(_player, Duration);
         }
     }
 }
