@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "SP14_2DUnity.sln"
+    "dotnet.defaultSolution": "SP14_2DUnity.sln",
+    "dotnet.preferCSharpExtension": true
 }

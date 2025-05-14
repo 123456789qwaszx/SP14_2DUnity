@@ -7,7 +7,7 @@ public class ObstacleBaseController : MonoBehaviour
     Rigidbody2D rb;
 
     [Header("Obstacle State")]
-    private float damage = 1f;
+    public float damage = 1f;
     public virtual float Damage { get { return damage; } }
 
     private float knockBackPower = 3f;

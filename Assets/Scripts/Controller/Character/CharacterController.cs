@@ -5,6 +5,20 @@ using UnityEngine;
 public class CharacterController : CharacterBaseController
 {
 
+    [SerializeField] private GameObject _scaleUP;
+    [SerializeField] private GameObject _hpRecovery;
+    [SerializeField] private GameObject _speedUP;
+
+    GameUI gameUI;
+    public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
+
+    bool isItem = false;
+
+    private float maxSpeed = 5f;
+    private float duration = 3f;
+    public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
+    public float Duration { get { return duration; } set { duration = value; } }
+
     protected override void Awake()
     {
         base.Awake();
@@ -13,7 +27,6 @@ public class CharacterController : CharacterBaseController
     protected override void Start()
     {
         base.Start();
-
         SetCharacterState();
     }
 
@@ -23,16 +36,16 @@ public class CharacterController : CharacterBaseController
         // ����
         if (jumpCount < maxJumpCount && !isSliding)
         {
-            // �׽�Ʈ�� ���� �ڵ�. �����δ� ����� ȯ�濡 ���� OnClick���� ���� ����
+            // �׽�Ʈ�� �ڵ�
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
 
-            /*  ����Ű Ȧ�� �� ������ ���� ����
+            /*
             if (Input.GetKey(KeyCode.Space))
             {
-                isJumpHold = true;   // ����Ű�� ������ �ִ��� Ȯ��
+                isJumpHold = true;
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {
@@ -41,7 +54,7 @@ public class CharacterController : CharacterBaseController
             */
         }
 
-        // �����̵�
+        // 
         if (!isSliding && isGround)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -74,7 +87,7 @@ public class CharacterController : CharacterBaseController
         */
     }
 
-    protected override void SetCharacterState()
+    public override void SetCharacterState()
     {
         base.SetCharacterState();
 
@@ -99,12 +112,12 @@ public class CharacterController : CharacterBaseController
 
         if (jumpCount == 0)
         {
-            anim.SetBool("isJump", true);   // �ִϸ��̼� ���� �� ���
+            anim.SetBool("isJump", true);   // �ִϸ��̼� ���� �� ���?
         }
         else if (jumpCount >= 1)
         {
-            anim.SetBool("isJump", false);   // �ִϸ��̼� ���� �� ���
-            anim.SetBool("isDoubleJump", true);   // �ִϸ��̼� ���� �� ���
+            anim.SetBool("isJump", false);   // �ִϸ��̼� ���� �� ���?
+            anim.SetBool("isDoubleJump", true);   // �ִϸ��̼� ���� �� ���?
         }
 
         jumpCount++;
@@ -113,18 +126,18 @@ public class CharacterController : CharacterBaseController
     public override void Slide()
     {
         isSliding = true;
-        anim.SetBool("isSliding", isSliding); // �ִϸ��̼� ���� �� ���
+        anim.SetBool("isSliding", isSliding); // �ִϸ��̼� ���� �� ���?
     }
 
     public override void EndSlide()
     {
         isSliding = false;
-        anim.SetBool("isSliding", isSliding); // �ִϸ��̼� ���� �� ���
+        anim.SetBool("isSliding", isSliding); // �ִϸ��̼� ���� �� ���?
     }
 
     private void IncreaseSpeed()
     {
-        Debug.Log("���ǵ� ����: " + currentSpeed);   // memo: �ʿ����� Player�±׸� ������ ���� �÷��� ���� ĳ������ currentSpeed�� �� ���ǵ�� ����
+        Debug.Log("���ǵ� ����: " + currentSpeed);   // memo: �ʿ����� Player�±׸� ������ ���� �÷��� ���� ĳ������ currentSpeed�� �� ���ǵ��? ����
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -137,8 +150,8 @@ public class CharacterController : CharacterBaseController
             {
                 isJumping = false;
 
-                anim.SetBool("isJump", isJumping);   // �ִϸ��̼� ���� �� ���
-                anim.SetBool("isDoubleJump", isJumping);   // �ִϸ��̼� ���� �� ���
+                anim.SetBool("isJump", isJumping);   // �ִϸ��̼� ���� �� ���?
+                anim.SetBool("isDoubleJump", isJumping);   // �ִϸ��̼� ���� �� ���?
 
                 jumpCount = 0;
             }
@@ -153,35 +166,113 @@ public class CharacterController : CharacterBaseController
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
+        gameUI = gameUIObject.GetComponent<GameUI>();
 
-        // ��ֹ� �浹 ó��
-        if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
+        if (collision.gameObject.CompareTag("Score10"))
         {
-            float damage = collision.gameObject.GetComponent<ObstacleBaseController>().Damage;
-            float knockBackPower = collision.gameObject.GetComponent<ObstacleBaseController>().KnockBackPower;
-
-            Damage(damage);
-            ApplyKnockBack(collision.gameObject.transform, knockBackPower);
-            ApplyInvincible();
+            Score += 10;
+            gameUI.SetUI(Score);
+            Destroy(collision.gameObject);
+            Debug.Log($"{Score}");
         }
-        
+        else if (collision.gameObject.CompareTag("Score50"))
+        {
+            Score += 50;
+            gameUI.SetUI(Score);
+            Destroy(collision.gameObject);
+            Debug.Log($"{Score}");
+        }
+        else if (collision.gameObject.CompareTag("HpRecovery"))
+        {
+            if (CurrentHp > 0 && CurrentHp < 3)
+            {
+                CurrentHp += 1;
 
+            }
+            else
+            {
+
+            }
+            Destroy(collision.gameObject);
+            Debug.Log($"{"HpRecovery!"}");
+        }
+        else if (collision.gameObject.CompareTag("SpeedUp"))
+        {
+            StartCoroutine(SpeedUpCoroutine(maxSpeed, duration));
+            Destroy(collision.gameObject);
+            Debug.Log($"SpeedUp!");
+        }
+        else if (collision.gameObject.CompareTag("ScaleUp"))
+        {
+            StartCoroutine(ScaleUpCoroutine(duration));
+            Destroy(collision.gameObject);
+            Debug.Log($"ScaleUp!");
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (isInvincible)
+            {
+                Damage(damage);
+                ApplyKnockBack(transform, knockBackPower);
+                ApplyInvincible();
+            }
+            Debug.Log($"obstacle!");
+        }
         else if (collision.gameObject.CompareTag("MapRoutin"))
         {
-            int randomIndex = UnityEngine.Random.Range(1, 3);
+            //�� �߰��� �������� ��������
+            int randomIndex = UnityEngine.Random.Range(1, 5);
+
             GameObject randomMap = Managers.Map.LoadMap(randomIndex);
 
             float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
             randomMap.transform.position = new Vector3(mapWidth, 0);
         }
+        else
+        {
+            Debug.Log("failed to find tag");
+        }
+    }
+
+    private IEnumerator SpeedUpCoroutine(float _speedUp, float _duration)
+    {
+
+        foreach (ParallaxHandle phUp in parallaxHandles)
+        {
+            phUp.SetMoveSpeed(CurrentSpeed + _speedUp);
+        }
+
+        Destroy(_speedUP);
+
+        yield return new WaitForSeconds(_duration);
+
+        foreach (ParallaxHandle phDown in parallaxHandles)
+        {
+            phDown.SetMoveSpeed(CurrentSpeed);
+        }
+    }
+
+    private IEnumerator ScaleUpCoroutine(float _duration)
+    {
+        Vector3 originalScale = transform.localScale;
+
+        transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
+
+        Destroy(_scaleUP);
+
+        yield return new WaitForSeconds(_duration);
+
+        transform.localScale = originalScale;
     }
 
     public override void ApplyInvincible()
     {
         base.ApplyInvincible();
-        // anim.SetBool("isInvincible", isInvincible);   // �ִϸ��̼� ���� �� ���
+        // anim.SetBool("isInvincible", isInvincible);   // �ִϸ��̼� ���� �� ���?
     }
 
     // ���� ������Ʈ�� �ִ� �������� ���� ĳ������ ü���� ���ҽ�Ŵ

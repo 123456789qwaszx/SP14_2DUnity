@@ -8,8 +8,13 @@ TagManager:
   - ScaleUp
   - SpeedUp
   - HpRecovery
+  - Items
   - Obstacle
+  - BackGroundLayers
   - MapRoutin
+  - Score10
+  - Score50
+  - GameUI
   layers:
   - Default
   - TransparentFX
