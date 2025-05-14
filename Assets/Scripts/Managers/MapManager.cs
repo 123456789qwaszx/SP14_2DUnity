@@ -23,6 +23,7 @@ public class MapManager
         MapInstances.Add(Managers.Resource.Instantiate($"Map/Map_002"));
         MapInstances.Add(Managers.Resource.Instantiate($"Map/Map_003"));
         MapInstances.Add(Managers.Resource.Instantiate($"Map/Map_004"));
+        MapInstances.Add(Managers.Resource.Instantiate($"Map/Map_005"));
 
         foreach (GameObject obj in MapInstances)
         {
@@ -30,7 +31,7 @@ public class MapManager
         }
 
         Managers.Resource.Instantiate("Map/Map_default");
-        GameObject map = Managers.Resource.Instantiate($"Map/Map_Test");
+        GameObject map = Managers.Resource.Instantiate($"Map/Map_001");
         
         float mapWidth = Managers.Map.GetMapWorldWidth(map);
         map.transform.position = new Vector3(mapWidth, 0);
