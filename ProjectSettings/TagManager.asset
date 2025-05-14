@@ -12,6 +12,8 @@ TagManager:
   - Obstacle
   - BackGroundLayers
   - MapRoutin
+  - Score10
+  - Score50
   layers:
   - Default
   - TransparentFX
