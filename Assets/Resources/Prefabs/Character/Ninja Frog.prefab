@@ -50,7 +50,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 3
-  currentHp: 0
   jumpPower: 3
   currentJumpPower: 0
   maxJumpCount: 1
@@ -133,7 +132,6 @@ MonoBehaviour:
   _scaleUP: {fileID: 0}
   _hpRecovery: {fileID: 0}
   _speedUP: {fileID: 0}
-  gameUI: {fileID: 4224983976290409190, guid: e064d1b3fb5100c45aad8af6281d2544, type: 3}
   parallaxHandles: []
 --- !u!1 &1886880864519077937
 GameObject:
