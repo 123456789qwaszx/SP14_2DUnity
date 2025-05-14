@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GameUI
+  - Items
+  - HpRecovery
+  - SpeedUp
+  - ScaleUp
+  - BackGroundLayers
   layers:
   - Default
   - TransparentFX

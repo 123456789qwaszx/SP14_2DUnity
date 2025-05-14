@@ -16,6 +16,8 @@ public class Items : MonoBehaviour
 
     bool isItem = false;
 
+    string[] itemName = { "ScaleUp", "SpeedUp", "HpRecovery" };
+
     private float maxSpeed = 5f;
     private float duration = 3f;
     public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
@@ -77,13 +79,22 @@ public class Items : MonoBehaviour
             phUp.SetMoveSpeed(_player.CurrentSpeed + _speedUp);
         }
 
-        Destroy(_speedUP);
-
+        //Destroy(_speedUP);
+        isBool(isItem, itemName[0]);
         yield return new WaitForSeconds(_duration);
 
         foreach (ParallaxHandle phDown in parallaxHandles)
         {
             phDown.SetMoveSpeed(_player.CurrentSpeed);
+        }
+        isBool(!isItem, itemName[0]);
+    }
+    private void isBool(bool _isItem, string _itmeBD)
+    {
+        Transform child = transform.Find(_itmeBD);
+        if (child != null)
+        {
+            child.gameObject.SetActive(isItem);
         }
     }
     private void Start()
