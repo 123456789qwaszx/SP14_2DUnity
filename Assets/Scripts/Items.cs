@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using static UnityEngine.GraphicsBuffer;
 
 public class Items : MonoBehaviour
@@ -14,19 +15,14 @@ public class Items : MonoBehaviour
     [SerializeField] private GameObject _bigScoreUP;
 
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
+    //public List<ObstacleBaseController> ob = new List<ObstacleBaseController>();
 
     private float maxSpeed = 5f;
     private float duration = 3f;
     public float MaxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
     public float Duration { get { return duration; } set { duration = value; } }
 
-    private void Update()
-    {
-        //float move = 2f;
-        //transform.position += Vector3.left * move * Time.deltaTime;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void HpRecovery(CharacterController _player, float _duration)
     {
@@ -74,6 +70,13 @@ public class Items : MonoBehaviour
     private IEnumerator ScaleUpCoroutine(CharacterController _player, float _duration)
     {
         _player.transform.localScale = new Vector3(2.0f, 2.0f, 0f);
+
+        //if (!_player.isInvincible)
+        //{
+        //    _player.Damage(1);
+        //    _player.ApplyKnockBack(GameObject.FindWithTag("Obstacle").transform, _duration);
+        //    _player.ApplyInvincible();
+        //}
 
         _scaleUP.SetActive(false);
 
@@ -132,5 +135,10 @@ public class Items : MonoBehaviour
         {
             parallaxHandles.Add(go.GetComponent<ParallaxHandle>());
         }
+        //GameObject[] obObjects = GameObject.FindGameObjectsWithTag("Obstacle");
+        //foreach (GameObject go in obObjects)
+        //{
+        //    ob.Add(go.GetComponent<ObstacleBaseController>());
+        //}
     }
 }
