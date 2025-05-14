@@ -23,16 +23,16 @@ public class CharacterController : CharacterBaseController
         // ����
         if (jumpCount < maxJumpCount && !isSliding)
         {
-            // �׽�Ʈ�� ���� �ڵ�. �����δ� ����� ȯ�濡 ���� OnClick���� ���� ����
+            // �׽�Ʈ�� �ڵ�
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
 
-            /*  ����Ű Ȧ�� �� ������ ���� ����
+            /*
             if (Input.GetKey(KeyCode.Space))
             {
-                isJumpHold = true;   // ����Ű�� ������ �ִ��� Ȯ��
+                isJumpHold = true;
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {
@@ -41,7 +41,7 @@ public class CharacterController : CharacterBaseController
             */
         }
 
-        // �����̵�
+        // 
         if (!isSliding && isGround)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -99,12 +99,12 @@ public class CharacterController : CharacterBaseController
 
         if (jumpCount == 0)
         {
-            anim.SetBool("isJump", true);   // �ִϸ��̼� ���� �� ���
+            anim.SetBool("isJump", true);   // �ִϸ��̼� ���� �� ���?
         }
         else if (jumpCount >= 1)
         {
-            anim.SetBool("isJump", false);   // �ִϸ��̼� ���� �� ���
-            anim.SetBool("isDoubleJump", true);   // �ִϸ��̼� ���� �� ���
+            anim.SetBool("isJump", false);   // �ִϸ��̼� ���� �� ���?
+            anim.SetBool("isDoubleJump", true);   // �ִϸ��̼� ���� �� ���?
         }
 
         jumpCount++;
@@ -113,18 +113,18 @@ public class CharacterController : CharacterBaseController
     public override void Slide()
     {
         isSliding = true;
-        anim.SetBool("isSliding", isSliding); // �ִϸ��̼� ���� �� ���
+        anim.SetBool("isSliding", isSliding); // �ִϸ��̼� ���� �� ���?
     }
 
     public override void EndSlide()
     {
         isSliding = false;
-        anim.SetBool("isSliding", isSliding); // �ִϸ��̼� ���� �� ���
+        anim.SetBool("isSliding", isSliding); // �ִϸ��̼� ���� �� ���?
     }
 
     private void IncreaseSpeed()
     {
-        Debug.Log("���ǵ� ����: " + currentSpeed);   // memo: �ʿ����� Player�±׸� ������ ���� �÷��� ���� ĳ������ currentSpeed�� �� ���ǵ�� ����
+        Debug.Log("���ǵ� ����: " + currentSpeed);   // memo: �ʿ����� Player�±׸� ������ ���� �÷��� ���� ĳ������ currentSpeed�� �� ���ǵ��? ����
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -137,8 +137,8 @@ public class CharacterController : CharacterBaseController
             {
                 isJumping = false;
 
-                anim.SetBool("isJump", isJumping);   // �ִϸ��̼� ���� �� ���
-                anim.SetBool("isDoubleJump", isJumping);   // �ִϸ��̼� ���� �� ���
+                anim.SetBool("isJump", isJumping);   // �ִϸ��̼� ���� �� ���?
+                anim.SetBool("isDoubleJump", isJumping);   // �ִϸ��̼� ���� �� ���?
 
                 jumpCount = 0;
             }
@@ -168,7 +168,7 @@ public class CharacterController : CharacterBaseController
     public override void ApplyInvincible()
     {
         base.ApplyInvincible();
-        // anim.SetBool("isInvincible", isInvincible);   // �ִϸ��̼� ���� �� ���
+        // anim.SetBool("isInvincible", isInvincible);   // �ִϸ��̼� ���� �� ���?
     }
 
     // ���� ������Ʈ�� �ִ� �������� ���� ĳ������ ü���� ���ҽ�Ŵ
