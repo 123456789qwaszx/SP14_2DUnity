@@ -7,7 +7,7 @@ public class ScoreItem : Items
 {
     private int score = 10;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterController _player = collision.gameObject.GetComponent<CharacterController>();
 

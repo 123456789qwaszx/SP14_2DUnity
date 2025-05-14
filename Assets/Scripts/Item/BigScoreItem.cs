@@ -7,7 +7,7 @@ public class BigScoreItem : MonoBehaviour
 {
     private int score = 50;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterController _player = collision.gameObject.GetComponent<CharacterController>();
 
