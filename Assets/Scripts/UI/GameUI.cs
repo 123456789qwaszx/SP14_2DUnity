@@ -40,7 +40,7 @@ public class GameUI : MonoBehaviour
     private TextMeshProUGUI stateBestScoreTxt; // ���� ���� �ְ� ����
 
     private Button jumpButton; // ���� ��ư
-    private Button restartButton; // ����� ��ư
+    private Button restartButton; // �����? ��ư
     private Button backButton; // �ڷΰ��� ��ư
     private Button homeButton; // Ȩ���� ���� ��ư
     private Button pauseButton; // �Ͻ����� ��ư
@@ -60,6 +60,7 @@ public class GameUI : MonoBehaviour
     private void Update()
     {
         UpdateHealthUI();
+        UpdateScoreUI();
     }
 
     public void Init() // �ʱ�ȭ
@@ -120,7 +121,7 @@ public class GameUI : MonoBehaviour
         }
         else
         {
-            character.BestScore = 0; // ����� �ְ� ������ ������ 0���� �ʱ�ȭ
+            character.BestScore = 0; // �����? �ְ� ������ ������ 0���� �ʱ�ȭ
             bestScoreTxt.text = "0";
         }
     }
@@ -129,13 +130,13 @@ public class GameUI : MonoBehaviour
     {
         if (character.CurrentHp <= 0) // ���� ������ �� - ���� ����
         {
-            _gameStateText.text = _gameStateMessages[1]; // "���� ����" ���
+            _gameStateText.text = _gameStateMessages[1]; // "���� ����" ���?
             _gameStateUICanvas.SetActive(true);
             Time.timeScale = 0f;
         }
         //else if (stageClear) // �������� Ŭ����
         //{
-        //_gameStateText.text = _gameStateMessages[0]; // "�������� Ŭ����" ���
+        //_gameStateText.text = _gameStateMessages[0]; // "�������� Ŭ����" ���?
         //_gameStateUICanvas.SetActive(true);
         //}
     }
@@ -178,14 +179,19 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void CheckGameOver() // ���� ������ ��� ����
+    public void UpdateScoreUI()
+    {
+        SetUI(character.Score, character.BestScore);
+    }
+
+    public void CheckGameOver() // ���� ������ ���? ����
     {
         StartCoroutine(DelayedGameOverUI());
     }
 
     IEnumerator DelayedGameOverUI()
     {
-        yield return new WaitForSeconds(0.5f); // 0.5�� ��� �� �ٽ� �۵�
+        yield return new WaitForSeconds(0.5f); // 0.5�� ���? �� �ٽ� �۵�
         Debug.Log("0.5�� �Ŀ� UI�۵�");
         ShowGameStateUI();
     }
@@ -214,11 +220,11 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private void OnClickRestartButton() // ����� ��ư
+    private void OnClickRestartButton() // �����? ��ư
     {
         Time.timeScale = 1f; // ���� ����
         SceneManager.LoadScene("Game");
-        Debug.Log("�����");
+        Debug.Log("�����?");
     }
 
     private void OnClickNextButton() // ���� �������� ��ư
@@ -233,7 +239,7 @@ public class GameUI : MonoBehaviour
 
     private void OnClickPauseButton() // �Ͻ����� ��ư
     {
-        _gameStateText.text = _gameStateMessages[2]; // "�Ͻ�����" ���
+        _gameStateText.text = _gameStateMessages[2]; // "�Ͻ�����" ���?
         _gameStateUICanvas.SetActive(true);
         Time.timeScale = 0f; // ���� ����
     }

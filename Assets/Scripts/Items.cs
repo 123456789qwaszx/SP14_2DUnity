@@ -10,6 +10,8 @@ public class Items : MonoBehaviour
     [SerializeField] private GameObject _scaleUP;
     [SerializeField] private GameObject _hpRecovery;
     [SerializeField] private GameObject _speedUP;
+    [SerializeField] private GameObject _scoreUP;
+    [SerializeField] private GameObject _bigScoreUP;
 
     public List<ParallaxHandle> parallaxHandles = new List<ParallaxHandle>();
 
@@ -38,6 +40,11 @@ public class Items : MonoBehaviour
     public void ScaleUp(CharacterController _player, float _duration)
     {
         StartCoroutine(ScaleUpCoroutine(_player, _duration));
+    }
+
+    public void ScoreUp(CharacterController _player, int score)
+    {
+        StartCoroutine(ScoreUpCoroutine(_player, score));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,6 +101,28 @@ public class Items : MonoBehaviour
             phDown.SetMoveSpeed(_player.CurrentSpeed);
         }
         _speedUP.SetActive(true);
+    }
+
+    private IEnumerator ScoreUpCoroutine(CharacterController _player, int score)
+    {
+        _player.Score += score;
+
+        if (score == 10)
+        {
+            _scoreUP.SetActive(false);
+
+            yield return new WaitForSeconds(duration);
+
+            _scoreUP.SetActive(true);
+        }
+        else if (score == 50)
+        {
+            _bigScoreUP.SetActive(false);
+
+            yield return new WaitForSeconds(duration);
+
+            _bigScoreUP.SetActive(true);
+        }
     }
 
     private void Start()
