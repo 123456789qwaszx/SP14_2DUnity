@@ -40,7 +40,6 @@ public class CharacterController : CharacterBaseController
             {
                 Jump();
             }
-
             /* 롱 점프 구현현
             if (Input.GetKey(KeyCode.Space))
             {
