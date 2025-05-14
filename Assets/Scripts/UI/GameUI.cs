@@ -57,7 +57,6 @@ public class GameUI : MonoBehaviour
     {
         ShowGameStateUI();
         UpdateHealthUI();
-
     }
 
     public void Init() // 초기화
@@ -136,7 +135,10 @@ public class GameUI : MonoBehaviour
 
     private void OnClickJumpButton() // 점프 버튼
     {
-        character.Jump();
+        if (character.jumpCount < character.maxJumpCount && !character.isSliding)
+        {
+            character.Jump();
+        }
     }
 
     private void OnClickSlidingButton() // 슬라이딩 버튼
