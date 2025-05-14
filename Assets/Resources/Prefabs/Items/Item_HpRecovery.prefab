@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 74441807287064824}
   - component: {fileID: 6821676956229475681}
   - component: {fileID: 863451706691412255}
-  - component: {fileID: 358851521452030113}
   m_Layer: 0
   m_Name: Item_HpRecovery
   m_TagString: HpRecovery
@@ -131,19 +130,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0666667, y: 1.0666667}
   m_EdgeRadius: 0
---- !u!114 &358851521452030113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2740231429903898679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a7d93d05a004843ac74384af368173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scaleUP: {fileID: 0}
-  _hpRecovery: {fileID: 0}
-  _speedUP: {fileID: 0}
-  parallaxHandles: []
