@@ -22,8 +22,8 @@ public class Items : MonoBehaviour
 
     private void Update()
     {
-        float move = 2f;
-        transform.position += Vector3.left * move * Time.deltaTime;
+        //float move = 2f;
+        //transform.position += Vector3.left * move * Time.deltaTime;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

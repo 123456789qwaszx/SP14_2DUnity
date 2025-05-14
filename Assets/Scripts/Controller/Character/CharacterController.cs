@@ -169,7 +169,55 @@ public class CharacterController : CharacterBaseController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("MapRoutin"))
+        if (collision.gameObject.CompareTag("Score10"))
+        {
+            Score += 10;
+            Destroy(collision.gameObject);
+            Debug.Log($"{Score}");
+        }
+        else if (collision.gameObject.CompareTag("Score50"))
+        {
+            Score += 50;
+            Destroy(collision.gameObject);
+            Debug.Log($"{Score}");
+        }
+        else if (collision.gameObject.CompareTag("HpRecovery"))
+        {
+            if (CurrentHp > 0 && CurrentHp < 3)
+            {
+                CurrentHp += 1;
+                
+            }
+            else
+            {
+                
+            }
+            Destroy(collision.gameObject);
+            Debug.Log($"{"HpRecovery!"}");
+        }
+        else if (collision.gameObject.CompareTag("SpeedUp"))
+        {
+            StartCoroutine(SpeedUpCoroutine(maxSpeed, duration));
+            Destroy(collision.gameObject);
+            Debug.Log($"SpeedUp!");
+        }
+        else if (collision.gameObject.CompareTag("ScaleUp"))
+        { 
+            StartCoroutine(ScaleUpCoroutine(duration));
+            Destroy(collision.gameObject);
+            Debug.Log($"ScaleUp!");
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (isInvincible)
+            {
+                Damage(damage);
+                ApplyKnockBack(transform, knockBackPower);
+                ApplyInvincible();
+            }
+            Debug.Log($"obstacle!");
+        }
+        else if (collision.gameObject.CompareTag("MapRoutin"))
         {
             //맵 추가시 랜덤범위 직접조정
             int randomIndex = UnityEngine.Random.Range(1, 5);
@@ -179,8 +227,42 @@ public class CharacterController : CharacterBaseController
             float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
             randomMap.transform.position = new Vector3(mapWidth, 0);
         }
+        else
+        {
+            Debug.Log("failed to find tag");
+        }
     }
 
+    private IEnumerator SpeedUpCoroutine( float _speedUp, float _duration)
+    {
+        
+        foreach (ParallaxHandle phUp in parallaxHandles)
+        {
+            phUp.SetMoveSpeed(CurrentSpeed + _speedUp);
+        }
+
+        Destroy(_speedUP);
+
+        yield return new WaitForSeconds(_duration);
+
+        foreach (ParallaxHandle phDown in parallaxHandles)
+        {
+            phDown.SetMoveSpeed(CurrentSpeed);
+        }
+    }
+
+    private IEnumerator ScaleUpCoroutine(float _duration)
+    {
+        Vector3 originalScale = transform.localScale;
+
+        transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
+
+        Destroy(_scaleUP);
+
+        yield return new WaitForSeconds(_duration);
+
+        transform.localScale = originalScale;
+    }
 
     public override void ApplyInvincible()
     {

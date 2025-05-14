@@ -28,6 +28,10 @@ public class CharacterBaseController : MonoBehaviour
     public float CurrentSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public float CurrentJumpPower { get { return jumpPower; } set { jumpPower = value; } }
     public int Score { get; set;}
+    protected float damage = 1f;
+
+    protected float knockBackPower = 3f;
+    public float KnockBackPower { get { return knockBackPower; } }
     
 
     [Header("Character Interaction")]
