@@ -143,3 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6590a535cb8f841846caa8c0eaa3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scaleUP: {fileID: 0}
+  _hpRecovery: {fileID: 0}
+  _speedUP: {fileID: 0}
+  _scoreUP: {fileID: 0}
+  _bigScoreUP: {fileID: 2740231429903898679}
+  parallaxHandles: []
