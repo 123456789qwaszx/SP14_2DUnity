@@ -10,13 +10,10 @@ public class DataManager : MonoBehaviour
     public Character currentCharacter;
 
     public TMP_InputField inputField;
-    //public static SelectCharacterUI instance;
-    //private void Awake()
-    //{
-    //    if (instance == null) instance = this;
-    //    else if (instance != null) return;
-    //    DontDestroyOnLoad(gameObject);
-    //}
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     private void Update()
     {
         Debug.Log($"SelectCharacterUI = {currentCharacter}");
