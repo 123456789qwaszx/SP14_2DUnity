@@ -18,6 +18,7 @@ public class Managers : MonoBehaviour
     public static PoolManager Pool { get { return Instance._pool; } } 
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static DataManager data { get { return Instance._data; } }
+
     void Start()
     {
         Init();
