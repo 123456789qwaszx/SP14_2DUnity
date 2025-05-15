@@ -11,8 +11,9 @@ using UnityEngine.UI;
 
 public class SelectModeUI : MonoBehaviour
 {
-    public void OnClickStageButton() // 스테이지 선택으로 이동
+    public void OnClickStageButton() // 게임으로 이동
     {
+        GameUI.isEndless = false;
         Debug.Log("게임으로 이동");
         SceneManager.LoadScene("Game");
     }
