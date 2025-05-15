@@ -30,11 +30,14 @@ public class GameUI : MonoBehaviour
     [SerializeField] private string[] _gameStateMessages; // 게임 상태 문구 배열
 
     private CharacterController character;
+    public SelectModeUI selectModeUI;
+
     public GameObject[] charPrefabs;
     public GameObject player;
 
     public bool HpUp = false; // 체력을 회복한 상태인지 확인
     public bool isClear = false; // 클리어 했는지 
+    public static bool isEndless = false;
 
     private void Start()
     {
@@ -98,12 +101,16 @@ public class GameUI : MonoBehaviour
             Time.timeScale = 0f;
         }
 
-        if (character.Score >= 5000 && !isClear) // 스코어 5000점 이상이면 클리어 UI출력
+        // 무한 모드이면 클리어 문구 출력 X
+        if((!isEndless))
         {
-            _gameStateText.text = _gameStateMessages[0]; // 클리어 문구 출력
-            _gameStateUICanvas.SetActive(true);
-            Time.timeScale = 0f;
-            isClear = true;
+            if (character.Score >= 5000 && !isClear) // 스코어 5000점 이상이면 클리어 UI출력
+            {
+                _gameStateText.text = _gameStateMessages[0]; // 클리어 문구 출력
+                _gameStateUICanvas.SetActive(true);
+                Time.timeScale = 0f;
+                isClear = true;
+            }
         }
     }
 

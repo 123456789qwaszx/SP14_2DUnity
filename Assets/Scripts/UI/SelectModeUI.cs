@@ -19,7 +19,9 @@ public class SelectModeUI : MonoBehaviour
 
     public void OnClickEndlessButton() // 무한모드로 이동
     {
+        GameUI.isEndless = true;
         Debug.Log("무한모드로 이동");
+        SceneManager.LoadScene("Game");
     }
 
     public void OnClickBackButton() // 뒤로가기
