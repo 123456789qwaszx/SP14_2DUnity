@@ -74,6 +74,7 @@ SP14_2DUnity는 쿠키런처럼 장애물을 요리조리 피하고, 달콤한 �
 * 캐릭터 컨트롤러: [Assets/Scripts/Controller/Character/CharacterBaseController.cs](Assets/Scripts/Controller/Character/CharacterBaseController.cs)
 * 맵 스크립트: [Assets/Scripts/Managers/MapManager.cs](Assets/Scripts/Managers/MapManager.cs)
 * 아이템 스크립트: [Assets/Scripts/Items.cs](Assets/Scripts/Items.cs)
+* 장애물 스크립트: [Assets/Scripts/Controller/ObstacleBaseController.cs](Assets/Scripts/Controller/ObstacleBaseController.cs)
 * 게임UI 스크립트: [Assets/Scripts/UI/GameUI.cs](Assets/Scripts/UI/GameUI.cs)
 
 ## 🔗 팀 Notion
