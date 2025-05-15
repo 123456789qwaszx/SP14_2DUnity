@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 9040939012793927553}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.85
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &2857442333176235999
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5262632722366604584}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.1
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &3170407571795764394
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5895746632877307555}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.1
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &3582101253736965880
@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 833888098401786521}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.4
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &4108168397904671864
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4354165227360108462}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.4
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &4675904115594908959
@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2528693435247761518}
-  scrollAmount: 39.8
+  scrollAmount: 39.5
   moveSpeed: 2
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &4963757834730562805
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3671170923707636870}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &5050592958450033208
@@ -841,7 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2781103619545591838}
-  scrollAmount: 39.8
+  scrollAmount: 39.5
   moveSpeed: 2
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &6141818496074539648
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3516281094897620459}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &6576163102152653674
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 398535771440406437}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.1
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &7366185802594302368
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4453164667588371346}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.4
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &7372786342205578828
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7321025698197959712}
-  scrollAmount: 39.8
+  scrollAmount: 39.5
   moveSpeed: 2
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &7433740726471612942
@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7754141700005289462}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &7571810935390902581
@@ -1447,7 +1447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8942042142454567845}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.85
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &8166360301550824818
@@ -1548,7 +1548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6653275988604806297}
-  scrollAmount: 39.95
+  scrollAmount: 39.5
   moveSpeed: 0.85
   moveDirection: {x: -1, y: 0, z: 0}
 --- !u!1 &8389695835309519247
