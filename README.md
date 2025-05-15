@@ -50,6 +50,7 @@ SP14_2DUnity는 쿠키런처럼 장애물을 요리조리 피하고, 달콤한 �
 ![image](https://github.com/user-attachments/assets/0032fe24-893a-4bb2-9c38-786a7d85384d)
 
 취향에 맞는 4가지 매력적인 캐릭터를 선택하여 게임을 즐길 수 있습니다. 각 캐릭터마다 고유한 특징이 있을 수도 있으니, 직접 플레이하며 확인해보세요!
+4번째 캐릭터는 꼭 해보세요! 여러분들을 웃겨드릴 겁니다!
 
 ### 🏆 다채로운 게임 모드
 
@@ -67,10 +68,21 @@ SP14_2DUnity는 쿠키런처럼 장애물을 요리조리 피하고, 달콤한 �
 * **Engine:** Unity
 * **Language:** C#
 
+## 🔗 핵심 스크립트
+
+* 캐릭터 선택 스크립트: [Assets/Scripts/SelectChar.cs](Assets/Scripts/SelectChar.cs)
+* 캐릭터 컨트롤러: [Assets/Scripts/Controller/Character/CharacterBaseController.cs](Assets/Scripts/Controller/Character/CharacterBaseController.cs)
+* 맵 스크립트: [Assets/Scripts/Managers/MapManager.cs](Assets/Scripts/Managers/MapManager.cs)
+* 아이템 스크립트: [Assets/Scripts/Items.cs](Assets/Scripts/Items.cs)
+* 게임UI 스크립트: [Assets/Scripts/UI/GameUI.cs](Assets/Scripts/UI/GameUI.cs)
+
 ## 🔗 팀 Notion
 
 저희 팀의 와이어프레임, 개발 규칙, 사용 자료 등 더 자세한 정보는 아래 Notion 링크에서 확인하실 수 있습니다.
 
 [팀 Notion 바로가기](https://tough-jasmine-54c.notion.site/1ed2397b2e6d801384ddd1683f87c208)
 
+## 🔗 유튜브 시연 영
+
+* 유튜브 시연 영상: [https://www.youtube.com/watch?v=4_zZIGI8z30](https://www.youtube.com/watch?v=4_zZIGI8z30)
 ---
