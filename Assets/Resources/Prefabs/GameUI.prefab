@@ -104,7 +104,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
-  m_sharedMaterial: {fileID: -6926757089257707836, guid: 4753151a5f6634d4697ab69804dcff7a, type: 2}
+  m_sharedMaterial: {fileID: -6926757089257707836, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -290,7 +290,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7549826148977531213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 789932405876580779}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: OnClickPauseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &614601904631822053
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +657,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
-  m_sharedMaterial: {fileID: -6926757089257707836, guid: 4753151a5f6634d4697ab69804dcff7a, type: 2}
+  m_sharedMaterial: {fileID: -6926757089257707836, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -831,7 +843,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 352525121544026515}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 789932405876580779}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: OnClickJumpButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3572787766058572829
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +924,7 @@ MonoBehaviour:
   m_text: text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
-  m_sharedMaterial: {fileID: -6926757089257707836, guid: 4753151a5f6634d4697ab69804dcff7a, type: 2}
+  m_sharedMaterial: {fileID: -6926757089257707836, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1413,7 +1437,7 @@ MonoBehaviour:
   m_text: "\uC810\uC218"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
-  m_sharedMaterial: {fileID: -6926757089257707836, guid: 4753151a5f6634d4697ab69804dcff7a, type: 2}
+  m_sharedMaterial: {fileID: -6926757089257707836, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2113,7 +2137,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4412605274476420704}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 789932405876580779}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: OnClickSlidingButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5926386672345199300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,7 +2269,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7573298146443211205}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 789932405876580779}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: OnClickRestartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6572541680702207667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2452,7 +2500,7 @@ MonoBehaviour:
   m_text: "\uCD5C\uACE0 \uC810\uC218"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
-  m_sharedMaterial: {fileID: -6926757089257707836, guid: 4753151a5f6634d4697ab69804dcff7a, type: 2}
+  m_sharedMaterial: {fileID: -6926757089257707836, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2637,7 +2685,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8717243926419718822}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 789932405876580779}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: OnClickNextButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8936894545573659679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,6 +2746,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameUICanvas: {fileID: 4214190220937080044}
   _gameStateUICanvas: {fileID: 4812765034401053442}
+  currentScoreTxt: {fileID: 4732409407555849293}
+  bestScoreTxt: {fileID: 4401428539229306605}
+  stateCurrentScoreTxt: {fileID: 7563213627091373970}
+  stateBestScoreTxt: {fileID: 7827789485995763008}
   heart_full: {fileID: 21300000, guid: b9a4a1943b66b9f4c84f422b102c12b8, type: 3}
   heart_empty: {fileID: 21300000, guid: b898be32ff4dbe644b25a9d1a6bfde6e, type: 3}
   hearts:
@@ -2958,7 +3022,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7797743762490322038}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 789932405876580779}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: OnClickHomeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9139938840708343043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3027,7 +3103,7 @@ MonoBehaviour:
   m_text: "\uD648"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
-  m_sharedMaterial: {fileID: -6926757089257707836, guid: 4753151a5f6634d4697ab69804dcff7a, type: 2}
+  m_sharedMaterial: {fileID: -6926757089257707836, guid: ccd0dce19cd31994eb595a295833e660, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
