@@ -82,7 +82,7 @@ SP14_2DUnity는 쿠키런처럼 장애물을 요리조리 피하고, 달콤한 �
 
 [팀 Notion 바로가기](https://tough-jasmine-54c.notion.site/1ed2397b2e6d801384ddd1683f87c208)
 
-## 🔗 유튜브 시연 영
+## 🔗 유튜브 시연 영상
 
 * 유튜브 시연 영상: [https://www.youtube.com/watch?v=4_zZIGI8z30](https://www.youtube.com/watch?v=4_zZIGI8z30)
 ---
