@@ -35,12 +35,12 @@ public class CharacterController : CharacterBaseController
 
         if (jumpCount < maxJumpCount && !isSliding)
         {
-            // Å×½ºÆ®¿ë ÄÚµå
+            // ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½Úµï¿½
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
-            /* ·Õ Á¡ÇÁ ±¸ÇöÇö
+            /* ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (Input.GetKey(KeyCode.Space))
             {
                 isJumpHold = true;
@@ -72,7 +72,7 @@ public class CharacterController : CharacterBaseController
 
     protected override void FixedUpdate()
     {
-        /* ·Õ Á¡ÇÁ ±¸ÇöÇö
+        /* ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (isJumpHold && rb.velocity.y > 0f)
         {
             rb.gravityScale = 5f;
@@ -134,7 +134,7 @@ public class CharacterController : CharacterBaseController
 
     private void IncreaseSpeed()
     {
-        Debug.Log("increase Speed: " + currentSpeed);   // memo: ¼Óµµ Áõ°¡ ·ÎÁ÷ Ãß°¡
+        Debug.Log("increase Speed: " + currentSpeed);   // memo: ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -168,53 +168,6 @@ public class CharacterController : CharacterBaseController
         GameObject gameUIObject = GameObject.FindGameObjectWithTag("GameUI");
         gameUI = gameUIObject.GetComponent<GameUI>();
 
-        if (collision.gameObject.CompareTag("MapRoutin"))
-        {
-            //¸Ê Ãß°¡½Ã ·£´ý¹üÀ§ Á÷Á¢Á¶Á¤
-            int randomIndex = UnityEngine.Random.Range(1, 5);
-
-            GameObject randomMap = Managers.Map.LoadMap(randomIndex);
-
-            float mapWidth = Managers.Map.GetMapWorldWidth(randomMap);
-            randomMap.transform.position = new Vector3(mapWidth, 0);
-        }
-    }
-
-    private IEnumerator SpeedUpCoroutine(float _speedUp, float _duration)
-    {
-
-        foreach (ParallaxHandle phUp in parallaxHandles)
-        {
-            phUp.SetMoveSpeed(CurrentSpeed + _speedUp);
-        }
-
-        Destroy(_speedUP);
-
-        yield return new WaitForSeconds(_duration);
-
-        foreach (ParallaxHandle phDown in parallaxHandles)
-        {
-            phDown.SetMoveSpeed(CurrentSpeed);
-        }
-    }
-
-    private IEnumerator ScaleUpCoroutine(float _duration)
-    {
-        Vector3 originalScale = transform.localScale;
-
-        transform.localScale = originalScale + new Vector3(1.0f, 1.0f, 0f);
-
-        Destroy(_scaleUP);
-
-        yield return new WaitForSeconds(_duration);
-
-        transform.localScale = originalScale;
-    }
-
-    public override void ApplyInvincible()
-    {
-        base.ApplyInvincible();
-        // anim.SetBool("isInvincible", isInvincible);
     }
 
     public override void Damage(float damage)
@@ -236,6 +189,6 @@ public class CharacterController : CharacterBaseController
     {
         base.Dead();
 
-        // to do: °ÔÀÓ ¿À¹ö Ã³¸® Ãß°¡°¡
+        // to do: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½
     }
 }
